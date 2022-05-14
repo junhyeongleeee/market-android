@@ -8,7 +8,7 @@ android {
     buildToolsVersion "32.0.0"
 
     defaultConfig {
-        applicationId "kotlin.study.shopping"
+        applicationId "com.example.shopping"
         minSdkVersion 30
         targetSdkVersion 32
         versionCode 1
@@ -29,6 +29,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    viewBinding {
+        enabled true
     }
 }
 

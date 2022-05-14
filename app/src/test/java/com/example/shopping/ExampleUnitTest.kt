@@ -1,4 +1,4 @@
-package kotlin.study.shopping
+package com.example.shopping
 
 import org.junit.Test
 

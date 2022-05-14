@@ -1,6 +1,8 @@
-package kotlin.study.shopping
+package com.example.shopping
 
 import android.app.Application
+import com.example.shopping.di.CoroutineModule
+import kotlinx.coroutines.CoroutineScope
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -12,9 +14,11 @@ class ShoppingApplication : Application() {
         super.onCreate()
 
         startKoin {
-            androidLogger(Level.DEBUG)
+            androidLogger(Level.ERROR)
             androidContext(this@ShoppingApplication)
-            modules(listOf())
+            modules(listOf(
+                CoroutineModule
+            ))
         }
     }
 }
