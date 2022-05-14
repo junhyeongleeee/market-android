@@ -2,6 +2,7 @@ package com.example.shopping
 
 import android.app.Application
 import com.example.shopping.di.CoroutineModule
+import com.example.shopping.di.ViewModelModule
 import kotlinx.coroutines.CoroutineScope
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -17,7 +18,8 @@ class ShoppingApplication : Application() {
             androidLogger(Level.ERROR)
             androidContext(this@ShoppingApplication)
             modules(listOf(
-                CoroutineModule
+                CoroutineModule,
+                ViewModelModule
             ))
         }
     }
