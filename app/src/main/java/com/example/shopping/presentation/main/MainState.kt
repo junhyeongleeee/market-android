@@ -2,6 +2,7 @@ package com.example.shopping.presentation.main
 
 sealed class MainState {
     object UnInitialized: MainState()
+    object Loading: MainState()
     data class SelectedSuccess(
         val position: Int
     ): MainState()

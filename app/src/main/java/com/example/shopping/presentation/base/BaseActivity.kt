@@ -22,7 +22,6 @@ abstract class BaseActivity<VM: BaseViewModel, VB: ViewBinding>: AppCompatActivi
 
         fetch = viewModel.fetch()
         observeData()
-
     }
 
     abstract fun observeData()

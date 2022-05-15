@@ -18,10 +18,12 @@ class MainViewModel: BaseViewModel() {
     private val backStack = Stack<Int>()
 
     override fun fetch(): Job = viewModelScope.launch {
-        if (backStack.empty()) backStack.push(0)
+        _mainStateLiveData.postValue(MainState.Loading)
+//        _mainStateLiveData.value = MainState.Loading
+        if (backStack.empty()) backStack.push(2)
     }
 
-    fun menuSelected(position: Int){
+    fun menuSelected(position: Int) = viewModelScope.launch{
         if(backStack.empty()){
             _mainStateLiveData.value = MainState.SelectedFailure
         }
@@ -37,7 +39,7 @@ class MainViewModel: BaseViewModel() {
             _mainStateLiveData.value = MainState.SelectedSuccess(position)
         }
     }
-    fun backPressed(){
+    fun backPressed() = viewModelScope.launch{
         if (backStack.size > 1) {
             // remove current position from stack
             backStack.pop()
@@ -46,5 +48,7 @@ class MainViewModel: BaseViewModel() {
         }
         else _mainStateLiveData.value = MainState.BackPressedFailure
     }
-    fun push(position: Int) = backStack.push(position)
+    fun push(position: Int) = viewModelScope.launch {
+        backStack.push(position)
+    }
 }
