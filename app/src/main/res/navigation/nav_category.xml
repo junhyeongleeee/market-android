@@ -9,6 +9,28 @@
         android:id="@+id/navCategory"
         android:name="com.example.shopping.presentation.category.CategoryFragment"
         android:label="CategoryFragment"
-        tools:layout="@layout/fragment_category"/>
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_navCategory_to_navCategoryTest1"
+            app:destination="@id/navCategoryTest1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navCategoryTest1"
+        android:name="com.example.shopping.presentation.category.test.CategoryTest1Fragment"
+        android:label="CategoryFragment"
+        tools:layout="@layout/fragment_category_test1">
+        <action
+            android:id="@+id/action_navCategoryTest1_to_navCategoryTest2"
+            app:destination="@id/navCategoryTest2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navCategoryTest2"
+        android:name="com.example.shopping.presentation.category.test.CategoryTest2Fragment"
+        android:label="CategoryFragment"
+        tools:layout="@layout/fragment_category_test2"/>
+
+
 
 </navigation>

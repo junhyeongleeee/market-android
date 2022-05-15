@@ -1,4 +1,4 @@
-package com.example.shopping.presentation.main
+package com.example.shopping.presentation.main.viewpager
 
 import android.content.Context
 import androidx.viewpager.widget.ViewPager

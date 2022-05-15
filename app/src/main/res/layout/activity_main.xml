@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.shopping.presentation.main.MainActivity">
 
-    <com.example.shopping.presentation.main.NonSwipingViewPager
+    <com.example.shopping.presentation.main.viewpager.NonSwipingViewPager
         android:id="@+id/mainViewPager"
         android:layout_width="0dp"
         android:layout_height="0dp"

@@ -1,13 +1,14 @@
 package com.example.shopping.presentation.main
 
+import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.navigation.NavOptions
 import androidx.viewpager.widget.ViewPager
 import com.example.shopping.presentation.base.BaseActivity
 import com.example.shopping.presentation.base.BaseViewPagerFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 import kotlin.study.shopping.R
@@ -16,7 +17,7 @@ import kotlin.study.shopping.databinding.ActivityMainBinding
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
     ViewPager.OnPageChangeListener,
     BottomNavigationView.OnNavigationItemReselectedListener,
-    BottomNavigationView.OnNavigationItemSelectedListener{
+    BottomNavigationView.OnNavigationItemSelectedListener {
 
     override val viewModel by viewModel<MainViewModel>()
 
@@ -24,6 +25,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
 
     // overall back stack of containers
     private val backStack = Stack<Int>()
+
+    // backPressCheck
+    private var backPressedChecked = false
+    private var backKeyPressTime = 0L
 
     // list of base destination containers
     private val fragments = listOf(
@@ -40,17 +45,52 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         3 to R.id.my
     )
 
-    override fun observeData() = viewModel.mainStateLiveData.observe(this){
-        when(it){
+    override fun observeData() = viewModel.mainStateLiveData.observe(this) {
+        when (it) {
             is MainState.UnInitialized -> {
                 initViewpager()
                 initBottomNavigation()
                 initBackStack()
             }
+            is MainState.SelectedSuccess -> {
+                handleSelectedSuccess(it)
+            }
+            is MainState.SelectedFailure -> {
+
+            }
+            is MainState.BackPressedSuccess -> {
+                handleBackPressedSuccess(it)
+            }
+            is MainState.BackPressedFailure -> {
+                handleBackPressedFailure()
+            }
+
         }
     }
 
-    private fun initViewpager() = with(binding){
+    private fun handleBackPressedFailure() = with(binding){
+        if (System.currentTimeMillis() > backKeyPressTime + 2000) {
+            backKeyPressTime = System.currentTimeMillis()
+            Snackbar.make(root, "\'뒤로\' 버튼을 한번 더 누르면 종료합니다.", Snackbar.LENGTH_LONG).show()
+            return;
+        }
+
+        if (System.currentTimeMillis() <= backKeyPressTime) {
+            finish()
+        }
+    }
+
+    private fun handleBackPressedSuccess(state: MainState.BackPressedSuccess) = with(binding){
+        backPressedChecked = true
+        // set the next item in stack as current
+        mainViewPager.currentItem = state.item
+    }
+
+    private fun handleSelectedSuccess(state: MainState.SelectedSuccess) = with(binding){
+        if (mainViewPager.currentItem != state.position) setItem(state.position)
+    }
+
+    private fun initViewpager() = with(binding) {
         // setup main view pager
         mainViewPager.addOnPageChangeListener(this@MainActivity)
         mainViewPager.adapter = ViewPagerAdapter()
@@ -58,21 +98,21 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         mainViewPager.offscreenPageLimit = fragments.size
     }
 
-    private fun initBottomNavigation() = with(binding){
+    private fun initBottomNavigation() = with(binding) {
         // set bottom nav
         bottomNavigation.setOnNavigationItemSelectedListener(this@MainActivity)
         bottomNavigation.setOnNavigationItemReselectedListener(this@MainActivity)
     }
 
     private fun initBackStack() {
+
         // initialize backStack with elements
         if (backStack.empty()) backStack.push(0)
     }
 
-
-    private fun setItem(position: Int) = with(binding){
+    private fun setItem(position: Int) = with(binding) {
         mainViewPager.currentItem = position
-        backStack.push(position)
+        viewModel.push(position)
     }
 
     private fun checkDeepLink() {
@@ -82,16 +122,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         }
     }
 
-    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+    override fun onPageSelected(page: Int) = with(binding) {
 
-    }
-
-    override fun onPageSelected(page: Int) = with(binding){
         val itemId = indexToPage[page] ?: R.id.home
         if (bottomNavigation.selectedItemId != itemId) bottomNavigation.selectedItemId = itemId
-    }
 
-    override fun onPageScrollStateChanged(state: Int) {
     }
 
     override fun onNavigationItemReselected(item: MenuItem) {
@@ -100,26 +135,67 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         fragment.popToRoot()
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean = with(binding){
-        val position = indexToPage.values.indexOf(item.itemId)
-        if (mainViewPager.currentItem != position) setItem(position)
+    override fun onNavigationItemSelected(item: MenuItem): Boolean = with(binding) {
+
+        if (!backPressedChecked) {
+
+            val position = indexToPage.values.indexOf(item.itemId)
+            Log.e("onNavigationItemSelected", position.toString())
+
+            viewModel.menuSelected(position)
+
+            /*if (backStack.size > 1) {
+                if (backStack.contains(position)) {
+                    do {
+                        val state = backStack.peek()
+                        backStack.pop()
+                    } while (position != state)
+                }
+            }*/
+
+//            if (mainViewPager.currentItem != position) setItem(position)
+//            return true
+        } else {
+            backPressedChecked = false
+//            return true
+        }
         return true
     }
 
-    override fun onBackPressed() = with(binding){
+    override fun onBackPressed() = with(binding) {
         val fragment = fragments[mainViewPager.currentItem]
         val hadNestedFragments = fragment.onBackPressed()
+
         // if no fragments were popped
         if (!hadNestedFragments) {
-            if (backStack.size > 1) {
+            viewModel.backPressed()
+
+           /* if (backStack.size > 1) {
                 // remove current position from stack
                 backStack.pop()
+
+                backPressedChecked = true
                 // set the next item in stack as current
                 mainViewPager.currentItem = backStack.peek()
 
-            } else super.onBackPressed()
+            }
+            else {
+
+                if (System.currentTimeMillis() > backKeyPressTime + 2000) {
+                    backKeyPressTime = System.currentTimeMillis()
+                    Snackbar.make(root, "\'뒤로\' 버튼을 한번 더 누르면 종료합니다.", Snackbar.LENGTH_LONG).show()
+                    return;
+                }
+
+                if (System.currentTimeMillis() <= backKeyPressTime) {
+                    finish()
+                }
+            }*/
         }
     }
+
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+    override fun onPageScrollStateChanged(state: Int) {}
 
     inner class ViewPagerAdapter : FragmentPagerAdapter(supportFragmentManager) {
 
