@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">shoppingapp</string>
+    <string name="home_menu">홈</string>
+    <string name="category_menu">카테고리</string>
+    <string name="search_menu">검색</string>
+    <string name="my_menu">내 정보</string>
 </resources>
