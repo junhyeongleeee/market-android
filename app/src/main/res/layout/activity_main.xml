@@ -6,23 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.example.shopping.presentation.main.MainActivity">
 
-    <fragment
-        android:id="@+id/navHostFragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <com.example.shopping.presentation.main.NonSwipingViewPager
+        android:id="@+id/mainViewPager"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph"/>
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/navHostFragment"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/mainViewPager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

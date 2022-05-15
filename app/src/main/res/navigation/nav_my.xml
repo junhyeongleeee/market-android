@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_my"
+    app:startDestination="@id/navMy">
+
+    <fragment
+        android:id="@+id/navMy"
+        android:name="com.example.shopping.presentation.my.MyFragment"
+        android:label="MyFragment"
+        tools:layout="@layout/fragment_my"/>
+
+</navigation>
