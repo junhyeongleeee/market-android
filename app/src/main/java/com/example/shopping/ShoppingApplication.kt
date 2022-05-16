@@ -2,6 +2,7 @@ package com.example.shopping
 
 import android.app.Application
 import com.example.shopping.di.CoroutineModule
+import com.example.shopping.di.RemoteModule
 import com.example.shopping.di.ViewModelModule
 import kotlinx.coroutines.CoroutineScope
 import org.koin.android.ext.koin.androidContext
@@ -19,7 +20,8 @@ class ShoppingApplication : Application() {
             androidContext(this@ShoppingApplication)
             modules(listOf(
                 CoroutineModule,
-                ViewModelModule
+                ViewModelModule,
+                RemoteModule
             ))
         }
     }

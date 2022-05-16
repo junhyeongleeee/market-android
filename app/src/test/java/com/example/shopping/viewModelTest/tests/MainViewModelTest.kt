@@ -1,8 +1,8 @@
-package com.example.shopping.viewModel.tests
+package com.example.shopping.viewModelTest.tests
 
 import com.example.shopping.presentation.main.MainState
 import com.example.shopping.presentation.main.MainViewModel
-import com.example.shopping.viewModel.ViewModelTest
+import com.example.shopping.viewModelTest.ViewModelTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

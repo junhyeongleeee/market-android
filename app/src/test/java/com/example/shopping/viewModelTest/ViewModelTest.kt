@@ -1,13 +1,12 @@
-package com.example.shopping.viewModel
+package com.example.shopping.viewModelTest
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
-import com.example.shopping.di.appTestModule
+import com.example.shopping.di.ViewModelModule
 import com.example.shopping.liveData.LiveDataTestObserver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.MainCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -19,7 +18,6 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
 
@@ -59,7 +57,7 @@ internal abstract class ViewModelTest : KoinTest {
     fun setUp() {
         startKoin{
             androidContext(context)
-            modules(appTestModule)
+            modules(ViewModelModule)
         }
         Dispatchers.setMain(dispatcher)
     }
