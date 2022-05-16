@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_category">
         <action
             android:id="@+id/action_navCategory_to_navCategoryTest1"
-            app:destination="@id/navCategoryTest1" />
+            app:destination="@id/navCategoryTest1"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right"/>
     </fragment>
 
     <fragment
@@ -22,7 +26,12 @@
         tools:layout="@layout/fragment_category_test1">
         <action
             android:id="@+id/action_navCategoryTest1_to_navCategoryTest2"
-            app:destination="@id/navCategoryTest2" />
+            app:destination="@id/navCategoryTest2"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right"
+            />
     </fragment>
 
     <fragment
