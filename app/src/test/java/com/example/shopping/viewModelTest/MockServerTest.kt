@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 @ExperimentalCoroutinesApi
-internal abstract class MockServerTest : KoinTest {
+internal abstract class MockServerTest{
 
     @get:Rule
     val mockitoRule: MockitoRule = MockitoJUnit.rule()
@@ -41,16 +41,12 @@ internal abstract class MockServerTest : KoinTest {
     private lateinit var context: Application
 
     protected lateinit var server: MockWebServer
-    protected lateinit var client: OkHttpClient
-    protected lateinit var retrofit: Retrofit
+    private lateinit var client: OkHttpClient
+    private lateinit var retrofit: Retrofit
     protected lateinit var service: ApiService
 
     @Before
     fun setUp() {
-        startKoin {
-            androidContext(context)
-            modules(appTestModule)
-        }
 
         server = MockWebServer()
         server.start()
@@ -68,14 +64,14 @@ internal abstract class MockServerTest : KoinTest {
         dispatcher.cleanupTestCoroutines()
     }
 
-    fun createClient(){
+    private fun createClient(){
         client = OkHttpClient.Builder().connectTimeout(1, TimeUnit.MINUTES)
             .writeTimeout(1, TimeUnit.MINUTES)
             .readTimeout(1, TimeUnit.MINUTES)
             .build()
     }
 
-    fun createRetrofit(){
+    private fun createRetrofit(){
         retrofit = Retrofit.Builder()
             .baseUrl(server.url("/v1/"))
             .addConverterFactory(GsonConverterFactory.create())
@@ -83,7 +79,7 @@ internal abstract class MockServerTest : KoinTest {
             .build()
     }
 
-    fun createService(){
+    private fun createService(){
         service = retrofit.create(ApiService::class.java)
     }
 
