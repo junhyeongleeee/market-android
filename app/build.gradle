@@ -83,4 +83,11 @@ dependencies {
     // OkHttp3
     implementation "com.squareup.okhttp3:okhttp:4.6.0"
     implementation "com.squareup.okhttp3:logging-interceptor:4.6.0"
+
+    // paging
+    implementation("androidx.paging:paging-runtime:$paging_version")
+    // alternatively - without Android dependencies for tests
+    testImplementation("androidx.paging:paging-common:$paging_version")
+    // optional - Jetpack Compose integration
+    implementation("androidx.paging:paging-compose:1.0.0-alpha14")
 }

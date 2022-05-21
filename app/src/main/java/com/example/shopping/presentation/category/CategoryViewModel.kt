@@ -3,16 +3,21 @@ package com.example.shopping.presentation.category
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.shopping.data.repository.CategoryRepository
+import com.example.shopping.data.response.product.ProductResponse
 import com.example.shopping.domain.usecases.GetAllCategoriesUseCase
 import com.example.shopping.model.category.CategoryModel
 import com.example.shopping.presentation.base.BaseViewModel
 import com.google.gson.annotations.Until
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class CategoryViewModel(
-    private val getAllCategoriesUseCase: GetAllCategoriesUseCase
-) : BaseViewModel(){
+    private val categoryRepository: CategoryRepository
+): BaseViewModel(){
 
     private var _categoryStateLiveData = MutableLiveData<CategoryState>(CategoryState.UnInitialized)
     val categoryStateLiveData: LiveData<CategoryState> = _categoryStateLiveData
@@ -39,7 +44,7 @@ class CategoryViewModel(
         _categoryStateLiveData.postValue(CategoryState.Success(mockList))
     }
 
-    private fun getAllCategories() = viewModelScope.launch{
+    /*private fun getAllCategories() = viewModelScope.launch{
 
         val list = getAllCategoriesUseCase().mapIndexed{ _, entity ->
             entity.toModel()
@@ -48,5 +53,10 @@ class CategoryViewModel(
             _categoryStateLiveData.postValue(CategoryState.Success(list))
         }
         else _categoryStateLiveData.postValue(CategoryState.Failure)
-    }
+    }*/
+
+    /*fun getContent(category: String): Flow<PagingData<ProductResponse>> {
+        return categoryRepository.getCategoryByProduct(category)
+            .cachedIn(viewModelScope)
+    }*/
 }

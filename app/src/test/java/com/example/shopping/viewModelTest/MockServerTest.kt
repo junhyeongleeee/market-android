@@ -16,9 +16,6 @@ import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
-import org.koin.test.KoinTest
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule

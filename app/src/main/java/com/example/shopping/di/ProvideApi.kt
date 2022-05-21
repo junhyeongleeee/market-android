@@ -1,4 +1,4 @@
-package com.example.shopping.di.provide
+package com.example.shopping.di
 
 import com.example.shopping.data.remote.service.ApiService
 import com.example.shopping.data.remote.url.Url
@@ -20,11 +20,13 @@ fun provideRetrofit(
     okHttpClient: OkHttpClient,
     gsonConverterFactory: GsonConverterFactory
 ): Retrofit{
+    // TODO Exception Error 처리 필요
+
     return Retrofit.Builder()
-        .baseUrl(Url.BASE_URL)
-        .addConverterFactory(gsonConverterFactory)
-        .client(okHttpClient)
-        .build()
+            .baseUrl(Url.BASE_URL)
+            .addConverterFactory(gsonConverterFactory)
+            .client(okHttpClient)
+            .build()
 }
 
 fun provideGsonConvertFactory(): GsonConverterFactory{

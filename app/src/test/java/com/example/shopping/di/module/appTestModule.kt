@@ -1,9 +1,9 @@
 package com.example.shopping.di.module
 
 import com.example.shopping.data.repository.CategoryRepository
-import com.example.shopping.di.provide.buildMockOkHttpClient
-import com.example.shopping.di.provide.provideGsonConvertFactory
-import com.example.shopping.di.provide.provideMockApiService
+import com.example.shopping.di.buildMockOkHttpClient
+import com.example.shopping.di.provideGsonConvertFactory
+import com.example.shopping.di.provideMockApiService
 import com.example.shopping.domain.repository.CategoryRepositoryImpl
 import com.example.shopping.presentation.category.CategoryViewModel
 import com.example.shopping.presentation.main.MainViewModel
@@ -15,7 +15,7 @@ val appTestModule = module {
 
     // ViewModel
     viewModel { MainViewModel() }
-    viewModel { CategoryViewModel(get()) }
+    viewModel { CategoryViewModel() }
 
     // Remote
     single { provideMockApiService(get()) }
