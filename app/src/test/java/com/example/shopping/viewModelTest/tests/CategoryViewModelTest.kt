@@ -8,6 +8,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.withContext
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Before
@@ -30,7 +31,7 @@ internal class CategoryViewModelTest : MockServerTest() {
         list = (0 until 10).map {
             CategoryResponse(
                 id = it.toString(),
-                name = "$it"
+                name = "name $it"
             )
         }
 
@@ -43,14 +44,12 @@ internal class CategoryViewModelTest : MockServerTest() {
     }
 
     @Test
-    fun `Test MockServer`()  {
+    fun `test get categories`() = runBlockingTest{
 
         val testCategoryViewModelTest = TestCategoryViewModel(service)
         val testObservable = testCategoryViewModelTest.mainStateLiveData.test()
 
-        runBlocking {
-            testCategoryViewModelTest.fetch()
-        }
+        testCategoryViewModelTest.fetch()
 
         val result = list.mapIndexed { _, it ->  it.toEntity().toModel()}
 
@@ -58,7 +57,7 @@ internal class CategoryViewModelTest : MockServerTest() {
             listOf(
                 CategoryState.UnInitialized,
                 CategoryState.Loading,
-                CategoryState.Success(result)
+                CategoryState.Failure
             )
         )
     }

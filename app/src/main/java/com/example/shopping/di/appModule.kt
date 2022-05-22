@@ -24,6 +24,11 @@ val appModule = module{
     single { Dispatchers.IO }
     single { Dispatchers.Main }
 
+    single { provideApiService(get()) }
+    single { provideRetrofit(get(), get()) }
+    single { buildOkHttpClient() }
+    single { provideGsonConvertFactory() }
+
     single<CategoryRepositoryImpl> { CategoryRepository(get(), get()) }
 
     factory { GetAllCategoriesUseCase(get()) }

@@ -44,14 +44,13 @@ internal abstract class MockServerTest{
 
     @Before
     fun setUp() {
-
+        Dispatchers.setMain(dispatcher)
         server = MockWebServer()
         server.start()
 
         createClient()
         createRetrofit()
         createService()
-        Dispatchers.setMain(dispatcher)
     }
 
     @After

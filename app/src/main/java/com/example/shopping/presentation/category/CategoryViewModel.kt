@@ -15,9 +15,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class CategoryViewModel(
-    private val categoryRepository: CategoryRepository
-): BaseViewModel(){
+class CategoryViewModel: BaseViewModel(){
 
     private var _categoryStateLiveData = MutableLiveData<CategoryState>(CategoryState.UnInitialized)
     val categoryStateLiveData: LiveData<CategoryState> = _categoryStateLiveData

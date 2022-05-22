@@ -3,7 +3,8 @@ package com.example.shopping.viewModelTest
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
-import com.example.shopping.di.ViewModelModule
+import com.example.shopping.di.module.ViewModelModule
+import com.example.shopping.di.module.appTestModule
 import com.example.shopping.liveData.LiveDataTestObserver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -57,7 +58,7 @@ internal abstract class ViewModelTest : KoinTest {
     fun setUp() {
         startKoin{
             androidContext(context)
-            modules(ViewModelModule)
+            modules(appTestModule)
         }
         Dispatchers.setMain(dispatcher)
     }

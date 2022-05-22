@@ -17,6 +17,7 @@ class ShoppingApplication : Application() {
             androidLogger(Level.ERROR)
             androidContext(this@ShoppingApplication)
             modules(listOf(
+//                appModule
                 CoroutineModule,
                 ViewModelModule,
 //                RemoteModule,
