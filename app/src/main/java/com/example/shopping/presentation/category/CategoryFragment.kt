@@ -30,8 +30,6 @@ class CategoryFragment: BaseFragment<CategoryViewModel, FragmentCategoryBinding>
         viewModel.categoryListLiveData.observe(this){
             adapter.submitList(it)
         }
-
-
     }
 
     private fun initViews() = with(binding){

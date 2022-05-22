@@ -5,9 +5,7 @@ import com.example.shopping.di.buildMockOkHttpClient
 import com.example.shopping.di.provideGsonConvertFactory
 import com.example.shopping.di.provideMockApiService
 import com.example.shopping.domain.repository.CategoryRepositoryImpl
-import com.example.shopping.presentation.category.CategoryViewModel
 import com.example.shopping.presentation.main.MainViewModel
-import com.example.shopping.viewModelTest.viewModel.TestCategoryViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

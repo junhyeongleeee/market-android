@@ -20,6 +20,12 @@ class TestCategoryRepository(
         } ?: listOf()
     }
 
+    override suspend fun getProductsByCategory(category_id: String): List<ProductResponse> {
+        return service.getCategoryByProducts(
+            category_id = category_id
+        )?.body()?: listOf()
+    }
+
     override fun getCategoryByProduct(query: String): Flow<PagingData<ProductResponse>> {
         TODO("Not yet implemented")
     }

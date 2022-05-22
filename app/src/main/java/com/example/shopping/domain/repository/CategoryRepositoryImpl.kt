@@ -9,6 +9,8 @@ interface CategoryRepositoryImpl {
 
     suspend fun getCategories(): List<CategoryEntity>
 
+    suspend fun getProductsByCategory(category_id: String): List<ProductResponse>
+
     // Paging3
     fun getCategoryByProduct(query: String): Flow<PagingData<ProductResponse>>
 }
