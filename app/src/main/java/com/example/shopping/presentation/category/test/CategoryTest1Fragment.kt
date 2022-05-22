@@ -10,15 +10,12 @@ import com.example.shopping.presentation.base.BaseFragment
 import com.example.shopping.presentation.base.BaseViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.study.shopping.R
-import kotlin.study.shopping.databinding.FragmentCategoryBinding
 import kotlin.study.shopping.databinding.FragmentCategoryTest1Binding
-import kotlin.study.shopping.databinding.FragmentHomeBinding
 
 class CategoryTest1Fragment: Fragment() {
 
 
     private lateinit var binding: FragmentCategoryTest1Binding
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

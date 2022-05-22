@@ -25,9 +25,19 @@ class CategoryViewModel: BaseViewModel(){
     override fun fetch(): Job = viewModelScope.launch {
         _categoryStateLiveData.postValue(CategoryState.Loading)
 
-        mockCategoriesCreate()
+//        mockCategoriesCreate()
 //        getAllCategories()
 
+    }
+
+    fun settingList(){
+        val mockList = (0 until 10).map {
+            CategoryModel(
+                id = it.toString(),
+                name = "category + $it"
+            )
+        }
+        categoryListLiveData.value = mockList
     }
 
     private fun mockCategoriesCreate(){

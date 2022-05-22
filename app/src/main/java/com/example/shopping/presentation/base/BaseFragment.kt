@@ -31,9 +31,12 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         fetch = viewModel.fetch()
         observeData()
+        initViews()
     }
 
     abstract fun observeData()
+
+    abstract fun initViews()
 
     override fun onDestroyView() {
         super.onDestroyView()

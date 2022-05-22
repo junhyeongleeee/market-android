@@ -15,4 +15,8 @@ class SearchFragment: BaseFragment<SearchViewModel, FragmentSearchBinding>() {
 
     override fun observeData() {
     }
+
+    override fun initViews() {
+
+    }
 }

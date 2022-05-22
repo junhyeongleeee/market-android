@@ -1,12 +1,14 @@
 package com.example.shopping.presentation.category
 
-import androidx.lifecycle.lifecycleScope
+import android.util.Log
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.shopping.presentation.adapter.CategoryAdapter
+import com.example.shopping.model.category.CategoryModel
+import com.example.shopping.presentation.adapter.category.CategoryAdapter
 import com.example.shopping.presentation.base.BaseFragment
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
+import com.example.shopping.presentation.listener.CategoryListListener
 import org.koin.android.viewmodel.ext.android.viewModel
+import kotlin.study.shopping.R
 import kotlin.study.shopping.databinding.FragmentCategoryBinding
 
 class CategoryFragment: BaseFragment<CategoryViewModel, FragmentCategoryBinding>() {
@@ -16,24 +18,28 @@ class CategoryFragment: BaseFragment<CategoryViewModel, FragmentCategoryBinding>
     override fun getViewBinding(): FragmentCategoryBinding =
         FragmentCategoryBinding.inflate(layoutInflater)
 
-    private val adapter = CategoryAdapter()
+    private val adapter = CategoryAdapter(listener = object : CategoryListListener{
+        override fun onClickItem(model: CategoryModel) {
+            findNavController().navigate(R.id.action_navCategory_to_navCategoryTest1)
+        }
+    })
 
     override fun observeData() {
         viewModel.categoryStateLiveData.observe(this){
             when(it){
                 CategoryState.UnInitialized -> {
-                    initViews()
                 }
             }
         }
-
         viewModel.categoryListLiveData.observe(this){
             adapter.submitList(it)
         }
     }
 
-    private fun initViews() = with(binding){
+    override fun initViews() = with(binding){
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.adapter = adapter
+
+        viewModel.settingList()
     }
 }

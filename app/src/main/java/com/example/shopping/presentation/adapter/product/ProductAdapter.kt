@@ -1,4 +1,4 @@
-package com.example.shopping.presentation.adapter
+package com.example.shopping.presentation.adapter.product
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,16 +8,23 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopping.model.category.CategoryModel
+import com.example.shopping.presentation.listener.CategoryListListener
 import kotlin.study.shopping.R
 import kotlin.study.shopping.databinding.ItemCategoryBinding
 
-class CategoryAdapter : ListAdapter<CategoryModel, CategoryAdapter.ViewHolder>(CategoryDiffUtil) {
+class ProductAdapter(
+    private val listener: CategoryListListener
+) : ListAdapter<CategoryModel, ProductAdapter.ViewHolder>(CategoryDiffUtil) {
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bindData(item : CategoryModel){
             val textView = itemView.findViewById<TextView>(R.id.name)
 
             textView.text = item.name
+        }
+
+        fun bindViews(){
+
         }
     }
 

@@ -14,4 +14,7 @@ class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     override fun observeData() {
     }
+
+    override fun initViews() {
+    }
 }

@@ -19,6 +19,7 @@
             app:popExitAnim="@anim/slide_to_right"/>
     </fragment>
 
+
     <fragment
         android:id="@+id/navCategoryTest1"
         android:name="com.example.shopping.presentation.category.test.CategoryTest1Fragment"

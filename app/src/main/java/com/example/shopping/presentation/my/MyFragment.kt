@@ -15,4 +15,8 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
 
     override fun observeData() {
     }
+
+    override fun initViews() {
+
+    }
 }
