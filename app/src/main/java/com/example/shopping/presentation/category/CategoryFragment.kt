@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.shopping.model.category.CategoryModel
 import com.example.shopping.presentation.adapter.category.CategoryAdapter
 import com.example.shopping.presentation.adapter.model.ModelRecyclerAdapter
+import com.example.shopping.presentation.adapter.model.ModelViewHolder
 import com.example.shopping.presentation.base.BaseFragment
+import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.CategoryListListener
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.study.shopping.R
@@ -21,16 +23,13 @@ class CategoryFragment: BaseFragment<CategoryViewModel, FragmentCategoryBinding>
     override fun getViewBinding(): FragmentCategoryBinding =
         FragmentCategoryBinding.inflate(layoutInflater)
 
-    private val adapter = CategoryAdapter(listener = object : CategoryListListener{
-        override fun onClickItem(model: CategoryModel) {
-            findNavController().navigate(
-                R.id.action_navCategory_to_navTestProductsByCategory2,
-                bundleOf(
-                    "category_name" to model.name
-                )
-            )
+    private val adapter = ModelRecyclerAdapter<CategoryModel, CategoryViewModel>(
+        listOf(),
+        viewModel,
+        adapterListener = object : AdapterListener{
+
         }
-    })
+    )
 
     override fun observeData() {
         viewModel.categoryStateLiveData.observe(this){

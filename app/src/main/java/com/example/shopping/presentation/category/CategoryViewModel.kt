@@ -33,7 +33,8 @@ class CategoryViewModel: BaseViewModel(){
     fun settingList(){
         val mockList = (0 until 10).map {
             CategoryModel(
-                id = it.toString(),
+                id = it.toLong(),
+                category_id = it.toString(),
                 name = "category + $it"
             )
         }
@@ -44,7 +45,8 @@ class CategoryViewModel: BaseViewModel(){
 
         val mockList = (0 until 10).map {
             CategoryModel(
-                id = it.toString(),
+                id = it.toLong(),
+                category_id = it.toString(),
                 name = "category + $it"
             )
         }

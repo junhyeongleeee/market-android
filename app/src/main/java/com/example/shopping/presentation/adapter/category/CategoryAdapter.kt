@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shopping.model.category.CategoryModel
 import com.example.shopping.presentation.listener.CategoryListListener
 import kotlin.study.shopping.R
-import kotlin.study.shopping.databinding.ItemCategoryBinding
+import kotlin.study.shopping.databinding.ViewholderCategoryBinding
 
 class CategoryAdapter(
     private val listener: CategoryListListener
@@ -31,7 +31,7 @@ class CategoryAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemCategoryBinding.inflate(
+        val binding = ViewholderCategoryBinding.inflate(
             LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding.root)
     }

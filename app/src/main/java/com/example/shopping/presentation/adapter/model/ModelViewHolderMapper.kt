@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import aop.fastcampus.part6.chapter01.model.CellType
 import aop.fastcampus.part6.chapter01.model.Model
 import com.example.shopping.presentation.base.BaseViewModel
-import com.example.shopping.presentation.viewHolder.ProductViewHolder
+import com.example.shopping.presentation.viewHolder.category.CategoryViewHolder
+import com.example.shopping.presentation.viewHolder.category.productsByCategory.ProductViewHolder
+import kotlin.study.shopping.databinding.ViewholderCategoryBinding
 import kotlin.study.shopping.databinding.ViewholderProductBinding
 
 object ModelViewHolderMapper {
@@ -18,6 +20,10 @@ object ModelViewHolderMapper {
         val viewHolder = when (type) {
             CellType.PRODUCT_CELL -> ProductViewHolder(
                 ViewholderProductBinding.inflate(inflater, parent, false),
+                viewModel
+            )
+            CellType.CATEGORY_CELL -> CategoryViewHolder(
+                ViewholderCategoryBinding.inflate(inflater, parent, false),
                 viewModel
             )
         }

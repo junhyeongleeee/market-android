@@ -7,7 +7,7 @@ sealed class CategoryState {
     object UnInitialized: CategoryState()
     object Loading: CategoryState()
     data class Success(
-        val list : List<com.example.shopping.model.category.CategoryModel>
+        val list : List<CategoryModel>
     ): CategoryState()
     object Failure: CategoryState()
 }

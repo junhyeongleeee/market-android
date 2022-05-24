@@ -1,5 +1,6 @@
-package com.example.shopping.presentation.viewHolder
+package com.example.shopping.presentation.viewHolder.category.productsByCategory
 
+import com.example.shopping.extensions.load
 import com.example.shopping.model.product.ProductModel
 import com.example.shopping.presentation.adapter.model.ModelViewHolder
 import com.example.shopping.presentation.base.BaseViewModel
@@ -23,5 +24,6 @@ class ProductViewHolder(
     override fun bindData(model: ProductModel) = with(binding){
         name.text = model.name
         price.text = model.price.toString()
+        img.load(model.image_url, 0f)
     }
 }
