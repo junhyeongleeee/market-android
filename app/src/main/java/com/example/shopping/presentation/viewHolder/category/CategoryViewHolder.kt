@@ -6,6 +6,7 @@ import com.example.shopping.model.product.ProductModel
 import com.example.shopping.presentation.adapter.model.ModelViewHolder
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener
+import com.example.shopping.presentation.listener.CategoryListListener
 import com.example.shopping.presentation.listener.ProductListListener
 import kotlin.study.shopping.databinding.ViewholderCategoryBinding
 import kotlin.study.shopping.databinding.ViewholderProductBinding
@@ -16,8 +17,9 @@ class CategoryViewHolder(
 ): ModelViewHolder<CategoryModel>(binding) {
 
     override fun bindViews(model: CategoryModel, adapterListener: AdapterListener){
-        if( adapterListener is ProductListListener){
+        if( adapterListener is CategoryListListener){
             binding.root.setOnClickListener {
+                adapterListener.onClickItem(model)
             }
         }
     }
@@ -25,5 +27,6 @@ class CategoryViewHolder(
     override fun bindData(model: CategoryModel) = with(binding){
         // TODO CategoryModel.img 업데이트 예정
         img.load(model.image_url, 0f)
+        name.text = model.name
     }
 }

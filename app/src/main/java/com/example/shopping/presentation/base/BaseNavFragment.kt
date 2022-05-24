@@ -19,6 +19,12 @@ abstract class BaseNavFragment<VB: ViewBinding>: Fragment() {
 
     private lateinit var fetch: Job
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
