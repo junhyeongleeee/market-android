@@ -8,12 +8,16 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.viewbinding.ViewBinding
 import com.example.shopping.model.product.ProductModel
 import com.example.shopping.presentation.adapter.model.ModelRecyclerAdapter
 import com.example.shopping.presentation.base.BaseFragment
+import com.example.shopping.presentation.base.BaseNavFragment
 import com.example.shopping.presentation.base.BaseViewModel
+import com.example.shopping.presentation.category.CategoryFragment
 import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.ProductListListener
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.study.shopping.R
 import kotlin.study.shopping.databinding.FragmentCategoryBinding
@@ -21,10 +25,9 @@ import kotlin.study.shopping.databinding.FragmentCategoryTest1Binding
 import kotlin.study.shopping.databinding.FragmentHomeBinding
 import kotlin.study.shopping.databinding.FragmentProductsByCategoryBinding
 
-class ProductsByCategoryFragment :
-    BaseFragment<ProductsByCategoryViewModel, FragmentProductsByCategoryBinding>() {
+class TestProductsByCategoryFragment :BaseNavFragment<FragmentProductsByCategoryBinding>() {
 
-    override val viewModel by viewModel<ProductsByCategoryViewModel>()
+    override val viewModel = ProductsByCategoryViewModel()
 
     override fun getViewBinding(): FragmentProductsByCategoryBinding =
         FragmentProductsByCategoryBinding.inflate(layoutInflater)
@@ -56,15 +59,11 @@ class ProductsByCategoryFragment :
     override fun initViews() = with(binding) {
         recyclerView.adapter = adapter
         viewModel.settingList()
-    }
+        categoryTextView.text = arguments?.getString("category_name") ?: ""
 
-    companion object {
 
-        fun newInstance(): ProductsByCategoryFragment {
-            val args = Bundle()
-            val fragment = ProductsByCategoryFragment()
-            fragment.arguments = args
-            return fragment
+        back.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 }

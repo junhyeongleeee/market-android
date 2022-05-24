@@ -1,10 +1,13 @@
 package com.example.shopping.presentation.category
 
+import android.os.Bundle
 import android.util.Log
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.shopping.model.category.CategoryModel
 import com.example.shopping.presentation.adapter.category.CategoryAdapter
+import com.example.shopping.presentation.adapter.model.ModelRecyclerAdapter
 import com.example.shopping.presentation.base.BaseFragment
 import com.example.shopping.presentation.listener.CategoryListListener
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -20,7 +23,12 @@ class CategoryFragment: BaseFragment<CategoryViewModel, FragmentCategoryBinding>
 
     private val adapter = CategoryAdapter(listener = object : CategoryListListener{
         override fun onClickItem(model: CategoryModel) {
-            findNavController().navigate(R.id.action_navCategory_to_navCategoryTest1)
+            findNavController().navigate(
+                R.id.action_navCategory_to_navTestProductsByCategory2,
+                bundleOf(
+                    "category_name" to model.name
+                )
+            )
         }
     })
 

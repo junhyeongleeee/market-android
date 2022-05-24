@@ -29,9 +29,7 @@ class CategoryTest1Fragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.nextButton.setOnClickListener {
-
-            findNavController().navigate(R.id.action_navCategoryTest1_to_navCategoryTest2)
+        binding.nextButton.setOnClickListener {4
         }
     }
 }

@@ -1,9 +1,12 @@
 package com.example.shopping.presentation.main
 
+import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.example.shopping.presentation.FragmentFactoryImpl
 import com.example.shopping.presentation.base.BaseActivity
 import com.example.shopping.presentation.base.BaseViewPagerFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
