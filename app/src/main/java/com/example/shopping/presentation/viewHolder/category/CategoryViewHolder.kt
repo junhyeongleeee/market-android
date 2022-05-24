@@ -7,9 +7,7 @@ import com.example.shopping.presentation.adapter.model.ModelViewHolder
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.CategoryListListener
-import com.example.shopping.presentation.listener.ProductListListener
 import kotlin.study.shopping.databinding.ViewholderCategoryBinding
-import kotlin.study.shopping.databinding.ViewholderProductBinding
 
 class CategoryViewHolder(
     private val binding: ViewholderCategoryBinding,
