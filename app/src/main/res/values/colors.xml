@@ -10,4 +10,5 @@
     <color name="red">#DD2323</color>
     <color name="blue">#3949AB</color>
     <color name="green">#43A047</color>
+    <color name="search_stroke">#AEAEAE</color>
 </resources>
