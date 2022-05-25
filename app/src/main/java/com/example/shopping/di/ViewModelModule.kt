@@ -3,6 +3,7 @@ package com.example.shopping.di
 import com.example.shopping.presentation.category.CategoryViewModel
 import com.example.shopping.presentation.category.productsByCategory.ProductsByCategoryViewModel
 import com.example.shopping.presentation.home.HomeViewModel
+import com.example.shopping.presentation.home.alarm.AlarmViewModel
 import com.example.shopping.presentation.main.MainViewModel
 import com.example.shopping.presentation.my.MyViewModel
 import com.example.shopping.presentation.search.SearchViewModel
@@ -16,4 +17,5 @@ val ViewModelModule = module {
     viewModel { MyViewModel() }
     viewModel { HomeViewModel() }
     viewModel { ProductsByCategoryViewModel() }
+    viewModel { AlarmViewModel() }
 }

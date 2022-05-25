@@ -10,4 +10,8 @@
     <color name="red">#DD2323</color>
     <color name="blue">#3949AB</color>
     <color name="green">#43A047</color>
+    <color name="search_stroke">#AEAEAE</color>
+    <color name="sliver">#7C7C7C</color>
+    <color name="light_blue">#2040FF</color>
+    <color name="light_sliver">#DFDFDF</color>
 </resources>

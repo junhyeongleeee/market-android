@@ -9,6 +9,20 @@
         android:id="@+id/navHome"
         android:name="com.example.shopping.presentation.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navHome_to_navAlarm"
+            app:destination="@id/navAlarm"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navAlarm"
+        android:name="com.example.shopping.presentation.home.alarm.AlarmFragment"
+        android:label="AlarmFragment"
+        tools:layout="@layout/fragment_alarm"/>
 
 </navigation>

@@ -59,10 +59,10 @@ class TestProductsByCategoryFragment :BaseNavFragment<FragmentProductsByCategory
     override fun initViews() = with(binding) {
         recyclerView.adapter = adapter
         viewModel.settingList()
-        categoryTextView.text = arguments?.getString("category_name") ?: ""
+        appBar.categoryTextView.text = arguments?.getString("category_name") ?: ""
 
 
-        back.setOnClickListener {
+        appBar.back.setOnClickListener {
             findNavController().popBackStack()
         }
     }
