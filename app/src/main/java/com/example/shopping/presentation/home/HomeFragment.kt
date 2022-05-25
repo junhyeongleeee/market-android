@@ -1,5 +1,6 @@
 package com.example.shopping.presentation.home
 
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.shopping.model.product.ProductModel
 import com.example.shopping.presentation.adapter.model.ModelRecyclerAdapter
@@ -10,6 +11,7 @@ import com.example.shopping.presentation.category.productsByCategory.ProductsByC
 import com.example.shopping.presentation.category.productsByCategory.ProductsByCategoryViewModel
 import com.example.shopping.presentation.listener.AdapterListener
 import org.koin.android.viewmodel.ext.android.viewModel
+import kotlin.study.shopping.R
 import kotlin.study.shopping.databinding.FragmentHomeBinding
 
 class HomeFragment: BaseNavFragment<FragmentHomeBinding>() {
@@ -48,5 +50,8 @@ class HomeFragment: BaseNavFragment<FragmentHomeBinding>() {
         recyclerView.adapter = adapter
         viewModel.settingList()
 
+        alarmCenterButton.setOnClickListener {
+            findNavController().navigate(R.id.action_navHome_to_navAlarm)
+        }
     }
 }

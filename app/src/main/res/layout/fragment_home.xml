@@ -41,6 +41,7 @@
                         android:textColor="@color/black"/>
 
                     <ImageView
+                        android:id="@+id/alarmCenterButton"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_margin="10dp"
