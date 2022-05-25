@@ -17,28 +17,50 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:background="@drawable/background">
 
-            <ImageView
-                android:id="@+id/profileImg"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/profileImgCardView"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="20dp"
-                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/light_sliver"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/profileImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_my" />
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/nameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                app:layout_constraintTop_toBottomOf="@id/profileImg"
+                app:layout_constraintTop_toBottomOf="@id/profileImgCardView"
                 app:layout_constraintStart_toStartOf="parent"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                tools:text="이준형 >"/>
+                tools:text="이준형"/>
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/ic_forward"
+                app:layout_constraintTop_toTopOf="@id/nameTextView"
+                app:layout_constraintStart_toEndOf="@id/nameTextView"
+                app:layout_constraintBottom_toBottomOf="@id/nameTextView"/>
 
             <TextView
                 android:id="@+id/payMoneyTextView"
@@ -50,7 +72,7 @@
                 android:textStyle="bold"
                 android:textSize="10sp"
                 android:layout_marginRight="50dp"
-                app:layout_constraintTop_toBottomOf="@id/profileImg"
+                app:layout_constraintTop_toBottomOf="@id/profileImgCardView"
                 app:layout_constraintEnd_toStartOf="@id/payCacheTextView"/>
 
             <TextView
@@ -74,7 +96,7 @@
                 android:textStyle="bold"
                 android:textSize="10sp"
                 android:layout_marginRight="20dp"
-                app:layout_constraintTop_toBottomOf="@id/profileImg"
+                app:layout_constraintTop_toBottomOf="@id/profileImgCardView"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
@@ -88,7 +110,7 @@
                 app:layout_constraintEnd_toEndOf="@id/payCacheTextView"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/linearlayout"
+                android:id="@+id/userDetailDataLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -224,7 +246,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="찜한상품"
+                        android:text="자주산상품"
                         android:textColor="@color/black"
                         android:textSize="15sp"/>
 

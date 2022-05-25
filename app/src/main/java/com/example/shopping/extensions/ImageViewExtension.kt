@@ -25,11 +25,26 @@ internal fun ImageView.loadCenterCrop(url: String, corner: Float = 0f) {
         .into(this)
 }
 
-internal fun ImageView.load(url: String, corner: Float = 0f) {
+/*internal fun ImageView.load(url: String, corner: Float = 0f) {
     Glide.with(this)
         .load(url)
         .transition(DrawableTransitionOptions.withCrossFade(factory))
         .error(R.drawable.ic_image_not_support_24)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .apply {
+            if (corner > 0) transforms(RoundedCorners(corner.fromDpToPx()))
+        }
+        .into(this)
+}*/
+
+internal fun ImageView.load(
+    url: String,
+    resourceErrorImg: Int = R.drawable.ic_image_not_support_24,
+    corner: Float = 0f) {
+    Glide.with(this)
+        .load(url)
+        .transition(DrawableTransitionOptions.withCrossFade(factory))
+        .error(resourceErrorImg)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .apply {
             if (corner > 0) transforms(RoundedCorners(corner.fromDpToPx()))

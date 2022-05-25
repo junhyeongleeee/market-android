@@ -24,6 +24,6 @@ class ProductViewHolder(
     override fun bindData(model: ProductModel) = with(binding){
         name.text = model.name
         price.text = model.price.toString()
-        img.load(model.image_url, 0f)
+        img.load(model.image_url, corner = 0f)
     }
 }
