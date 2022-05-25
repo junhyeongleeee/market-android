@@ -1,14 +1,10 @@
 package com.example.shopping.presentation.my
 
-import android.util.Log
-import com.example.shopping.extensions.getURLForResource
 import com.example.shopping.extensions.load
 import com.example.shopping.presentation.base.BaseFragment
-import com.example.shopping.presentation.base.BaseViewModel
-import okhttp3.internal.cacheGet
+import com.example.shopping.presentation.my.auth.AuthActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.study.shopping.R
-import kotlin.study.shopping.databinding.FragmentHomeBinding
 import kotlin.study.shopping.databinding.FragmentMyBinding
 
 class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
@@ -33,10 +29,14 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
         nameTextView.isClickable = true
         nameTextView.setOnClickListener {
             // TODO : 로그인 페이지로 이동
-
+            startActivity(AuthActivity.newIntent(requireContext()))
         }
         // profile
         profileImg.load("", R.drawable.ic_my,  corner = 60f)
+        profileImg.setOnClickListener {
+            // TODO : 로그인 페이지로 이동
+            startActivity(AuthActivity.newIntent(requireContext()))
+        }
         // money
         payMoney.text = "-"
 

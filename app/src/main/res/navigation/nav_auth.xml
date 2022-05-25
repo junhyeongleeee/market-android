@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_auth"
+    app:startDestination="@id/navLogin">
+
+    <fragment
+        android:id="@+id/navLogin"
+        android:name="com.example.shopping.presentation.my.auth.navigation.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_navLogin_to_navRegister"
+            app:destination="@id/navRegister"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navRegister"
+        android:name="com.example.shopping.presentation.my.auth.navigation.register.RegisterFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_register"/>
+
+</navigation>
