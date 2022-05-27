@@ -50,7 +50,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
             is MainState.UnInitialized -> {
                 initViewpager()
                 initBottomNavigation()
-                initViews()
             }
             is MainState.Loading -> {}
             is MainState.SelectedSuccess -> {
@@ -66,11 +65,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
                 handleBackPressedFailure()
             }
         }
-    }
-
-    private fun initViews() {
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
     }
 
     private fun handleBackPressedFailure() = with(binding){

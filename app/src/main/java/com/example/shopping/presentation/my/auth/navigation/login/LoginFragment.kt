@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isGone
@@ -35,14 +36,15 @@ class LoginFragment: BaseFragment<LoginViewModel, FragmentLoginBinding>() {
         }
     }
 
+    override fun keyboardControl() {
+        Log.e("LoginFragment", "keyboardControl")
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+    }
+
     override fun initViews() = with(binding){
 
         // emailEditText 로 포커스
         emailEditText.requestFocus()
-
-        // 키보드 보이게 하기
-        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 
         val emailWatcher = Watcher(emailDeleteButton)
         emailEditText.addTextChangedListener(emailWatcher)
