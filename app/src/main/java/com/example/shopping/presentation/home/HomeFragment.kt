@@ -1,5 +1,6 @@
 package com.example.shopping.presentation.home
 
+import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.shopping.model.product.ProductModel

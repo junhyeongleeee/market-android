@@ -1,9 +1,11 @@
 package com.example.shopping.presentation.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
@@ -19,12 +21,9 @@ abstract class BaseNavFragment<VB: ViewBinding>: Fragment() {
 
     private lateinit var fetch: Job
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
+    protected val imm: InputMethodManager by lazy {
+        requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,6 +38,12 @@ abstract class BaseNavFragment<VB: ViewBinding>: Fragment() {
         fetch = viewModel.fetch()
         observeData()
         initViews()
+        keyboardControl()
+    }
+
+    open fun keyboardControl(){
+        // 키보드 숨기기
+        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
     }
 
     abstract fun observeData()
