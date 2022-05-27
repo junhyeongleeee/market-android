@@ -1,4 +1,4 @@
-package com.example.aop_part5_chapter02.extension
+package com.example.shopping.extensions
 
 import android.content.res.Resources
 

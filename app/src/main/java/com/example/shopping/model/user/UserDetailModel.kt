@@ -1,6 +1,6 @@
 package com.example.shopping.model.user
 
-import aop.fastcampus.part6.chapter01.model.UserType
+import com.example.shopping.model.type.UserType
 
 data class UserDetailModel(
     val uid: String,

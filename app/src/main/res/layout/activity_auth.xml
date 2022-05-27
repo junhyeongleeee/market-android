@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.shopping.presentation.my.auth.AuthActivity">
 
-
     <fragment
         android:id="@+id/navHostAuth"
         android:name="androidx.navigation.fragment.NavHostFragment"

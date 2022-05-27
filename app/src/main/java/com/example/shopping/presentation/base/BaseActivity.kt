@@ -1,13 +1,18 @@
 package com.example.shopping.presentation.base
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.viewbinding.ViewBinding
+import com.example.shopping.model.type.StatusBarColorType
+import com.example.shopping.model.type.TransitionModeType
 import kotlinx.coroutines.Job
 import kotlin.study.shopping.R
 
 abstract class BaseActivity<VM: BaseViewModel, VB: ViewBinding>(
-    private val transitionMode: TransitionMode = TransitionMode.NONE
+    private val transitionMode: TransitionModeType = TransitionModeType.NONE,
+    private val statusBarColorType: StatusBarColorType = StatusBarColorType.WHITE_STATUS_BAR
 ): AppCompatActivity() {
 
     abstract val viewModel: VM
@@ -22,10 +27,12 @@ abstract class BaseActivity<VM: BaseViewModel, VB: ViewBinding>(
         super.onCreate(savedInstanceState)
 
         when (transitionMode) {
-            TransitionMode.HORIZON -> overridePendingTransition(R.anim.slide_from_right, R.anim.slide_none)
-            TransitionMode.VERTICAL -> overridePendingTransition(R.anim.slide_vertical_enter, R.anim.slide_none)
+            TransitionModeType.HORIZON -> overridePendingTransition(R.anim.slide_from_right, R.anim.slide_none)
+            TransitionModeType.VERTICAL -> overridePendingTransition(R.anim.slide_vertical_enter, R.anim.slide_none)
             else -> Unit
         }
+
+        setStatusBarColor()
 
         binding = getViewBinding()
         setContentView(binding.root)
@@ -44,15 +51,17 @@ abstract class BaseActivity<VM: BaseViewModel, VB: ViewBinding>(
         super.finish()
 
         when (transitionMode) {
-            TransitionMode.HORIZON -> overridePendingTransition(R.anim.slide_none, R.anim.slide_to_right)
-            TransitionMode.VERTICAL -> overridePendingTransition(R.anim.slide_none, R.anim.slide_vertical_exit)
+            TransitionModeType.HORIZON -> overridePendingTransition(R.anim.slide_none, R.anim.slide_to_right)
+            TransitionModeType.VERTICAL -> overridePendingTransition(R.anim.slide_none, R.anim.slide_vertical_exit)
             else -> Unit
         }
     }
 
-    enum class TransitionMode {
-        NONE,
-        HORIZON,
-        VERTICAL
+    fun setStatusBarColor(){
+
+        when(statusBarColorType){
+            StatusBarColorType.WHITE_STATUS_BAR -> this.window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+            StatusBarColorType.SILVER_STATUS_BAR -> this.window.statusBarColor = ContextCompat.getColor(this, R.color.light_sliver)
+        }
     }
 }

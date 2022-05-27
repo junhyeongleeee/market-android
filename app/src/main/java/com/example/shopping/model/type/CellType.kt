@@ -1,4 +1,4 @@
-package aop.fastcampus.part6.chapter01.model
+package com.example.shopping.model.type
 
 enum class CellType {
     CATEGORY_CELL,

@@ -7,7 +7,6 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
-import com.example.aop_part5_chapter02.extension.fromDpToPx
 import kotlin.study.shopping.R
 
 private val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()

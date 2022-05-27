@@ -1,6 +1,6 @@
 package com.example.shopping.model.category
 
-import aop.fastcampus.part6.chapter01.model.CellType
+import com.example.shopping.model.type.CellType
 import aop.fastcampus.part6.chapter01.model.Model
 
 data class CategoryModel(

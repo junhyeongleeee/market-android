@@ -3,10 +3,9 @@ package com.example.shopping.presentation.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import aop.fastcampus.part6.chapter01.model.CellType
+import com.example.shopping.model.type.CellType
 import com.example.shopping.model.product.ProductModel
 import com.example.shopping.presentation.base.BaseViewModel
-import com.example.shopping.presentation.category.productsByCategory.ProductsByCategoryState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
