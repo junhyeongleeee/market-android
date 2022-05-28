@@ -57,7 +57,7 @@ class AlarmFragment: BaseFragment<AlarmViewModel, FragmentAlarmBinding>() {
 
     override fun initViews() = with(binding){
 
-        appBar.categoryTextView.text = "알림센터"
+        appBar.titleTextView.text = "알림센터"
         appBar.back.setOnClickListener {
             findNavController().popBackStack()
         }

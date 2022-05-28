@@ -59,7 +59,7 @@ class TestProductsByCategoryFragment :BaseNavFragment<FragmentProductsByCategory
     override fun initViews() = with(binding) {
         recyclerView.adapter = adapter
         viewModel.settingList()
-        appBar.categoryTextView.text = arguments?.getString("category_name") ?: ""
+        appBar.titleTextView.text = arguments?.getString("category_name") ?: ""
 
 
         appBar.back.setOnClickListener {
