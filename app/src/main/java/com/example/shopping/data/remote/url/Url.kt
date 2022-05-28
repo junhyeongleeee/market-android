@@ -7,4 +7,6 @@ object Url {
     const val PUT_CATEGORY = ""
     const val GET_CATEGORY = "/categories"
     const val GET_PRODUCTS_BY_CATEGORY = "/categories/{category_id}/products"
+
+    const val CREATE_USER = "users/create"
 }

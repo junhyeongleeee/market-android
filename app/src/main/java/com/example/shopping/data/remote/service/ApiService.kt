@@ -4,10 +4,10 @@ import com.example.shopping.data.entity.category.CategoryEntity
 import com.example.shopping.data.remote.url.Url
 import com.example.shopping.data.response.categoty.CategoryResponse
 import com.example.shopping.data.response.product.ProductResponse
+import com.example.shopping.data.response.user.UserResponse
+import com.example.shopping.model.user.RegisterModel
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -25,4 +25,8 @@ interface ApiService {
         @Query("take") take: Int = 10
     ): Response<List<ProductResponse>>
 
+    @POST(Url.CREATE_USER)
+    suspend fun createUser(
+        @Body registerModel: RegisterModel
+    ): Response<UserResponse>
 }

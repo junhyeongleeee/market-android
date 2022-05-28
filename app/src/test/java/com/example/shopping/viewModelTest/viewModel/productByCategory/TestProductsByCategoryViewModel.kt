@@ -42,9 +42,9 @@ class TestProductsByCategoryViewModel(
         val list = categoryRepository.getProductsByCategory(category_id)
 
         if(list.isNotEmpty()){
-            _pbcStateLiveData.postValue(ProductsByCategoryState.Success(list.mapIndexed{ _, entity ->
+            /*_pbcStateLiveData.postValue(ProductsByCategoryState.Success(list.mapIndexed{ _, entity ->
                 entity.toEntity()
-            }))
+            }))*/
         }
         else _pbcStateLiveData.postValue(ProductsByCategoryState.Failure)
     }
