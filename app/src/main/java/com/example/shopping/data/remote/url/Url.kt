@@ -9,4 +9,5 @@ object Url {
     const val GET_PRODUCTS_BY_CATEGORY = "/categories/{category_id}/products"
 
     const val CREATE_USER = "users/create"
+    const val SIGN_IN = "/auth/sign-in"
 }

@@ -4,8 +4,11 @@ import com.example.shopping.data.entity.category.CategoryEntity
 import com.example.shopping.data.remote.url.Url
 import com.example.shopping.data.response.categoty.CategoryResponse
 import com.example.shopping.data.response.product.ProductResponse
+import com.example.shopping.data.response.user.LoginResponse
 import com.example.shopping.data.response.user.UserResponse
+import com.example.shopping.model.user.LoginModel
 import com.example.shopping.model.user.RegisterModel
+import com.example.shopping.model.user.UserDetailModel
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -29,4 +32,9 @@ interface ApiService {
     suspend fun createUser(
         @Body registerModel: RegisterModel
     ): Response<UserResponse>
+
+    @POST(Url.SIGN_IN)
+    suspend fun loginUser(
+        @Body loginModel: LoginModel
+    ): Response<LoginResponse>
 }

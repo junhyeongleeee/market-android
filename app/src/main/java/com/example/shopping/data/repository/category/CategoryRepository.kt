@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 
 class CategoryRepository(
     private val apiService: ApiService,
-    private val ioDispatcher: CoroutineDispatcher,
+    private val ioDispatcher: CoroutineDispatcher
 ) : CategoryRepositoryImpl {
     override suspend fun getCategories(): List<CategoryEntity> = withContext(ioDispatcher) {
         val response = apiService.getAllCategory()
