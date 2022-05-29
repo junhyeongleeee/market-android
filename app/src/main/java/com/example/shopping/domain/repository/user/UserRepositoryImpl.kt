@@ -12,10 +12,14 @@ interface UserRepositoryImpl {
         phone: String?,
     ): UserResponse?
 
-    suspend fun loginUser(
+    suspend fun signInUser(
         email: String,
         password: String
     ): LoginResponse?
+
+    suspend fun signOutUser(
+        access_token: String
+    ): String?
 
     suspend fun getUserDetail(
         access_token: String

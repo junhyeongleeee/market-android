@@ -10,5 +10,6 @@ object Url {
 
     const val CREATE_USER = "users/create"
     const val SIGN_IN = "/auth/sign-in"
+    const val SIGN_OUT = "/auth/sign-out"
     const val GET_USER_DETAIL = "/users/profile"
 }

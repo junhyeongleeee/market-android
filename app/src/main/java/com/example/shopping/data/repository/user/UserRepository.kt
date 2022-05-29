@@ -1,6 +1,5 @@
 package com.example.shopping.data.repository.user
 
-import com.example.shopping.data.entity.category.CategoryEntity
 import com.example.shopping.data.remote.service.ApiService
 import com.example.shopping.data.response.user.LoginResponse
 import com.example.shopping.data.response.user.UserDetailResponse
@@ -38,14 +37,23 @@ class UserRepository(
         else null
     }
 
-    override suspend fun loginUser(email: String, password: String): LoginResponse? = with(ioDispatcher){
+    override suspend fun signInUser(email: String, password: String): LoginResponse? = with(ioDispatcher){
 
-        val response = apiService.loginUser(
+        val response = apiService.signIn(
             LoginModel(
                 email = email,
                 password = password
             )
         )
+
+        if(response.isSuccessful){
+            response?.body() ?: null
+        }
+        else null
+    }
+
+    override suspend fun signOutUser(access_token: String): String? = with(ioDispatcher){
+        val response = apiService.signOut(access_token)
 
         if(response.isSuccessful){
             response?.body() ?: null

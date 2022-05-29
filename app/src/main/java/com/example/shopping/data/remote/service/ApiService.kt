@@ -35,13 +35,19 @@ interface ApiService {
     ): Response<UserResponse>
 
     @POST(Url.SIGN_IN)
-    suspend fun loginUser(
+    suspend fun signIn(
         @Body loginModel: LoginModel
     ): Response<LoginResponse>
 
+    @POST(Url.SIGN_OUT)
+    suspend fun signOut(
+        @Header("access_token") access_token: String
+    ): Response<String>
 
     @POST(Url.GET_USER_DETAIL)
     suspend fun getUserDetail(
         @Header("access_token") access_token: String
     ): Response<UserDetailResponse>
+
+
 }

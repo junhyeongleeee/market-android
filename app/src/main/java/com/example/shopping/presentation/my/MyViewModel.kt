@@ -37,11 +37,11 @@ class MyViewModel(
             role = UserType.Customer
         )
 
-        _myStateLiveData.postValue(MyState.Failure)
+//        _myStateLiveData.postValue(MyState.Failure)
 
-        /*_myStateLiveData.postValue(MyState.Success(
+        _myStateLiveData.postValue(MyState.Success(
             userDetailModel
-        ))*/
+        ))
 
         /*preference.getString("access_token")?.let{
             userRepositoryImpl.getUserDetail(it)?.let {

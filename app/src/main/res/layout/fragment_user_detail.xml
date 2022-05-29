@@ -18,80 +18,156 @@
         android:background="@color/white"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/headerLayout"
+        <FrameLayout
+            android:id="@+id/headerFrame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/profileImgCardView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardCornerRadius="40dp"
-                app:cardElevation="5dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:strokeColor="@color/light_sliver">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/headerSignInLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/profileImgCardView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="40dp"
+                    app:cardElevation="5dp"
+                    android:layout_margin="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/light_sliver">
+
+                    <ImageView
+                        android:id="@+id/profileImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_my" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/profileImgCardView"
+                    app:layout_constraintStart_toEndOf="@id/profileImgCardView"
+                    app:layout_constraintTop_toTopOf="@id/profileImgCardView"
+                    tools:text="이준형" />
+
+                <TextView
+                    android:id="@+id/desLogOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="다른 고객님이라면,"
+                    android:textColor="@color/sliver"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/name" />
+
+                <TextView
+                    android:id="@+id/logOutTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="로그아웃"
+                    android:textColor="@color/light_blue"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/desLogOut"
+                    app:layout_constraintTop_toBottomOf="@id/desLogOut" />
+
+                <TextView
+                    style="@style/defaultTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="회원정보"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/profileImgCardView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/headerSignOutLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_margin="10dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/defaultImgCardView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="40dp"
+                    app:cardElevation="5dp"
+                    android:layout_margin="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:strokeColor="@color/light_sliver">
+
+                    <ImageView
+                        android:id="@+id/defaultImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_my" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/desLoginTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/defaultImgCardView"
+                    app:layout_constraintStart_toEndOf="@id/defaultImgCardView"
+                    app:layout_constraintTop_toTopOf="@id/defaultImgCardView"
+                    android:text="로그인을 해주세요" />
 
                 <ImageView
-                    android:id="@+id/profileImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_my" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_forward"
+                    app:layout_constraintTop_toTopOf="@id/desLoginTextView"
+                    app:layout_constraintBottom_toBottomOf="@id/desLoginTextView"
+                    app:layout_constraintStart_toEndOf="@id/desLoginTextView"/>
 
-            </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/profileImgCardView"
-                app:layout_constraintStart_toEndOf="@id/profileImgCardView"
-                app:layout_constraintTop_toTopOf="@id/profileImgCardView"
-                tools:text="이준형" />
-
-            <TextView
-                android:id="@+id/desLogOut"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="다른 고객님이라면,"
-                android:textColor="@color/sliver"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/name" />
-
-            <TextView
-                android:id="@+id/logOutTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="로그아웃"
-                android:textColor="@color/light_blue"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/desLogOut"
-                app:layout_constraintTop_toBottomOf="@id/desLogOut" />
-
-            <TextView
-                style="@style/defaultTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="회원정보"
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profileImgCardView" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/profileGroup"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:constraint_referenced_ids="sliver_line_1, sliver_line_2, sliver_line_3, userDataLayout, deliveryLayout"
+            android:visibility="gone"
+            tools:visibility="visible"/>
 
         <View
             android:id="@+id/sliver_line_1"
@@ -100,7 +176,7 @@
             android:layout_marginTop="20dp"
             android:background="@color/light_sliver"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/headerLayout" />
+            app:layout_constraintTop_toBottomOf="@id/headerFrame" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/userDataLayout"
