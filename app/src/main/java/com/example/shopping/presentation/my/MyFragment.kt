@@ -1,5 +1,7 @@
 package com.example.shopping.presentation.my
 
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import com.example.shopping.extensions.load
 import com.example.shopping.presentation.base.BaseFragment
 import com.example.shopping.presentation.my.auth.AuthActivity
@@ -17,10 +19,14 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
     override fun observeData() = viewModel.myStateLiveData.observe(this){
         when(it){
             is MyState.UnInitialized -> {}
-            is MyState.Loading -> {}
+            is MyState.Loading -> { handleLoading()}
             is MyState.Success -> { handleSuccess(it)}
             is MyState.Failure -> { handleFailure()}
         }
+    }
+
+    private fun handleLoading() {
+        binding.progressBar.isVisible = true
     }
 
     private fun handleFailure() = with(binding){
@@ -46,11 +52,14 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
         likeProduct.text = "-"
         recentlyProduct.text = "-"
         frequentlyProduct.text = "-"
+
+        binding.progressBar.isGone = true
     }
 
     private fun handleSuccess(state: MyState.Success) = with(binding){
+
         // name
-        nameTextView.text = state.userDetailModel.userName ?: ""
+        nameTextView.text = state.userDetailEntity?.userName ?: ""
         nameTextView.setOnClickListener {
             // TODO : 내 정보관리 페이지로 이동
         }
@@ -65,10 +74,13 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
         likeProduct.text = "0"
         recentlyProduct.text = "0"
         frequentlyProduct.text = "0"
+
+        binding.progressBar.isGone = true
     }
 
-    override fun initViews() {
-        viewModel.getUserData()
+    override fun onResume() {
+        super.onResume()
 
+        viewModel.fetch()
     }
 }

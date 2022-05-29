@@ -5,6 +5,7 @@ import com.example.shopping.data.remote.url.Url
 import com.example.shopping.data.response.categoty.CategoryResponse
 import com.example.shopping.data.response.product.ProductResponse
 import com.example.shopping.data.response.user.LoginResponse
+import com.example.shopping.data.response.user.UserDetailResponse
 import com.example.shopping.data.response.user.UserResponse
 import com.example.shopping.model.user.LoginModel
 import com.example.shopping.model.user.RegisterModel
@@ -37,4 +38,10 @@ interface ApiService {
     suspend fun loginUser(
         @Body loginModel: LoginModel
     ): Response<LoginResponse>
+
+
+    @POST(Url.GET_USER_DETAIL)
+    suspend fun getUserDetail(
+        @Header("access_token") access_token: String
+    ): Response<UserDetailResponse>
 }
