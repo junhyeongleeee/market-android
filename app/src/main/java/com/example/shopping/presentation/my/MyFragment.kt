@@ -1,11 +1,14 @@
 package com.example.shopping.presentation.my
 
+import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import com.example.shopping.extensions.load
 import com.example.shopping.presentation.base.BaseFragment
 import com.example.shopping.presentation.my.auth.AuthActivity
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 import kotlin.study.shopping.R
 import kotlin.study.shopping.databinding.FragmentMyBinding
 
@@ -26,7 +29,7 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
     }
 
     private fun handleLoading() {
-        binding.progressBar.isVisible = true
+//        binding.progressBar.isVisible = true
     }
 
     private fun handleFailure() = with(binding){
@@ -53,7 +56,7 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
         recentlyProduct.text = "-"
         frequentlyProduct.text = "-"
 
-        binding.progressBar.isGone = true
+//        binding.progressBar.isGone = true
     }
 
     private fun handleSuccess(state: MyState.Success) = with(binding){
@@ -62,6 +65,7 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
         nameTextView.text = state.userDetailEntity?.userName ?: ""
         nameTextView.setOnClickListener {
             // TODO : 내 정보관리 페이지로 이동
+            findNavController().navigate(R.id.action_navMy_to_navUserDetail)
         }
         // profile
         profileImg.load("", R.drawable.ic_my,  corner = 60f)
@@ -75,7 +79,7 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
         recentlyProduct.text = "0"
         frequentlyProduct.text = "0"
 
-        binding.progressBar.isGone = true
+//        binding.progressBar.isGone = true
     }
 
     override fun onResume() {

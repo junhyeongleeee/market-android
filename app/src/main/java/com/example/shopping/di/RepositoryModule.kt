@@ -10,5 +10,4 @@ val RepositoryModule = module {
 
     single<CategoryRepositoryImpl> { CategoryRepository(get(), get()) }
     single<UserRepositoryImpl> { UserRepository(get(), get()) }
-
 }
