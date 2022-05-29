@@ -4,12 +4,12 @@ import androidx.paging.PagingData
 import com.example.shopping.data.entity.category.CategoryEntity
 import com.example.shopping.data.remote.service.ApiService
 import com.example.shopping.data.response.product.ProductResponse
-import com.example.shopping.domain.repository.CategoryRepositoryImpl
+import com.example.shopping.domain.repository.category.CategoryRepositoryImpl
 import kotlinx.coroutines.flow.Flow
 
 class TestCategoryRepository(
     private val service: ApiService
-) : CategoryRepositoryImpl{
+) : CategoryRepositoryImpl {
 
     override suspend fun getCategories(): List<CategoryEntity> {
         return service.getAllCategory()?.body()?.mapIndexed{ _, it ->

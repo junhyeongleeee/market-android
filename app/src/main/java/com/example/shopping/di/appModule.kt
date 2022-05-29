@@ -1,7 +1,7 @@
 package com.example.shopping.di
 
-import com.example.shopping.data.repository.CategoryRepository
-import com.example.shopping.domain.repository.CategoryRepositoryImpl
+import com.example.shopping.data.repository.category.CategoryRepository
+import com.example.shopping.domain.repository.category.CategoryRepositoryImpl
 import com.example.shopping.domain.usecases.GetAllCategoriesUseCase
 import com.example.shopping.presentation.category.CategoryViewModel
 import com.example.shopping.presentation.home.HomeViewModel

@@ -1,6 +1,7 @@
 package com.example.shopping.presentation.my.auth.navigation.register
 
 import androidx.navigation.fragment.findNavController
+import com.example.shopping.extensions.snackbar
 import com.example.shopping.presentation.base.BaseFragment
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -16,9 +17,18 @@ class RegisterFragment: BaseFragment<RegisterViewModel, FragmentRegisterBinding>
         when(it){
             is RegisterState.UnInitialized -> {}
             is RegisterState.Loading -> {}
-            is RegisterState.Success -> {}
-            is RegisterState.Failure -> {}
+            is RegisterState.Success -> { handleSuccess()}
+            is RegisterState.Failure -> { handleFailure()}
         }
+    }
+
+    private fun handleFailure() {
+        snackbar(binding.root, "회원가입이 실패하였습니다!!")
+    }
+
+    private fun handleSuccess() {
+        snackbar(binding.root, "회원가입이 완료되었습니다!!")
+        findNavController().popBackStack()
     }
 
     override fun initViews() = with(binding){
@@ -32,8 +42,12 @@ class RegisterFragment: BaseFragment<RegisterViewModel, FragmentRegisterBinding>
         registerButton.setOnClickListener {
             if(agreeCheckBox.isChecked){
                 //TODO : 회원가입 처리
+                val email = emailEditText.text.toString().trim()
+                val userName = nameEditText.text.toString().trim()
+                val password = pwdEditText.text.toString().trim()
+                val phone = phoneEditText.text.toString().trim()
 
-                findNavController().popBackStack()
+                viewModel.createUser(userName, email, password, phone)
             }
             else{
                 Snackbar.make(root, "약관에 동의해주세요.", Snackbar.LENGTH_LONG).show()

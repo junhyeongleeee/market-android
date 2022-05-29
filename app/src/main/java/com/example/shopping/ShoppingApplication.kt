@@ -20,8 +20,8 @@ class ShoppingApplication : Application() {
 //                appModule
                 CoroutineModule,
                 ViewModelModule,
-//                RemoteModule,
-//                RepositoryModule,
+                RemoteModule,
+                RepositoryModule,
 //                UseCaseModule
             ))
         }

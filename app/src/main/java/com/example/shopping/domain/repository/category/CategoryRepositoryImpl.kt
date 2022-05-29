@@ -1,4 +1,4 @@
-package com.example.shopping.domain.repository
+package com.example.shopping.domain.repository.category
 
 import androidx.paging.PagingData
 import com.example.shopping.data.entity.category.CategoryEntity

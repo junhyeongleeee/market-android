@@ -1,4 +1,4 @@
-package com.example.shopping.data.repository
+package com.example.shopping.data.repository.category
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import com.example.shopping.data.entity.category.CategoryEntity
 import com.example.shopping.data.remote.service.ApiService
 import com.example.shopping.data.response.product.ProductResponse
-import com.example.shopping.domain.repository.CategoryRepositoryImpl
+import com.example.shopping.domain.repository.category.CategoryRepositoryImpl
 import com.example.shopping.util.ExamplePagingSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
