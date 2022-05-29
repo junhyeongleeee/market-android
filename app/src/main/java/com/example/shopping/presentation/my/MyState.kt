@@ -8,7 +8,7 @@ sealed class MyState {
     object UnInitialized: MyState()
     object Loading: MyState()
     data class Success(
-        val userDetailEntity: UserDetailEntity?
+        val userDetailEntity: UserDetailEntity
     ): MyState()
     object Failure: MyState()
 }

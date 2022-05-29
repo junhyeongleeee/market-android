@@ -62,10 +62,14 @@ class MyFragment: BaseFragment<MyViewModel, FragmentMyBinding>() {
     private fun handleSuccess(state: MyState.Success) = with(binding){
 
         // name
-        nameTextView.text = state.userDetailEntity?.userName ?: ""
+        nameTextView.text = state.userDetailEntity.userName
         nameTextView.setOnClickListener {
             // TODO : 내 정보관리 페이지로 이동
-            findNavController().navigate(R.id.action_navMy_to_navUserDetail)
+            findNavController().navigate(R.id.action_navMy_to_navUserDetail,
+                bundleOf(
+                    "UserDetailEntity" to state.userDetailEntity
+                )
+            )
         }
         // profile
         profileImg.load("", R.drawable.ic_my,  corner = 60f)
