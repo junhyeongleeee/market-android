@@ -1,5 +1,6 @@
 package com.example.shopping.presentation.my.auth.navigation.register
 
+import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
 import com.example.shopping.extensions.snackbar
 import com.example.shopping.presentation.base.BaseFragment
@@ -34,6 +35,9 @@ class RegisterFragment: BaseFragment<RegisterViewModel, FragmentRegisterBinding>
     override fun initViews() = with(binding){
 
         appBar.titleTextView.text = "회원가입"
+
+        emailEditText.requestFocus()
+        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
 
         appBar.back.setOnClickListener {
             findNavController().popBackStack()

@@ -45,19 +45,15 @@ class LoginFragment: BaseFragment<LoginViewModel, FragmentLoginBinding>() {
         snackbar(binding.root, "로그인 성공!!")
         requireActivity().finish()
     }
-
-    override fun keyboardControl() {
-        Log.e("LoginFragment", "keyboardControl")
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
-    }
-
     override fun initViews() = with(binding){
 
         // emailEditText 로 포커스
         emailEditText.requestFocus()
+        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
 
         val emailWatcher = Watcher(emailDeleteButton)
         emailEditText.addTextChangedListener(emailWatcher)
+
 
         emailDeleteButton.setOnClickListener {
             emailEditText.setText("")

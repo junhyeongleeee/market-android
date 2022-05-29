@@ -10,7 +10,9 @@
         android:roundIcon="@drawable/ic_shopping"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shoppingapp">
-        <activity android:name="com.example.shopping.presentation.my.auth.AuthActivity"></activity>
+        <activity android:name="com.example.shopping.presentation.my.auth.AuthActivity"
+            android:windowSoftInputMode="stateAlwaysVisible">
+        </activity>
         <activity
             android:name="com.example.shopping.presentation.main.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden"

@@ -4,6 +4,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.shopping.data.entity.user.UserDetailEntity
 import com.example.shopping.model.user.UserDetailModel
 import com.example.shopping.presentation.base.BaseFragment
+import com.example.shopping.presentation.my.MyState
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.study.shopping.databinding.FragmentUserDetailBinding
 
@@ -16,7 +17,13 @@ class UserDetailFragment: BaseFragment<UserDetailViewModel, FragmentUserDetailBi
 
     private var userDetailEntity: UserDetailEntity? = null
 
-    override fun observeData() {
+    override fun observeData() = viewModel.userDetailStateLiveData.observe(this){
+        when(it){
+            is UserDetailState.UnInitialized -> {}
+            is UserDetailState.Loading -> {}
+            is UserDetailState.Success -> {}
+            is UserDetailState.Failure -> {}
+        }
     }
 
     override fun initViews() = with(binding){
