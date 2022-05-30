@@ -7,17 +7,17 @@ import com.example.shopping.model.type.UserType
 data class UserResponse(
     val _id: String,
     val uid: String,
-    val name: String,
+    val username: String,
     val email: String,
     val phone: String? = null,
-    val type: UserType = UserType.Customer
+    val role: UserType = UserType.Customer
 ){
     fun toEntity() = UserEntity(
         _id = _id,
         uid = uid,
-        name = name,
+        username = username,
         email = email,
         phone = phone,
-        type = type
+        role = role
     )
 }

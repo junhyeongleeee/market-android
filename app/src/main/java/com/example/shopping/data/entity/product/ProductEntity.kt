@@ -6,5 +6,13 @@ data class ProductEntity(
     val uid: String,
     val name: String,
     val price: Long,
-    val image_url: String
-)
+    val image_url: String?
+) {
+    fun toModel() = ProductModel(
+        id = uid.hashCode().toLong(),
+        uid = uid,
+        name = name,
+        price = price,
+        image_url = image_url
+    )
+}

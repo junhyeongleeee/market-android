@@ -11,29 +11,8 @@
         android:label="CategoryFragment"
         tools:layout="@layout/fragment_category">
         <action
-            android:id="@+id/action_navCategory_to_navProductsByCategory"
-            app:destination="@id/navProductsByCategory"
-            app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/slide_to_left"
-            app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right"/>
-        <action
             android:id="@+id/action_navCategory_to_navTestProductsByCategory2"
             app:destination="@id/navTestProductsByCategory2"
-            app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/slide_to_left"
-            app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right"/>
-    </fragment>
-
-    <fragment
-        android:id="@+id/navProductsByCategory"
-        android:name="com.example.shopping.presentation.category.productsByCategory.ProductsByCategoryFragment"
-        android:label="ProductsByCategoryFragment"
-        tools:layout="@layout/fragment_products_by_category">
-        <action
-            android:id="@+id/action_navProductsByCategory_to_navCategoryTest2"
-            app:destination="@id/navCategoryTest2"
             app:enterAnim="@anim/slide_from_right"
             app:exitAnim="@anim/slide_to_left"
             app:popEnterAnim="@anim/slide_from_left"
@@ -53,12 +32,6 @@
             app:exitAnim="@anim/slide_to_left"
             app:popEnterAnim="@anim/slide_from_left"
             app:popExitAnim="@anim/slide_to_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/navCategoryTest1"
-        android:name="com.example.shopping.presentation.category.test.CategoryTest1Fragment"
-        android:label="CategoryFragment"
-        tools:layout="@layout/fragment_category_test1">
     </fragment>
 
     <fragment

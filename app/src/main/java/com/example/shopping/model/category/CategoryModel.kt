@@ -8,5 +8,5 @@ data class CategoryModel(
     override val type: CellType = CellType.CATEGORY_CELL,
     val category_id: String,
     val name: String,
-    val image_url: String = "../.."
+    val image_url: String? = null
 ): Model(id, type)

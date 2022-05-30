@@ -3,13 +3,13 @@ package com.example.shopping.data.entity.category
 import com.example.shopping.model.category.CategoryModel
 
 data class CategoryEntity (
-    val id: String,
+    val uid: String,
     val name: String,
-    val image_url: String = ""
+    val image_url: String? = null
 ){
     fun toModel() = CategoryModel(
-        id = id.toLong(),
-        category_id = id,
+        id = uid.hashCode().toLong(),
+        category_id = uid,
         name = name,
         image_url = image_url
     )

@@ -14,22 +14,4 @@ import org.koin.dsl.module
 
 val appModule = module{
 
-
-    viewModel { MainViewModel() }
-    viewModel { CategoryViewModel() }
-    viewModel { SearchViewModel() }
-    viewModel { MyViewModel() }
-    viewModel { HomeViewModel() }
-
-    single { Dispatchers.IO }
-    single { Dispatchers.Main }
-
-    single { provideApiService(get()) }
-    single { provideRetrofit(get(), get()) }
-    single { buildOkHttpClient() }
-    single { provideGsonConvertFactory() }
-
-    single<CategoryRepositoryImpl> { CategoryRepository(get(), get()) }
-
-    factory { GetAllCategoriesUseCase(get()) }
 }

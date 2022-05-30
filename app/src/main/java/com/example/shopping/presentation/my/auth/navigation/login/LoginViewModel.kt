@@ -16,8 +16,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class LoginViewModel(
-//    private val userRepositoryImpl: UserRepositoryImpl,
-//    private val preference: AppPreferenceManager
+    private val userRepositoryImpl: UserRepositoryImpl,
+    private val preference: AppPreferenceManager
 ): BaseViewModel() {
 
     private var _loginStateLiveData = MutableLiveData<LoginState>(LoginState.UnInitialized)
@@ -29,8 +29,8 @@ class LoginViewModel(
 
     fun login(email: String, pwd: String) = viewModelScope.launch{
 
-        /*try {
-            userRepositoryImpl.loginUser(email, pwd)?.let {
+        try {
+            userRepositoryImpl.signInUser(email, pwd)?.let {
                 _loginStateLiveData.postValue(LoginState.Success(
                     it.userDetailModel
                 ))
@@ -44,9 +44,9 @@ class LoginViewModel(
         }catch (e: Exception){
             e.printStackTrace()
             _loginStateLiveData.postValue(LoginState.Failure)
-        }*/
+        }
 
-        _loginStateLiveData.postValue(LoginState.Success(
+        /*_loginStateLiveData.postValue(LoginState.Success(
             UserDetailModel(
                 uid = "1",
                 userName = "이준형",
@@ -54,7 +54,7 @@ class LoginViewModel(
                 phone = "01036153247",
                 role = UserType.Customer
             )
-        ))
+        ))*/
 
     }
 }

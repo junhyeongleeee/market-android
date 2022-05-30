@@ -1,5 +1,6 @@
 package com.example.shopping.presentation.adapter.model
 
+import android.content.res.loader.ResourcesProvider
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.shopping.model.type.CellType

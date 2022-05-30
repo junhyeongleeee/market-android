@@ -25,23 +25,23 @@ import java.io.IOException
 class MockPagingSource(
     private val service: ApiService,
     private val category: String
-) : PagingSource<Int, ProductResponse>() {
+) : PagingSource<Int, ProductEntity>() {
 
-    override fun getRefreshKey(state: PagingState<Int, ProductResponse>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, ProductEntity>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ProductResponse> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ProductEntity> {
         val page = params.key ?: 1
 
         val range = page.until(page + params.loadSize)
 
         return LoadResult.Page(
             data = range.map { num ->
-                ProductResponse(
+                ProductEntity(
                     uid = num.toString(),
                     name = "Product $num",
                     price = (num*1000).toLong(),

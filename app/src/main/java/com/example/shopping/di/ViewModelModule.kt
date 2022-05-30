@@ -16,14 +16,14 @@ import org.koin.dsl.module
 
 val ViewModelModule = module {
     viewModel { MainViewModel() }
-    viewModel { CategoryViewModel() }
+    viewModel { CategoryViewModel(get()) }
     viewModel { SearchViewModel() }
-    viewModel { MyViewModel() }
+    viewModel { MyViewModel(get(), get()) }
     viewModel { HomeViewModel() }
-    viewModel { ProductsByCategoryViewModel() }
+    viewModel { (category_id: String) -> ProductsByCategoryViewModel(category_id, get()) }
     viewModel { AlarmViewModel() }
     viewModel { AuthViewModel() }
-    viewModel { LoginViewModel() }
-    viewModel { RegisterViewModel() }
+    viewModel { LoginViewModel(get(), get()) }
+    viewModel { RegisterViewModel(get()) }
     viewModel { UserDetailViewModel() }
 }

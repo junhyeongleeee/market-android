@@ -19,7 +19,7 @@ interface ApiService {
     suspend fun putCategory(category: CategoryEntity)
 
     @GET(Url.GET_CATEGORY)
-    suspend fun getAllCategory(): Response<List<CategoryResponse>>
+    suspend fun getAllCategory(): Response<CategoryResponse>
 
     @GET(Url.GET_PRODUCTS_BY_CATEGORY)
     suspend fun getCategoryByProducts(
@@ -27,7 +27,7 @@ interface ApiService {
         @Query("sort_type") sort_type: Int = 0,
         @Query("page") page: Int = 1,
         @Query("take") take: Int = 10
-    ): Response<List<ProductResponse>>
+    ): Response<ProductResponse>
 
     @POST(Url.CREATE_USER)
     suspend fun createUser(

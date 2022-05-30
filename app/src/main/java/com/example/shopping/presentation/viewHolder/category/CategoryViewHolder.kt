@@ -24,7 +24,7 @@ class CategoryViewHolder(
 
     override fun bindData(model: CategoryModel) = with(binding){
         // TODO CategoryModel.img 업데이트 예정
-        img.load(model.image_url, corner = 0f)
+        img.load(model.image_url?: "", corner = 0f)
         name.text = model.name
     }
 }

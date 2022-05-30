@@ -12,7 +12,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(
-//    private val userRepositoryImpl: UserRepositoryImpl
+    private val userRepositoryImpl: UserRepositoryImpl
 ) : BaseViewModel() {
 
     private var _registerStateLiveData = MutableLiveData<RegisterState>(RegisterState.UnInitialized)
@@ -25,11 +25,11 @@ class RegisterViewModel(
     fun createUser(userName: String, email: String, password: String, phone: String?) = viewModelScope.launch{
         // TODO Preference 계정 추가
 
-        _registerStateLiveData.postValue(RegisterState.Success(
+        /*_registerStateLiveData.postValue(RegisterState.Success(
             UserEntity("j1", "1", "이준형" ,"djskal3745@gmail.com", "01036153247")
-        ))
+        ))*/
 
-        /*try {
+        try {
             userRepositoryImpl.createUser(userName, email, password, phone)?.let {
                 _registerStateLiveData.postValue(RegisterState.Success(it.toEntity()))
             } ?: kotlin.run { _registerStateLiveData.postValue(RegisterState.Failure) }
@@ -37,6 +37,6 @@ class RegisterViewModel(
         }catch (e: Exception){
             e.printStackTrace()
             _registerStateLiveData.postValue(RegisterState.Failure)
-        }*/
+        }
     }
 }

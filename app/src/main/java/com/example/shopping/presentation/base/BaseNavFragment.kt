@@ -38,14 +38,7 @@ abstract class BaseNavFragment<VB: ViewBinding>: Fragment() {
         fetch = viewModel.fetch()
         observeData()
         initViews()
-        keyboardControl()
     }
-
-    open fun keyboardControl(){
-        // 키보드 숨기기
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
-    }
-
     abstract fun observeData()
 
     open fun initViews() = Unit

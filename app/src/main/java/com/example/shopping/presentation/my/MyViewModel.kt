@@ -14,8 +14,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MyViewModel(
-    /*private val userRepositoryImpl: UserRepositoryImpl,
-    private val preference: AppPreferenceManager*/
+    private val userRepositoryImpl: UserRepositoryImpl,
+    private val preference: AppPreferenceManager
 ) : BaseViewModel() {
 
     private var _myStateLiveData = MutableLiveData<MyState>(MyState.UnInitialized)
@@ -28,27 +28,27 @@ class MyViewModel(
     // TODO : User Data Fetching 필요
     private fun getUserData() = viewModelScope.launch{
 
-        // Mock
+        /*// Mock
         val userDetailModel = UserDetailEntity(
             uid = "1",
             userName = "이준형",
             email = "djskal3745@gmail.com",
             phone = "01036153247",
             role = UserType.Customer
-        )
+        )*/
 
 //        _myStateLiveData.postValue(MyState.Failure)
 
-        _myStateLiveData.postValue(MyState.Success(
+        /*_myStateLiveData.postValue(MyState.Success(
             userDetailModel
-        ))
+        ))*/
 
-        /*preference.getString("access_token")?.let{
+        preference.getString("access_token")?.let{
             userRepositoryImpl.getUserDetail(it)?.let {
                 _myStateLiveData.postValue(MyState.Success(
                     it.toEntity()
                 ))
             } ?: _myStateLiveData.postValue(MyState.Failure)
-        } ?: _myStateLiveData.postValue(MyState.Failure)*/
+        } ?: _myStateLiveData.postValue(MyState.Failure)
     }
 }

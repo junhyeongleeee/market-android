@@ -16,7 +16,7 @@ class UserRepository(
 
 
     override suspend fun createUser(
-        userName: String,
+        username: String,
         email: String,
         password : String,
         phone: String?,
@@ -24,7 +24,7 @@ class UserRepository(
 
         val response = apiService.createUser(
             RegisterModel(
-                userName = userName,
+                username = username,
                 email = email,
                 password = password,
                 phone = phone
