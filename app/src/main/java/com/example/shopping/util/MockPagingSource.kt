@@ -2,11 +2,8 @@ package com.example.shopping.util
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.shopping.data.entity.product.ProductEntity
+import com.example.shopping.data.entity.product.ProductSimpleEntity
 import com.example.shopping.data.remote.service.ApiService
-import com.example.shopping.data.response.product.ProductResponse
-import retrofit2.HttpException
-import java.io.IOException
 
 
 /**
@@ -25,23 +22,23 @@ import java.io.IOException
 class MockPagingSource(
     private val service: ApiService,
     private val category: String
-) : PagingSource<Int, ProductEntity>() {
+) : PagingSource<Int, ProductSimpleEntity>() {
 
-    override fun getRefreshKey(state: PagingState<Int, ProductEntity>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, ProductSimpleEntity>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ProductEntity> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ProductSimpleEntity> {
         val page = params.key ?: 1
 
         val range = page.until(page + params.loadSize)
 
         return LoadResult.Page(
             data = range.map { num ->
-                ProductEntity(
+                ProductSimpleEntity(
                     uid = num.toString(),
                     name = "Product $num",
                     price = (num*1000).toLong(),
