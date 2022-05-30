@@ -10,5 +10,6 @@ sealed class MyState {
     data class Success(
         val userDetailEntity: UserDetailEntity
     ): MyState()
+
     object Failure: MyState()
 }

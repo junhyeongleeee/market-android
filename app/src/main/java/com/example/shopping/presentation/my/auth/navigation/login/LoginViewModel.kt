@@ -24,10 +24,11 @@ class LoginViewModel(
     val loginStateLiveData: LiveData<LoginState> = _loginStateLiveData
 
     override fun fetch(): Job = viewModelScope.launch {
-        _loginStateLiveData.postValue(LoginState.Loading)
+
     }
 
     fun login(email: String, pwd: String) = viewModelScope.launch{
+        _loginStateLiveData.postValue(LoginState.Loading)
 
         try {
             userRepositoryImpl.signInUser(email, pwd)?.let {
@@ -38,6 +39,7 @@ class LoginViewModel(
                 withContext(Dispatchers.IO){
                     preference.setString("access_token", it.access_token)
                 }
+
             }?: kotlin.run {
                 _loginStateLiveData.postValue(LoginState.Failure)
             }

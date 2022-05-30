@@ -30,19 +30,27 @@ class LoginFragment: BaseFragment<LoginViewModel, FragmentLoginBinding>() {
             is LoginState.UnInitialized -> {
 
                 // TODO : 화면 Animation 이 끝난 후에 키보드 올리기
+                binding.progressBar.isVisible = false
             }
-            is LoginState.Loading -> {}
+            is LoginState.Loading -> { handleLoading()}
             is LoginState.Success -> { handleSuccess()}
             is LoginState.Failure -> { handleFailure()}
         }
     }
 
+    private fun handleLoading() {
+        binding.progressBar.isVisible = true
+    }
+
     private fun handleFailure() {
         snackbar(binding.root, "로그인 실패!!")
+        binding.progressBar.isVisible = false
     }
 
     private fun handleSuccess() {
         snackbar(binding.root, "로그인 성공!!")
+
+        binding.progressBar.isVisible = false
         requireActivity().finish()
     }
     override fun initViews() = with(binding){
@@ -87,6 +95,8 @@ class LoginFragment: BaseFragment<LoginViewModel, FragmentLoginBinding>() {
         registerButton.setOnClickListener {
             findNavController().navigate(R.id.action_navLogin_to_navRegister)
         }
+
+        binding.progressBar.isVisible = false
     }
 
     class Watcher(val view: View) : TextWatcher{

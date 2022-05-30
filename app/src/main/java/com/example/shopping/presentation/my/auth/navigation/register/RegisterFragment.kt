@@ -1,6 +1,7 @@
 package com.example.shopping.presentation.my.auth.navigation.register
 
 import android.view.inputmethod.InputMethodManager
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.shopping.extensions.snackbar
 import com.example.shopping.presentation.base.BaseFragment
@@ -17,18 +18,24 @@ class RegisterFragment: BaseFragment<RegisterViewModel, FragmentRegisterBinding>
     override fun observeData() = viewModel.registerStateLiveData.observe(this){
         when(it){
             is RegisterState.UnInitialized -> {}
-            is RegisterState.Loading -> {}
+            is RegisterState.Loading -> {handleLoading()}
             is RegisterState.Success -> { handleSuccess()}
             is RegisterState.Failure -> { handleFailure()}
         }
     }
 
+    private fun handleLoading() {
+        binding.progressBar.isVisible = true
+    }
+
     private fun handleFailure() {
         snackbar(binding.root, "회원가입이 실패하였습니다!!")
+        binding.progressBar.isVisible = false
     }
 
     private fun handleSuccess() {
         snackbar(binding.root, "회원가입이 완료되었습니다!!")
+        binding.progressBar.isVisible = false
         findNavController().popBackStack()
     }
 
@@ -57,5 +64,6 @@ class RegisterFragment: BaseFragment<RegisterViewModel, FragmentRegisterBinding>
                 Snackbar.make(root, "약관에 동의해주세요.", Snackbar.LENGTH_LONG).show()
             }
         }
+        binding.progressBar.isVisible = false
     }
 }

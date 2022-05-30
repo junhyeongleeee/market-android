@@ -8,7 +8,7 @@ object Url {
     const val GET_CATEGORY = "/categories"
     const val GET_PRODUCTS_BY_CATEGORY = "/categories/{category_id}/products"
 
-    const val CREATE_USER = "users/create"
+    const val CREATE_USER = "/users/create"
     const val SIGN_IN = "/auth/sign-in"
     const val SIGN_OUT = "/auth/sign-out"
     const val GET_USER_DETAIL = "/users/profile"
