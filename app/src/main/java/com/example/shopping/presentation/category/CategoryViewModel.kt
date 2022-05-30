@@ -11,13 +11,13 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class CategoryViewModel(
-    private val categoryRepositoryImpl: CategoryRepositoryImpl
-): BaseViewModel(){
+    private val categoryRepositoryImpl: CategoryRepositoryImpl,
+) : BaseViewModel() {
 
     private var _categoryStateLiveData = MutableLiveData<CategoryState>(CategoryState.UnInitialized)
     val categoryStateLiveData: LiveData<CategoryState> = _categoryStateLiveData
 
-    val categoryListLiveData =  MutableLiveData<List<CategoryModel>>()
+    val categoryListLiveData = MutableLiveData<List<CategoryModel>>()
 
     override fun fetch(): Job = viewModelScope.launch {
         _categoryStateLiveData.postValue(CategoryState.Loading)
@@ -25,7 +25,7 @@ class CategoryViewModel(
         getAllCategories()
     }
 
-    fun settingList(){
+    fun settingList() {
         val mockList = (0 until 10).map {
             CategoryModel(
                 id = it.toLong(),
@@ -36,17 +36,16 @@ class CategoryViewModel(
         categoryListLiveData.value = mockList
     }
 
-     fun getAllCategories() = viewModelScope.launch{
+    private fun getAllCategories() = viewModelScope.launch {
 
-        val list = categoryRepositoryImpl.getCategories().mapIndexed{ _, entity ->
+        val list = categoryRepositoryImpl.getCategories().mapIndexed { _, entity ->
             entity.toModel()
         }
 
-        if(list.isNotEmpty()){
+        if (list.isNotEmpty()) {
             categoryListLiveData.value = list
             _categoryStateLiveData.postValue(CategoryState.Success(list))
-        }
-        else _categoryStateLiveData.postValue(CategoryState.Failure)
+        } else _categoryStateLiveData.postValue(CategoryState.Failure)
     }
 
     /*fun getContent(category: String): Flow<PagingData<ProductResponse>> {

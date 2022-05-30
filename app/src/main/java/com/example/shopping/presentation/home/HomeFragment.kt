@@ -1,33 +1,37 @@
 package com.example.shopping.presentation.home
 
-import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.shopping.model.product.ProductModel
 import com.example.shopping.presentation.adapter.model.ModelRecyclerAdapter
 import com.example.shopping.presentation.base.BaseFragment
-import com.example.shopping.presentation.base.BaseNavFragment
-import com.example.shopping.presentation.base.BaseViewModel
-import com.example.shopping.presentation.category.productsByCategory.ProductsByCategoryState
-import com.example.shopping.presentation.category.productsByCategory.ProductsByCategoryViewModel
 import com.example.shopping.presentation.listener.AdapterListener
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.study.shopping.R
 import kotlin.study.shopping.databinding.FragmentHomeBinding
 
-class HomeFragment: BaseNavFragment<FragmentHomeBinding>() {
+class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
-    override val viewModel = HomeViewModel()
+    override val viewModel by viewModel<HomeViewModel>()
 
     override fun getViewBinding(): FragmentHomeBinding =
         FragmentHomeBinding.inflate(layoutInflater)
 
-    private val adapter = ModelRecyclerAdapter<ProductModel, HomeViewModel>(
-        listOf(),
-        viewModel,
-        adapterListener = object : AdapterListener {
-        }
-    )
+    private val whatAdapter : ModelRecyclerAdapter<ProductModel, HomeViewModel> by lazy {
+        ModelRecyclerAdapter(
+            listOf(),
+            viewModel,
+            adapterListener = object : AdapterListener {
+            }
+        )
+    }
+    private val hotAdapter : ModelRecyclerAdapter<ProductModel, HomeViewModel> by lazy {
+        ModelRecyclerAdapter(
+            listOf(),
+            viewModel,
+            adapterListener = object : AdapterListener {
+            }
+        )
+    }
 
     override fun observeData() {
         viewModel.homeStateLiveData.observe(this) {
@@ -36,20 +40,29 @@ class HomeFragment: BaseNavFragment<FragmentHomeBinding>() {
                 }
                 is HomeState.Loading -> {
                 }
-                is HomeState.Success -> {
+                is HomeState.Success -> { handleSuccess(it)
                 }
             }
         }
 
-        viewModel.productListLiveData.observe(this) {
-            adapter.submitList(it)
+        viewModel.whatProductListLiveData.observe(this) {
+            whatAdapter.submitList(it)
         }
+
+        viewModel.hotProductListLiveData.observe(this){
+            hotAdapter.submitList(it)
+        }
+
+    }
+
+    private fun handleSuccess(state: HomeState.Success) {
+        whatAdapter.submitList(state.whatList)
+        hotAdapter.submitList(state.hotList)
     }
 
     override fun initViews() = with(binding){
-        recyclerView.layoutManager = GridLayoutManager(requireActivity(), 3)
-        recyclerView.adapter = adapter
-        viewModel.settingList()
+        whatRecyclerView.adapter = whatAdapter
+        hotRecyclerView.adapter = hotAdapter
 
         alarmCenterButton.setOnClickListener {
             findNavController().navigate(R.id.action_navHome_to_navAlarm)

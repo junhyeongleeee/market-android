@@ -1,7 +1,7 @@
 package com.example.shopping.viewModelTest.tests
 
 import com.example.shopping.data.entity.category.CategoryEntity
-import com.example.shopping.data.entity.product.ProductEntity
+import com.example.shopping.data.entity.product.ProductSimpleEntity
 import com.example.shopping.viewModelTest.MockServerTest
 import com.google.gson.Gson
 import kotlinx.coroutines.runBlocking
@@ -12,20 +12,20 @@ import org.junit.Test
 internal class PagingTest: MockServerTest() {
 
     private lateinit var mockCategoryList: List<CategoryEntity>
-    private lateinit var mockProductList: List<ProductEntity>
+    private lateinit var mockProductSimpleList: List<ProductSimpleEntity>
 
 
     @Before
     fun initData(){
         mockCategoryList = (0 until 50).map {
             CategoryEntity(
-                id = it.toString(),
+                uid = it.toString(),
                 name = "name : $it"
             )
         }
 
-        mockProductList = (0 until 50).map {
-            ProductEntity(
+        mockProductSimpleList = (0 until 50).map {
+            ProductSimpleEntity(
                 uid = it.toString(),
                 name = "product $it",
                 price = (it*1000).toLong(),
@@ -36,7 +36,7 @@ internal class PagingTest: MockServerTest() {
         val response = MockResponse()
             .addHeader("Content-Type", "application/json; charset=utf-8")
             .setResponseCode(200)
-            .setBody(Gson().toJson(mockProductList))
+            .setBody(Gson().toJson(mockProductSimpleList))
 
         server.enqueue(response)
     }
@@ -54,7 +54,7 @@ internal class PagingTest: MockServerTest() {
             val entities = res?.body()
 
             entities?.let {
-                assert(it[0].uid == "0")
+                assert(it.productSimples[0].uid == "0")
             }
         }
     }

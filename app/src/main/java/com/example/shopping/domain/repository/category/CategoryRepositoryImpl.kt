@@ -2,16 +2,15 @@ package com.example.shopping.domain.repository.category
 
 import androidx.paging.PagingData
 import com.example.shopping.data.entity.category.CategoryEntity
-import com.example.shopping.data.entity.product.ProductEntity
-import com.example.shopping.data.response.product.ProductResponse
+import com.example.shopping.data.entity.product.ProductSimpleEntity
 import kotlinx.coroutines.flow.Flow
 
 interface CategoryRepositoryImpl {
 
     suspend fun getCategories(): List<CategoryEntity>
 
-    suspend fun getProductsByCategory(category_id: String): List<ProductEntity>
+    suspend fun getProductsByCategory(category_id: String): List<ProductSimpleEntity>
 
     // Paging3
-    fun getCategoryByProduct(query: String): Flow<PagingData<ProductEntity>>
+    fun getCategoryByProduct(query: String): Flow<PagingData<ProductSimpleEntity>>
 }

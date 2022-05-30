@@ -1,10 +1,8 @@
 package com.example.shopping.viewModelTest.tests
 
-import com.example.shopping.data.entity.product.ProductEntity
 import com.example.shopping.data.response.categoty.CategoryResponse
 import com.example.shopping.data.response.product.ProductResponse
 import com.example.shopping.presentation.category.CategoryState
-import com.example.shopping.presentation.category.productsByCategory.ProductsByCategoryState
 import com.example.shopping.viewModelTest.MockServerTest
 import com.example.shopping.viewModelTest.viewModel.category.TestCategoryViewModel
 import com.example.shopping.viewModelTest.viewModel.productByCategory.TestProductsByCategoryViewModel

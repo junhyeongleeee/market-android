@@ -8,7 +8,8 @@ sealed class HomeState {
     object UnInitialized: HomeState()
     object Loading: HomeState()
     data class Success(
-        val list : List<ProductModel>
+        val whatList : List<ProductModel>,
+        val hotList : List<ProductModel>
     ): HomeState()
     object Failure: HomeState()
 }

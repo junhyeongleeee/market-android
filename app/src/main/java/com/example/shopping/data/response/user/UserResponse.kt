@@ -1,6 +1,5 @@
 package com.example.shopping.data.response.user
 
-import com.example.shopping.data.entity.product.ProductEntity
 import com.example.shopping.data.entity.user.UserEntity
 import com.example.shopping.model.type.UserType
 

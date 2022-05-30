@@ -1,24 +1,30 @@
 package com.example.shopping.presentation.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.shopping.domain.repository.home.HomeRepositoryImpl
 import com.example.shopping.model.type.CellType
 import com.example.shopping.model.product.ProductModel
 import com.example.shopping.presentation.base.BaseViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class HomeViewModel : BaseViewModel(){
-
+class HomeViewModel(
+    private val homeRepositoryImpl: HomeRepositoryImpl
+) : BaseViewModel(){
 
     private var _homeStateLiveData = MutableLiveData<HomeState>(HomeState.UnInitialized)
     val homeStateLiveData: LiveData<HomeState> = _homeStateLiveData
 
-    val productListLiveData =  MutableLiveData<List<ProductModel>>()
+    val whatProductListLiveData =  MutableLiveData<List<ProductModel>>()
+    val hotProductListLiveData =  MutableLiveData<List<ProductModel>>()
 
     override fun fetch(): Job = viewModelScope.launch {
         _homeStateLiveData.postValue(HomeState.Loading)
+
+        getHomeData()
     }
 
     fun settingList(){
@@ -32,7 +38,30 @@ class HomeViewModel : BaseViewModel(){
                 image_url = ".../$it",
             )
         }
-        productListLiveData.value = mockList
-        _homeStateLiveData.postValue(HomeState.Success(mockList))
+        whatProductListLiveData.value = mockList
+    }
+
+    private fun getHomeData() = viewModelScope.launch {
+
+        val recommendList = homeRepositoryImpl.getHome()
+
+        if(recommendList.isNotEmpty()){
+            val whatList = recommendList[0].products.mapIndexed { _, entity ->
+                entity.toModel()
+            }
+            val hotList = recommendList[1].products.mapIndexed { _, entity ->
+                entity.toModel()
+            }
+
+            Log.e("whatList", whatList.toString())
+
+            whatProductListLiveData.value = whatList
+            hotProductListLiveData.value = hotList
+
+            _homeStateLiveData.postValue(HomeState.Success(
+                whatList, hotList
+            ))
+
+        }
     }
 }

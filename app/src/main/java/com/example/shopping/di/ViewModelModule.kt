@@ -19,7 +19,7 @@ val ViewModelModule = module {
     viewModel { CategoryViewModel(get()) }
     viewModel { SearchViewModel() }
     viewModel { MyViewModel(get(), get()) }
-    viewModel { HomeViewModel() }
+    viewModel { HomeViewModel(get()) }
     viewModel { (category_id: String) -> ProductsByCategoryViewModel(category_id, get()) }
     viewModel { AlarmViewModel() }
     viewModel { AuthViewModel() }
