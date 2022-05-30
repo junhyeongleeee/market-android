@@ -45,21 +45,6 @@ class CategoryFragment: BaseFragment<CategoryViewModel, FragmentCategoryBinding>
             })
     }
 
-    /*private val adapter = ModelRecyclerAdapter<CategoryModel, CategoryViewModel>(
-        listOf(),
-        viewModel,
-        adapterListener = object : CategoryListListener{
-            override fun onClickItem(model: CategoryModel) {
-                findNavController().navigate(
-                    R.id.action_navCategory_to_navTestProductsByCategory2,
-                    bundleOf(
-                        "category_name" to model.name
-                    )
-                )
-            }
-        }
-    )*/
-
     override fun observeData() {
         viewModel.categoryStateLiveData.observe(this){
             when(it){

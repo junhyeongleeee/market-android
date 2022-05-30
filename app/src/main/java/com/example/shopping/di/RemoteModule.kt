@@ -11,7 +11,5 @@ val RemoteModule = module{
     single { provideRetrofit(get(), get()) }
     single { buildOkHttpClient() }
     single { provideGsonConvertFactory() }
-
-    single { AppPreferenceManager(androidApplication()) }
 }
 
