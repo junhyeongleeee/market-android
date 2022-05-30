@@ -12,10 +12,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.fragment.findNavController
-<<<<<<< HEAD
-=======
 import com.example.shopping.extensions.snackbar
->>>>>>> my
 import com.example.shopping.presentation.base.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.study.shopping.R

@@ -15,6 +15,7 @@ import com.example.shopping.presentation.base.BaseNavFragment
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.CategoryListListener
+import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.study.shopping.R
@@ -22,7 +23,7 @@ import kotlin.study.shopping.databinding.FragmentCategoryBinding
 
 class CategoryFragment: BaseFragment<CategoryViewModel, FragmentCategoryBinding>() {
 
-    override val viewModel by inject<CategoryViewModel>()
+    override val viewModel by viewModel<CategoryViewModel>()
 
     override fun getViewBinding(): FragmentCategoryBinding =
         FragmentCategoryBinding.inflate(layoutInflater)
@@ -73,10 +74,7 @@ class CategoryFragment: BaseFragment<CategoryViewModel, FragmentCategoryBinding>
 
     override fun initViews() = with(binding){
 
-
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.adapter = adapter
-
-//        viewModel.settingList()
     }
 }

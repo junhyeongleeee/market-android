@@ -36,7 +36,7 @@ class CategoryViewModel(
         categoryListLiveData.value = mockList
     }
 
-    private fun getAllCategories() = viewModelScope.launch{
+     fun getAllCategories() = viewModelScope.launch{
 
         val list = categoryRepositoryImpl.getCategories().mapIndexed{ _, entity ->
             entity.toModel()

@@ -9,11 +9,9 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_shopping"
         android:label="쇼핑 앱"
-        android:roundIcon="@drawable/ic_shoppig"
+        android:roundIcon="@drawable/ic_shopping"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shoppingapp">
-        <activity android:name="com.example.shopping.presentation.main.MainActivity"
-
         <activity android:name="com.example.shopping.presentation.my.auth.AuthActivity"
             android:windowSoftInputMode="stateAlwaysVisible">
         </activity>
