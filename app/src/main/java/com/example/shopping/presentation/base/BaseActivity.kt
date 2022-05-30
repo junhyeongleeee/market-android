@@ -6,10 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.viewbinding.ViewBinding
+import com.example.shopping.model.type.StatusBarColorType
+import com.example.shopping.model.type.TransitionModeType
 import kotlinx.coroutines.Job
+import kotlin.study.shopping.R
 
-abstract class BaseActivity<VM: BaseViewModel, VB: ViewBinding>: AppCompatActivity() {
+abstract class BaseActivity<VM: BaseViewModel, VB: ViewBinding>(
+    private val transitionMode: TransitionModeType = TransitionModeType.NONE,
+    private val statusBarColorType: StatusBarColorType = StatusBarColorType.WHITE_STATUS_BAR
+): AppCompatActivity() {
 
     abstract val viewModel: VM
 
@@ -25,6 +32,14 @@ abstract class BaseActivity<VM: BaseViewModel, VB: ViewBinding>: AppCompatActivi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        when (transitionMode) {
+            TransitionModeType.HORIZON -> overridePendingTransition(R.anim.slide_from_right, R.anim.slide_none)
+            TransitionModeType.VERTICAL -> overridePendingTransition(R.anim.slide_vertical_enter, R.anim.slide_none)
+            else -> Unit
+        }
+
+        setStatusBarColor()
 
         binding = getViewBinding()
         setContentView(binding.root)

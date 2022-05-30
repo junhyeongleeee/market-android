@@ -2,6 +2,7 @@ package aop.fastcampus.part6.chapter01.model
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
+import com.example.shopping.model.type.CellType
 
 abstract class Model(
     open val id: Long,

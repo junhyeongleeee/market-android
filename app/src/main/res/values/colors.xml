@@ -14,4 +14,5 @@
     <color name="sliver">#7C7C7C</color>
     <color name="light_blue">#2040FF</color>
     <color name="light_sliver">#DFDFDF</color>
+    <color name="login_stroke">#C6C6C6</color>
 </resources>

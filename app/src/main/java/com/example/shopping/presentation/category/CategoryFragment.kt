@@ -15,18 +15,36 @@ import com.example.shopping.presentation.base.BaseNavFragment
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.CategoryListListener
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.study.shopping.R
 import kotlin.study.shopping.databinding.FragmentCategoryBinding
 
-class CategoryFragment: BaseNavFragment<FragmentCategoryBinding>() {
+class CategoryFragment: BaseFragment<CategoryViewModel, FragmentCategoryBinding>() {
 
-    override val viewModel = CategoryViewModel()
+    override val viewModel by inject<CategoryViewModel>()
 
     override fun getViewBinding(): FragmentCategoryBinding =
         FragmentCategoryBinding.inflate(layoutInflater)
 
-    private val adapter = ModelRecyclerAdapter<CategoryModel, CategoryViewModel>(
+    private val adapter : ModelRecyclerAdapter<CategoryModel, CategoryViewModel> by lazy {
+        ModelRecyclerAdapter(
+            listOf(),
+            viewModel,
+            adapterListener = object : CategoryListListener{
+                override fun onClickItem(model: CategoryModel) {
+                    findNavController().navigate(
+                        R.id.action_navCategory_to_navTestProductsByCategory2,
+                        bundleOf(
+                            "category_id" to model.category_id,
+                            "category_name" to model.name
+                        )
+                    )
+                }
+            })
+    }
+
+    /*private val adapter = ModelRecyclerAdapter<CategoryModel, CategoryViewModel>(
         listOf(),
         viewModel,
         adapterListener = object : CategoryListListener{
@@ -39,7 +57,7 @@ class CategoryFragment: BaseNavFragment<FragmentCategoryBinding>() {
                 )
             }
         }
-    )
+    )*/
 
     override fun observeData() {
         viewModel.categoryStateLiveData.observe(this){
@@ -54,9 +72,11 @@ class CategoryFragment: BaseNavFragment<FragmentCategoryBinding>() {
     }
 
     override fun initViews() = with(binding){
+
+
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.adapter = adapter
 
-        viewModel.settingList()
+//        viewModel.settingList()
     }
 }

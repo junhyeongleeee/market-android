@@ -1,8 +1,9 @@
 package com.example.shopping.presentation.adapter.model
 
+import android.content.res.loader.ResourcesProvider
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import aop.fastcampus.part6.chapter01.model.CellType
+import com.example.shopping.model.type.CellType
 import aop.fastcampus.part6.chapter01.model.Model
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener

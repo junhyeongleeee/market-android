@@ -12,6 +12,10 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.fragment.findNavController
+<<<<<<< HEAD
+=======
+import com.example.shopping.extensions.snackbar
+>>>>>>> my
 import com.example.shopping.presentation.base.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.study.shopping.R
@@ -31,20 +35,24 @@ class LoginFragment: BaseFragment<LoginViewModel, FragmentLoginBinding>() {
                 // TODO : 화면 Animation 이 끝난 후에 키보드 올리기
             }
             is LoginState.Loading -> {}
-            is LoginState.Success -> {}
-            is LoginState.Failure -> {}
+            is LoginState.Success -> { handleSuccess()}
+            is LoginState.Failure -> { handleFailure()}
         }
     }
 
-    override fun keyboardControl() {
-        Log.e("LoginFragment", "keyboardControl")
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+    private fun handleFailure() {
+        snackbar(binding.root, "로그인 실패!!")
     }
 
+    private fun handleSuccess() {
+        snackbar(binding.root, "로그인 성공!!")
+        requireActivity().finish()
+    }
     override fun initViews() = with(binding){
 
         // emailEditText 로 포커스
         emailEditText.requestFocus()
+        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
 
         val emailWatcher = Watcher(emailDeleteButton)
         emailEditText.addTextChangedListener(emailWatcher)
@@ -69,6 +77,14 @@ class LoginFragment: BaseFragment<LoginViewModel, FragmentLoginBinding>() {
             }
 
             pwdEditText.setSelection(pwdEditText.length())
+        }
+
+        loginButton.setOnClickListener{
+
+            val email = emailEditText.text.toString().trim()
+            val password = pwdEditText.text.toString().trim()
+
+            viewModel.login(email, password)
         }
 
         registerButton.setOnClickListener {

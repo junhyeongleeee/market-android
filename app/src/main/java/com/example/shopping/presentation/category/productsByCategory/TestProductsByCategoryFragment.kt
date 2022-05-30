@@ -1,5 +1,6 @@
 package com.example.shopping.presentation.category.productsByCategory
 
+import android.graphics.ColorSpace
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,25 +20,31 @@ import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.ProductListListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 import kotlin.study.shopping.R
 import kotlin.study.shopping.databinding.FragmentCategoryBinding
 import kotlin.study.shopping.databinding.FragmentCategoryTest1Binding
 import kotlin.study.shopping.databinding.FragmentHomeBinding
 import kotlin.study.shopping.databinding.FragmentProductsByCategoryBinding
 
-class TestProductsByCategoryFragment :BaseNavFragment<FragmentProductsByCategoryBinding>() {
+class TestProductsByCategoryFragment :BaseFragment<ProductsByCategoryViewModel, FragmentProductsByCategoryBinding>() {
 
-    override val viewModel = ProductsByCategoryViewModel()
+    override val viewModel by viewModel<ProductsByCategoryViewModel> {
+        parametersOf(
+            arguments?.getString("category_id") ?: ""
+        )
+    }
 
     override fun getViewBinding(): FragmentProductsByCategoryBinding =
         FragmentProductsByCategoryBinding.inflate(layoutInflater)
 
-    private val adapter = ModelRecyclerAdapter<ProductModel, ProductsByCategoryViewModel>(
-        listOf(),
-        viewModel,
-        adapterListener = object : AdapterListener {
-        }
-    )
+    private val adapter : ModelRecyclerAdapter<ProductModel, ProductsByCategoryViewModel> by lazy {
+        ModelRecyclerAdapter(
+            listOf(),
+            viewModel,
+            adapterListener = object : AdapterListener {
+            })
+    }
 
     override fun observeData() {
         viewModel.pbcStateLiveData.observe(this) {
@@ -58,9 +65,8 @@ class TestProductsByCategoryFragment :BaseNavFragment<FragmentProductsByCategory
 
     override fun initViews() = with(binding) {
         recyclerView.adapter = adapter
-        viewModel.settingList()
-        appBar.categoryTextView.text = arguments?.getString("category_name") ?: ""
-
+//        viewModel.settingList()
+        appBar.titleTextView.text = arguments?.getString("category_name") ?: ""
 
         appBar.back.setOnClickListener {
             findNavController().popBackStack()

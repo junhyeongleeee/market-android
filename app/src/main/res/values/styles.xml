@@ -19,4 +19,21 @@
         <item name="android:gravity">right</item>
         <item name="android:textStyle">bold|italic</item>
     </style>
+
+    <style name="defaultTextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="sliver_line_1">
+        <item name="background">@color/light_sliver</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+    <style name="sliver_line_10">
+        <item name="background">@color/light_sliver</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">10dp</item>
+    </style>
 </resources>

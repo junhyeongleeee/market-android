@@ -43,7 +43,6 @@ class BaseViewPagerFragment: Fragment() {
             .navigateUp()
     }
 
-
     fun popToRoot() {
         val navController = requireActivity().findNavController(navHostId)
         navController.popBackStack(navController.graph.startDestinationId, false)
