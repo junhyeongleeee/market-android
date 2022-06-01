@@ -23,10 +23,10 @@ class ProductDetailViewModel(
     val productDetailStateLiveData: LiveData<ProductDetailState> = _productDetailStateLiveData
 
     override fun fetch(): Job = viewModelScope.launch {
-//        getProductDetail()
+        getProductDetail()
     }
 
-    /*private fun getProductDetail() = viewModelScope.launch {
+    private fun getProductDetail() = viewModelScope.launch {
         _productDetailStateLiveData.postValue(ProductDetailState.Loading)
 
         productRepositoryImpl.getProductDetail(product_id)?.let {
@@ -34,7 +34,7 @@ class ProductDetailViewModel(
                 it.toModel()
             ))
         } ?: kotlin.run { _productDetailStateLiveData.postValue(ProductDetailState.Failure) }
-    }*/
+    }
 
     fun checkUser(): Boolean {
 

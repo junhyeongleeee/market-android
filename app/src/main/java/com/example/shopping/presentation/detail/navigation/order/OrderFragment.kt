@@ -29,12 +29,29 @@ class OrderFragment : BaseFragment<OrderViewModel, FragmentOrderBinding>() {
         arguments?.getString(ProductDetailFragment.TOTAL_PRICE_KEY) ?: null
     }
 
-    override fun observeData() {
+    override fun observeData() = viewModel.orderStateLiveData.observe(this){
+        when(it){
+            is OrderState.UnInitialized -> {}
+            is OrderState.Loading -> {}
+            is OrderState.Success -> { handleSuccess(it) }
+            is OrderState.Failure -> { handleFailure()}
+        }
+    }
 
+    private fun handleFailure() {
+        snackbar(binding.root, "주문 실패!!")
+    }
+
+    private fun handleSuccess(state: OrderState.Success) {
+        snackbar(binding.root, "주문 성공!!")
+        findNavController().popBackStack()
     }
 
     override fun initViews() = with(binding) {
         appBar.titleTextView.text = "주문/결제"
+        appBar.back.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         orderTotalPrice?.let {
             totalPrice.text = "$it 원"
@@ -43,7 +60,12 @@ class OrderFragment : BaseFragment<OrderViewModel, FragmentOrderBinding>() {
 
         orderButton.setOnClickListener {
             // TODO : 주문 로직
+            var list = mutableListOf<OrderItemEntity>()
 
+            orderItemEntity?.let {
+                list.add(it)
+                viewModel.orderProduct(list)
+            }
         }
     }
 }

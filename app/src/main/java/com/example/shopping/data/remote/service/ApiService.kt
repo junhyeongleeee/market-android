@@ -1,6 +1,8 @@
 package com.example.shopping.data.remote.service
 
 import com.example.shopping.data.entity.category.CategoryEntity
+import com.example.shopping.data.entity.product.order.OrderEntity
+import com.example.shopping.data.entity.product.order.OrderItemEntity
 import com.example.shopping.data.remote.url.Url
 import com.example.shopping.data.response.categoty.CategoryResponse
 import com.example.shopping.data.response.home.RecommendResponse
@@ -9,6 +11,7 @@ import com.example.shopping.data.response.product.ProductResponse
 import com.example.shopping.data.response.user.LoginResponse
 import com.example.shopping.data.response.user.UserDetailResponse
 import com.example.shopping.data.response.user.UserResponse
+import com.example.shopping.model.product.order.OrderResponse
 import com.example.shopping.model.user.LoginModel
 import com.example.shopping.model.user.RegisterModel
 import com.example.shopping.model.user.UserDetailModel
@@ -58,4 +61,10 @@ interface ApiService {
     suspend fun getProductDetail(
         @Path("product_id") product_id: String
     ) : Response<ProductDetailResponse>
+
+    @POST(Url.ORDERS_CREATE)
+    suspend fun orderProduct(
+        @Header("access_token") access_token: String,
+        @Body items: List<OrderItemEntity>
+    ) : Response<OrderResponse>
 }

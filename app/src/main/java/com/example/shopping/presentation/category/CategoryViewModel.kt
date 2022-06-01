@@ -22,10 +22,10 @@ class CategoryViewModel(
     override fun fetch(): Job = viewModelScope.launch {
         _categoryStateLiveData.postValue(CategoryState.Loading)
 
-        settingList()
+        getAllCategories()
     }
 
-    fun settingList() {
+   /* fun settingList() {
         val mockList = (0 until 10).map {
             CategoryModel(
                 id = it.toLong(),
@@ -34,9 +34,9 @@ class CategoryViewModel(
             )
         }
         categoryListLiveData.value = mockList
-    }
+    }*/
 
-    /*private fun getAllCategories() = viewModelScope.launch {
+    private fun getAllCategories() = viewModelScope.launch {
 
         val list = categoryRepositoryImpl.getCategories().mapIndexed { _, entity ->
             entity.toModel()
@@ -46,7 +46,7 @@ class CategoryViewModel(
             categoryListLiveData.value = list
             _categoryStateLiveData.postValue(CategoryState.Success(list))
         } else _categoryStateLiveData.postValue(CategoryState.Failure)
-    }*/
+    }
 
     /*fun getContent(category: String): Flow<PagingData<ProductResponse>> {
         return categoryRepository.getCategoryByProduct(category)

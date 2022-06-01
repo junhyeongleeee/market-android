@@ -31,5 +31,5 @@ val ViewModelModule = module {
     viewModel { UserDetailViewModel() }
     viewModel { ProductDetailActivityViewModel() }
     viewModel { (product_id: String) -> ProductDetailViewModel(product_id, get(), get()) }
-    viewModel { OrderViewModel(get())}
+    viewModel { OrderViewModel(get(), get())}
 }

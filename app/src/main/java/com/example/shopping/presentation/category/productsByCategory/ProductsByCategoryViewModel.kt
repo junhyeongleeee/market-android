@@ -23,10 +23,10 @@ class ProductsByCategoryViewModel(
     override fun fetch(): Job = viewModelScope.launch {
         _pbcStateLiveData.postValue(ProductsByCategoryState.Loading)
 
-        settingList()
+        getAllProductsByCategory()
     }
 
-    fun settingList(){
+    /*fun settingList(){
         val mockList = (0 until 10).map {
             ProductModel(
                 id = it.hashCode().toLong(),
@@ -40,9 +40,9 @@ class ProductsByCategoryViewModel(
 
         productListLiveData.value = mockList
         _pbcStateLiveData.postValue(ProductsByCategoryState.Success(mockList))
-    }
+    }*/
 
-   /* private fun getAllProductsByCategory() = viewModelScope.launch {
+    private fun getAllProductsByCategory() = viewModelScope.launch {
 
         val list = categoryRepositoryImpl.getProductsByCategory(category_id).mapIndexed { _, it ->
             it.toModel()
@@ -53,5 +53,5 @@ class ProductsByCategoryViewModel(
             _pbcStateLiveData.postValue(ProductsByCategoryState.Success(list))
         }
         else _pbcStateLiveData.postValue(ProductsByCategoryState.Failure)
-    }*/
+    }
 }

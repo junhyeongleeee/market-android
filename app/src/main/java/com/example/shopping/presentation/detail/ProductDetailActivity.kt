@@ -34,18 +34,11 @@ class ProductDetailActivity : BaseActivity<ProductDetailActivityViewModel, Activ
         val productModel : ProductModel? = intent.getParcelableExtra(ProductsByCategoryFragment.PRODUCT_KEY) ?: null
         val bundle = Bundle()
 
-
         productModel?.let {
             bundle.putParcelable(PRODUCT_MODEL_KEY, it)
 
             findNavController(R.id.navProductDetail).setGraph(R.navigation.nav_product_detail, bundle)
         }
-
-        /*productModel?.let {
-            NavHostFragment.create(R.navigation.nav_product_detail, bundleOf(
-                PRODUCT_KEY to it
-            ))
-        }*/
     }
 
     companion object {
