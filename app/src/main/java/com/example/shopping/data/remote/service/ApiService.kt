@@ -11,6 +11,8 @@ import com.example.shopping.data.response.product.ProductResponse
 import com.example.shopping.data.response.user.LoginResponse
 import com.example.shopping.data.response.user.UserDetailResponse
 import com.example.shopping.data.response.user.UserResponse
+import com.example.shopping.model.product.order.OrderListModel
+import com.example.shopping.model.product.order.OrderModel
 import com.example.shopping.model.product.order.OrderResponse
 import com.example.shopping.model.user.LoginModel
 import com.example.shopping.model.user.RegisterModel
@@ -46,12 +48,12 @@ interface ApiService {
 
     @GET(Url.SIGN_OUT)
     suspend fun signOut(
-        @Header("access_token") access_token: String
+        @Header("Authorization") access_token: String
     ): Response<String>
 
     @GET(Url.GET_USER_DETAIL)
     suspend fun getUserDetail(
-        @Header("access_token") access_token: String
+        @Header("Authorization") access_token: String
     ): Response<UserDetailResponse>
 
     @GET(Url.GET_HOME)
@@ -64,7 +66,7 @@ interface ApiService {
 
     @POST(Url.ORDERS_CREATE)
     suspend fun orderProduct(
-        @Header("access_token") access_token: String,
-        @Body items: List<OrderItemEntity>
+        @Header("Authorization") access_token: String,
+        @Body items: OrderListModel
     ) : Response<OrderResponse>
 }

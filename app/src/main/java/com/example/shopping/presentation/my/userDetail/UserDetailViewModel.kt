@@ -13,20 +13,20 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class UserDetailViewModel(
-   /* private val userRepositoryImpl: UserRepositoryImpl,
-    private val preference: AppPreferenceManager*/
+    private val userRepositoryImpl: UserRepositoryImpl,
+    private val preference: AppPreferenceManager
 ) : BaseViewModel(){
 
     private var _userDetailStateLiveData = MutableLiveData<UserDetailState>(UserDetailState.UnInitialized)
     val userDetailStateLiveData: LiveData<UserDetailState> = _userDetailStateLiveData
 
-    private var userDetailEntity : UserDetailEntity? = UserDetailEntity(
+    /*private var userDetailEntity : UserDetailEntity? = UserDetailEntity(
         uid = "1",
-        userName = "이준형",
+        username = "이준형",
         email = "djskal3745@gmail.com",
         phone = "01036153247",
-        role = UserType.Customer
-    )
+        role = UserType.Customer.type
+    )*/
 
     override fun fetch(): Job = viewModelScope.launch {
         _userDetailStateLiveData.postValue(UserDetailState.Loading)
@@ -36,31 +36,29 @@ class UserDetailViewModel(
     private fun getUserData() = viewModelScope.launch{
         // Mock
 
-        userDetailEntity?.let {
+        /*userDetailEntity?.let {
             _userDetailStateLiveData.postValue(UserDetailState.Success(it))
-        } ?: kotlin.run { _userDetailStateLiveData.postValue(UserDetailState.Failure) }
+        } ?: kotlin.run { _userDetailStateLiveData.postValue(UserDetailState.Failure) }*/
 
-      /*  preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let{
+        preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let{
             userRepositoryImpl.getUserDetail(it)?.let { response ->
                 _userDetailStateLiveData.postValue(UserDetailState.Success(
                     response.toEntity()
                 ))
             } ?: _userDetailStateLiveData.postValue(UserDetailState.Failure)
-        } ?: _userDetailStateLiveData.postValue(UserDetailState.Failure)*/
+        } ?: _userDetailStateLiveData.postValue(UserDetailState.Failure)
     }
 
     fun signOut() = viewModelScope.launch {
-        userDetailEntity = null
-        fetch()
+//        userDetailEntity = null
+//        fetch()
 
-        /*preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let {
+        preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let {
             userRepositoryImpl.signOutUser(it)?.let {
-                _userDetailStateLiveData.postValue(UserDetailState.Success)
-
                 preference.setString("access_token", null)
 
                 fetch()
             } ?: _userDetailStateLiveData.postValue(UserDetailState.Failure)
-        } ?:  _userDetailStateLiveData.postValue(UserDetailState.Failure)*/
+        } ?:  _userDetailStateLiveData.postValue(UserDetailState.Failure)
     }
 }

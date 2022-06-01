@@ -33,7 +33,7 @@ class LoginViewModel(
         try {
             userRepositoryImpl.signInUser(email, pwd)?.let {
                 _loginStateLiveData.postValue(LoginState.Success(
-                    it.userDetailModel
+                    it.user
                 ))
 
                 withContext(Dispatchers.IO){

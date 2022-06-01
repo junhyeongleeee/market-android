@@ -7,6 +7,7 @@ import com.example.shopping.data.entity.product.order.OrderItemEntity
 import com.example.shopping.extensions.load
 import com.example.shopping.extensions.snackbar
 import com.example.shopping.model.product.ProductModel
+import com.example.shopping.model.product.order.OrderModel
 import com.example.shopping.presentation.base.BaseFragment
 import com.example.shopping.presentation.detail.ProductDetailActivity
 import kotlinx.coroutines.withContext
@@ -54,8 +55,8 @@ class ProductDetailFragment: BaseFragment<ProductDetailViewModel, FragmentDetail
             orderButton.setOnClickListener {
                 if(viewModel.checkUser()){
                     val bundle = Bundle()
-                    bundle.putParcelable(ORDER_ITEM_KEY, OrderItemEntity(
-                        uid = model.uid,
+                    bundle.putParcelable(ORDER_ITEM_KEY, OrderModel(
+                        product_id = model.uid,
                         count = 1
                     ))
                     bundle.putString(TOTAL_PRICE_KEY, model.price.toString())

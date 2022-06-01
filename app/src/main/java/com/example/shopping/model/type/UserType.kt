@@ -1,6 +1,6 @@
 package com.example.shopping.model.type
 
-enum class UserType {
-    Customer,
-    Admin
+enum class UserType(val type: String){
+    Customer("Customer"),
+    Admin("Admin")
 }

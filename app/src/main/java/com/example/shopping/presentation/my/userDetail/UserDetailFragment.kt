@@ -56,8 +56,8 @@ class UserDetailFragment: BaseFragment<UserDetailViewModel, FragmentUserDetailBi
         headerSignInLayout.isVisible = true
 
         state.userDetailEntity.let {
-            name.text = it.userName
-            userDataName.text = it.userName
+            name.text = it.username
+            userDataName.text = it.username
             pwd.text = "******"
             email.text = it.email
             phone.text = it.phone ?: "....."

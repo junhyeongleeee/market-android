@@ -101,7 +101,7 @@ class MyFragment : BaseFragment<MyViewModel, FragmentMyBinding>() {
     private fun handleSuccess(state: MyState.Success) = with(binding) {
 
         // name
-        nameTextView.text = state.userDetailEntity.userName
+        nameTextView.text = state.userDetailEntity.username
         nameTextView.setOnClickListener {
             // TODO : 내 정보관리 페이지로 이동
             findNavController().navigate(R.id.action_navMy_to_navUserDetail,
@@ -127,7 +127,5 @@ class MyFragment : BaseFragment<MyViewModel, FragmentMyBinding>() {
 
     override fun onResume() {
         super.onResume()
-
-        viewModel.fetch()
     }
 }

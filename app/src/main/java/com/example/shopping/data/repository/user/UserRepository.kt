@@ -37,6 +37,7 @@ class UserRepository(
             response?.body() ?: null
         }
         else {
+            Log.e("createUser", response.errorBody().toString())
             null
         }
     }
@@ -58,7 +59,8 @@ class UserRepository(
     }
 
     override suspend fun signOutUser(access_token: String): String? = with(ioDispatcher){
-        val response = apiService.signOut(access_token)
+        val token = "Bearer $access_token"
+        val response = apiService.signOut(token)
 
         if(response.isSuccessful){
             response?.body() ?: null
@@ -67,8 +69,8 @@ class UserRepository(
     }
 
     override suspend fun getUserDetail(access_token: String): UserDetailResponse? = with(ioDispatcher){
-
-        val response = apiService.getUserDetail(access_token)
+        val token = "Bearer $access_token"
+        val response = apiService.getUserDetail(token)
 
         if(response.isSuccessful){
             response?.body() ?: null

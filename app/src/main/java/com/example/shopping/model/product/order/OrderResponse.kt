@@ -8,7 +8,7 @@ data class OrderResponse(
     val uid: String,
     val customer_id: String,
     val total_price: Integer,
-    val status: OrderType,
+    val status: String,
     val ordered_at: String,
     val updated_at: String,
     val items: List<OrderItemEntity>

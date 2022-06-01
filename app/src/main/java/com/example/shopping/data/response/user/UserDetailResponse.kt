@@ -5,12 +5,12 @@ import com.example.shopping.model.type.UserType
 
 data class UserDetailResponse(
     val uid: String,
-    val name: String,
+    val username: String,
     val email: String,
     val phone: String? = null,
-    val type: UserType = UserType.Customer
+    val type: String = UserType.Customer.type
 ){
     fun toEntity() = UserDetailEntity(
-        uid, name, email, phone, type
+        uid, username, email, phone, type
     )
 }

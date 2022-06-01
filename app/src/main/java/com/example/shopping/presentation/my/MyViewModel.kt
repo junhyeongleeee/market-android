@@ -42,8 +42,6 @@ class MyViewModel(
     }
 
     override fun fetch(): Job = viewModelScope.launch {
-        _myStateLiveData.postValue(MyState.Loading)
-
         getUserData()
     }
 
@@ -64,6 +62,8 @@ class MyViewModel(
         /*_myStateLiveData.postValue(MyState.Success(
             userDetailModel
         ))*/
+
+        _myStateLiveData.postValue(MyState.Loading)
 
         preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let{
             userRepositoryImpl.getUserDetail(it)?.let { response ->

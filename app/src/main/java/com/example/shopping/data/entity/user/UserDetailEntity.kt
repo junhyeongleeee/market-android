@@ -7,8 +7,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class UserDetailEntity(
     val uid: String,
-    val userName: String,
+    val username: String,
     val email: String,
     val phone: String? = null,
-    val role: UserType = UserType.Customer
+    val role: String = UserType.Customer.type
 ): Parcelable

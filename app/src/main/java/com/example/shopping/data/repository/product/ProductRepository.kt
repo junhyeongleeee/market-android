@@ -1,10 +1,13 @@
 package com.example.shopping.data.repository.product
 
+import android.util.Log
 import com.example.shopping.data.entity.product.ProductDetailEntity
 import com.example.shopping.data.entity.product.order.OrderEntity
 import com.example.shopping.data.entity.product.order.OrderItemEntity
 import com.example.shopping.data.remote.service.ApiService
 import com.example.shopping.domain.repository.product.ProductRepositoryImpl
+import com.example.shopping.model.product.order.OrderListModel
+import com.example.shopping.model.product.order.OrderModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
@@ -22,12 +25,17 @@ class ProductRepository(
         else null
     }
 
-    override suspend fun orderProduct(access_token: String, orderList: List<OrderItemEntity>): OrderEntity? = withContext(ioDispatcher){
-        val response = apiService.orderProduct(access_token, orderList)
+    override suspend fun orderProduct(access_token: String, orderList: OrderListModel): OrderEntity? = withContext(ioDispatcher){
+
+        val token = "Bearer $access_token"
+        val response = apiService.orderProduct(token, orderList)
 
         if(response.isSuccessful){
             response?.body()?.toEntity() ?: null
         }
-        else null
+        else {
+            Log.e("orderProduct", response.errorBody().toString())
+            null
+        }
     }
 }
