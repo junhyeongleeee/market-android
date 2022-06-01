@@ -37,8 +37,8 @@ class CategoryFragment: BaseFragment<CategoryViewModel, FragmentCategoryBinding>
                     findNavController().navigate(
                         R.id.action_navCategory_to_navTestProductsByCategory2,
                         bundleOf(
-                            "category_id" to model.category_id,
-                            "category_name" to model.name
+                            CATEGORY_ID_KEY to model.category_id,
+                            CATEGORY_NAME_KEY to model.name
                         )
                     )
                 }
@@ -61,5 +61,10 @@ class CategoryFragment: BaseFragment<CategoryViewModel, FragmentCategoryBinding>
 
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.adapter = adapter
+    }
+
+    companion object{
+        const val CATEGORY_ID_KEY = "category_id"
+        const val CATEGORY_NAME_KEY = "category_name"
     }
 }

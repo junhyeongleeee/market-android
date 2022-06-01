@@ -44,9 +44,13 @@ abstract class BaseActivity<VM: BaseViewModel, VB: ViewBinding>(
         binding = getViewBinding()
         setContentView(binding.root)
 
+        initViews()
+
         fetch = viewModel.fetch()
         observeData()
     }
+
+    open fun initViews() = Unit
 
     abstract fun observeData()
 

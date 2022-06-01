@@ -1,4 +1,4 @@
-package com.example.shopping.presentation.detail
+package com.example.shopping.presentation.detail.navigation.productDetail
 
 import com.example.shopping.model.category.CategoryModel
 

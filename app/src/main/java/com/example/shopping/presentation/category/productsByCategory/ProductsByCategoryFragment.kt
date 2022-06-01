@@ -16,6 +16,7 @@ import com.example.shopping.presentation.base.BaseFragment
 import com.example.shopping.presentation.base.BaseNavFragment
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.category.CategoryFragment
+import com.example.shopping.presentation.detail.ProductDetailActivity
 import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.ProductListListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,7 +33,7 @@ class ProductsByCategoryFragment :
 
     override val viewModel by viewModel<ProductsByCategoryViewModel> {
         parametersOf(
-            arguments?.getString("category_id") ?: ""
+            arguments?.getString(CategoryFragment.CATEGORY_ID_KEY) ?: ""
         )
     }
 
@@ -43,7 +44,15 @@ class ProductsByCategoryFragment :
         ModelRecyclerAdapter(
             listOf(),
             viewModel,
-            adapterListener = object : AdapterListener {
+            adapterListener = object : ProductListListener {
+                override fun onClickItem(model: ProductModel) {
+                    startActivity(
+                        ProductDetailActivity.newIntent(
+                            requireContext(),
+                            model
+                        )
+                    )
+                }
             })
     }
 
@@ -67,10 +76,15 @@ class ProductsByCategoryFragment :
     override fun initViews() = with(binding) {
         recyclerView.adapter = adapter
 //        viewModel.settingList()
-        appBar.titleTextView.text = arguments?.getString("category_name") ?: ""
+        appBar.titleTextView.text = arguments?.getString(CategoryFragment.CATEGORY_NAME_KEY) ?: ""
 
         appBar.back.setOnClickListener {
             findNavController().popBackStack()
         }
+    }
+
+
+    companion object{
+        const val PRODUCT_KEY = "product"
     }
 }
