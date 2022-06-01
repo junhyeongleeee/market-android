@@ -65,7 +65,7 @@ class MyViewModel(
             userDetailModel
         ))*/
 
-        preference.getString("access_token")?.let{
+        preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let{
             userRepositoryImpl.getUserDetail(it)?.let { response ->
                 _myStateLiveData.postValue(MyState.Success(
                     response.toEntity()

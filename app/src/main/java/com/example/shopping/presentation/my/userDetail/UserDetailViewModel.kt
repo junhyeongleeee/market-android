@@ -40,7 +40,7 @@ class UserDetailViewModel(
             _userDetailStateLiveData.postValue(UserDetailState.Success(it))
         } ?: kotlin.run { _userDetailStateLiveData.postValue(UserDetailState.Failure) }
 
-      /*  preference.getString("access_token")?.let{
+      /*  preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let{
             userRepositoryImpl.getUserDetail(it)?.let { response ->
                 _userDetailStateLiveData.postValue(UserDetailState.Success(
                     response.toEntity()
@@ -53,7 +53,7 @@ class UserDetailViewModel(
         userDetailEntity = null
         fetch()
 
-        /*preference.getString("access_token")?.let {
+        /*preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let {
             userRepositoryImpl.signOutUser(it)?.let {
                 _userDetailStateLiveData.postValue(UserDetailState.Success)
 

@@ -12,6 +12,7 @@ class AppPreferenceManager(
 
     companion object {
         const val PREFERENCES_NAME = "shoppingApp"
+        const val ACCESS_TOKEN = "access_token"
         private const val DEFAULT_VALUE_STRING = ""
         private const val DEFAULT_VALUE_BOOLEAN = false
         private const val DEFAULT_VALUE_INT = -1

@@ -3,6 +3,7 @@ package com.example.shopping.di
 import com.example.shopping.presentation.category.CategoryViewModel
 import com.example.shopping.presentation.category.productsByCategory.ProductsByCategoryViewModel
 import com.example.shopping.presentation.detail.ProductDetailActivityViewModel
+import com.example.shopping.presentation.detail.navigation.order.OrderViewModel
 import com.example.shopping.presentation.detail.navigation.productDetail.ProductDetailViewModel
 import com.example.shopping.presentation.home.HomeViewModel
 import com.example.shopping.presentation.home.alarm.AlarmViewModel
@@ -29,5 +30,6 @@ val ViewModelModule = module {
     viewModel { RegisterViewModel(get()) }
     viewModel { UserDetailViewModel() }
     viewModel { ProductDetailActivityViewModel() }
-    viewModel { (product_id: String) -> ProductDetailViewModel(product_id, get()) }
+    viewModel { (product_id: String) -> ProductDetailViewModel(product_id, get(), get()) }
+    viewModel { OrderViewModel(get())}
 }

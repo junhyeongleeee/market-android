@@ -10,6 +10,20 @@
         android:name="com.example.shopping.presentation.detail.navigation.productDetail.ProductDetailFragment"
         android:label="ProductDetailFragment"
         tools:layout="@layout/fragment_detail_product">
+        <action
+            android:id="@+id/action_navProductDetail_to_navOrder"
+            app:destination="@id/navOrder"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navOrder"
+        android:name="com.example.shopping.presentation.detail.navigation.order.OrderFragment"
+        android:label="OrderFragment"
+        tools:layout="@layout/fragment_order">
     </fragment>
 
 </navigation>
