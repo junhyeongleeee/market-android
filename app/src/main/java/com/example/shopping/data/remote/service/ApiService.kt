@@ -4,6 +4,7 @@ import com.example.shopping.data.entity.category.CategoryEntity
 import com.example.shopping.data.remote.url.Url
 import com.example.shopping.data.response.categoty.CategoryResponse
 import com.example.shopping.data.response.home.RecommendResponse
+import com.example.shopping.data.response.product.ProductDetailResponse
 import com.example.shopping.data.response.product.ProductResponse
 import com.example.shopping.data.response.user.LoginResponse
 import com.example.shopping.data.response.user.UserDetailResponse
@@ -52,4 +53,9 @@ interface ApiService {
 
     @GET(Url.GET_HOME)
     suspend fun getHome() : Response<List<RecommendResponse>>
+
+    @GET(Url.GET_PRODUCT_DETAIL)
+    suspend fun getProductDetail(
+        @Path("product_id") product_id: String
+    ) : Response<ProductDetailResponse>
 }

@@ -13,4 +13,5 @@ object Url {
     const val SIGN_OUT = "/auth/sign-out"
     const val GET_USER_DETAIL = "/users/profile"
     const val GET_HOME = "/home"
+    const val GET_PRODUCT_DETAIL = "/products/{product_id}"
 }
