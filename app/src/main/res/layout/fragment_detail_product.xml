@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.example.shopping.presentation.main.MainActivity">
+
+    <include
+        android:id="@+id/appBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        layout="@layout/app_bar"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/productImg"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/tem_img"/>
+
+            <TextView
+                android:id="@+id/productNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/productImg"
+                style="@style/defaultTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="15dp"
+                android:textSize="20sp"
+                tools:text="[Clean Architecture] 안드로이드를 위한 클릭 아키텍쳐 시리즈 No.1"/>
+
+            <TextView
+                android:id="@+id/productPriceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:layout_margin="15dp"
+                tools:text="15,120원"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/productNameTextView"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/light_sliver"
+                app:layout_constraintTop_toBottomOf="@id/productPriceTextView"/>
+
+            <TextView
+                android:id="@+id/productDesTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/defaultTextView"
+                android:textSize="25sp"
+                tools:text="상품정보"
+                android:layout_margin="15dp"
+                app:layout_constraintTop_toBottomOf="@id/view1"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <ImageView
+                android:id="@+id/desImg"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_image_not_support_24"
+                android:scaleType="centerCrop"
+                android:layout_margin="15dp"
+                app:layout_constraintTop_toBottomOf="@id/productDesTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="70dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/light_sliver"
+                app:layout_constraintTop_toBottomOf="@id/desImg"
+                app:layout_constraintBottom_toBottomOf="parent">
+                <TextView
+                    android:id="@+id/warningTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="개별 판매자가 등록한 마켓플레이스(오픈마켓) 상품에 대한 광고, 상품주문, 배송 및 환불의 의무와 책임은 각 판매자가 부담하고, 이에 대하여 저희는 통신판매중개자로서 통신판매의 당사자가 아니므로 일체 책임을 지지 않습니다."/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/orderLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="5dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/light_sliver"/>
+
+        <ImageView
+            android:id="@+id/likeButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_like_blank"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/orderButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="주문하기"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/auto_login_border"
+            android:backgroundTint="@color/blue"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/likeButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
