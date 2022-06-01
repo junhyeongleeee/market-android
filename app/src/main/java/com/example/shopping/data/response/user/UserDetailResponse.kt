@@ -8,9 +8,9 @@ data class UserDetailResponse(
     val username: String,
     val email: String,
     val phone: String? = null,
-    val type: String = UserType.Customer.type
+    val role: String = UserType.Customer.type
 ){
     fun toEntity() = UserDetailEntity(
-        uid, username, email, phone, type
+        uid, username, email, phone, role
     )
 }

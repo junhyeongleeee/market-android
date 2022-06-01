@@ -127,5 +127,7 @@ class MyFragment : BaseFragment<MyViewModel, FragmentMyBinding>() {
 
     override fun onResume() {
         super.onResume()
+
+        viewModel.fetch()
     }
 }
