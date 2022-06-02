@@ -2,10 +2,9 @@ package com.example.shopping.presentation.detail.navigation.order
 
 import android.util.Log
 import androidx.navigation.fragment.findNavController
-import com.example.shopping.data.entity.product.order.OrderItemEntity
 import com.example.shopping.extensions.snackbar
-import com.example.shopping.model.product.order.OrderListModel
-import com.example.shopping.model.product.order.OrderModel
+import com.example.shopping.model.product.order.OrderRequestListModel
+import com.example.shopping.model.product.order.OrderRequestModel
 import com.example.shopping.presentation.RemoteState
 import com.example.shopping.presentation.base.BaseFragment
 import com.example.shopping.presentation.detail.navigation.productDetail.ProductDetailFragment
@@ -20,8 +19,8 @@ class OrderFragment : BaseFragment<OrderViewModel, FragmentOrderBinding>() {
     override fun getViewBinding(): FragmentOrderBinding =
         FragmentOrderBinding.inflate(layoutInflater)
 
-    private val orderModel: OrderModel? by lazy {
-        arguments?.getParcelable<OrderModel>(ProductDetailFragment.ORDER_ITEM_KEY)
+    private val orderRequestModel: OrderRequestModel? by lazy {
+        arguments?.getParcelable<OrderRequestModel>(ProductDetailFragment.ORDER_ITEM_KEY)
     }
     private val orderTotalPrice: String? by lazy {
         arguments?.getString(ProductDetailFragment.TOTAL_PRICE_KEY) ?: null
@@ -92,11 +91,11 @@ class OrderFragment : BaseFragment<OrderViewModel, FragmentOrderBinding>() {
 
         orderButton.setOnClickListener {
             // TODO : 주문 로직
-            var list = mutableListOf<OrderModel>()
+            var list = mutableListOf<OrderRequestModel>()
 
-            orderModel?.let {
+            orderRequestModel?.let {
                 list.add(it)
-                viewModel.orderProduct(OrderListModel(list))
+                viewModel.orderProduct(OrderRequestListModel(list))
             }
         }
     }

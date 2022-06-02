@@ -17,6 +17,13 @@
             app:exitAnim="@anim/slide_to_left"
             app:popEnterAnim="@anim/slide_from_left"
             app:popExitAnim="@anim/slide_to_right"/>
+        <action
+            android:id="@+id/action_navMy_to_navOrderList"
+            app:destination="@id/navOrderList"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right"/>
     </fragment>
 
     <fragment
@@ -24,5 +31,11 @@
         android:name="com.example.shopping.presentation.my.userDetail.UserDetailFragment"
         android:label="UserDetailFragment"
         tools:layout="@layout/fragment_user_detail"/>
+
+    <fragment
+        android:id="@+id/navOrderList"
+        android:name="com.example.shopping.presentation.my.orderList.OrderListFragment"
+        android:label="OrderListFragment"
+        tools:layout="@layout/fragment_order_list"/>
 
 </navigation>

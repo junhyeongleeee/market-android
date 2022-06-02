@@ -38,7 +38,7 @@ internal fun ImageView.loadCenterCrop(url: String, corner: Float = 0f) {
 
 internal fun ImageView.load(
     url: String,
-    resourceErrorImg: Int = R.drawable.ic_image_not_support_24,
+    resourceErrorImg: Int = R.drawable.ic_default,
     corner: Float = 0f) {
     Glide.with(this)
         .load(url)

@@ -3,15 +3,12 @@ package com.example.shopping.presentation.detail.navigation.productDetail
 import android.os.Bundle
 import android.util.Log
 import androidx.navigation.fragment.findNavController
-import com.example.shopping.data.entity.product.order.OrderItemEntity
 import com.example.shopping.extensions.load
 import com.example.shopping.extensions.snackbar
 import com.example.shopping.model.product.ProductModel
-import com.example.shopping.model.product.order.OrderModel
+import com.example.shopping.model.product.order.OrderRequestModel
 import com.example.shopping.presentation.base.BaseFragment
 import com.example.shopping.presentation.detail.ProductDetailActivity
-import kotlinx.coroutines.withContext
-import org.koin.android.viewmodel.ext.android.getViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import kotlin.study.shopping.R
@@ -55,7 +52,7 @@ class ProductDetailFragment: BaseFragment<ProductDetailViewModel, FragmentDetail
             orderButton.setOnClickListener {
                 if(viewModel.checkUser()){
                     val bundle = Bundle()
-                    bundle.putParcelable(ORDER_ITEM_KEY, OrderModel(
+                    bundle.putParcelable(ORDER_ITEM_KEY, OrderRequestModel(
                         product_id = model.uid,
                         count = 1
                     ))

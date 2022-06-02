@@ -50,13 +50,10 @@ class UserDetailViewModel(
     }
 
     fun signOut() = viewModelScope.launch {
-//        userDetailEntity = null
-//        fetch()
 
         preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let {
             userRepositoryImpl.signOutUser(it)?.let {
                 preference.setString("access_token", null)
-
                 fetch()
             } ?: _userDetailStateLiveData.postValue(UserDetailState.Failure)
         } ?:  _userDetailStateLiveData.postValue(UserDetailState.Failure)

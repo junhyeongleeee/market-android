@@ -95,6 +95,12 @@ class MyFragment : BaseFragment<MyViewModel, FragmentMyBinding>() {
         recentlyProduct.text = "-"
         frequentlyProduct.text = "-"
 
+        orderListView.setOnClickListener {
+            // TODO : 로그인 페이지로 이동
+//            startActivity(AuthActivity.newIntent(requireContext()))
+            findNavController().navigate(R.id.action_navMy_to_navOrderList)
+        }
+
         binding.progressBar.isGone = true
     }
 
@@ -121,6 +127,10 @@ class MyFragment : BaseFragment<MyViewModel, FragmentMyBinding>() {
         likeProduct.text = "0"
         recentlyProduct.text = "0"
         frequentlyProduct.text = "0"
+
+        orderListView.setOnClickListener {
+            findNavController().navigate(R.id.action_navMy_to_navOrderList)
+        }
 
         binding.progressBar.isGone = true
     }

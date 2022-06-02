@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="search_stroke_width">2dp</dimen>
+    <dimen name="order_stroke_width">1dp</dimen>
 </resources>

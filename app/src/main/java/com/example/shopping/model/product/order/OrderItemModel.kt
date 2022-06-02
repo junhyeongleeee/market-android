@@ -7,14 +7,13 @@ import com.example.shopping.model.type.CellType
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class OrderModel(
+data class OrderItemModel(
     override val id: Long,
     override val type: CellType = CellType.ORDER_CELL,
     val uid: String,
-    val customer_id: String,
-    val total_price: Int,
-    val status: String,
-    val ordered_at: String,
-    val updated_at: String,
-    val items: List<OrderItemEntity>
+    val order_id: String,
+    val product_id: String,
+    val product_name: String,
+    val product_price: Int,
+    val count: Int
 ): Model(id, type), Parcelable

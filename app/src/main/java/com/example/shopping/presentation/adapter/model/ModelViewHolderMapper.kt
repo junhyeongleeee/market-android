@@ -8,8 +8,10 @@ import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.viewHolder.category.CategoryViewHolder
 import com.example.shopping.presentation.viewHolder.category.productsByCategory.ProductViewHolder
 import com.example.shopping.presentation.viewHolder.home.HomeViewHolder
+import com.example.shopping.presentation.viewHolder.order.OrderListViewHolder
 import kotlin.study.shopping.databinding.ViewholderCategoryBinding
 import kotlin.study.shopping.databinding.ViewholderHomeBinding
+import kotlin.study.shopping.databinding.ViewholderOrderListBinding
 import kotlin.study.shopping.databinding.ViewholderProductBinding
 
 object ModelViewHolderMapper {
@@ -30,6 +32,10 @@ object ModelViewHolderMapper {
             )
             CellType.PRODUCT_OF_SEARCH_CELL -> HomeViewHolder(
                 ViewholderHomeBinding.inflate(inflater, parent, false),
+                viewModel
+            )
+            CellType.ORDER_CELL -> OrderListViewHolder(
+                ViewholderOrderListBinding.inflate(inflater, parent, false),
                 viewModel
             )
         }

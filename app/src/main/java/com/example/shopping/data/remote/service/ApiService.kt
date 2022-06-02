@@ -1,8 +1,6 @@
 package com.example.shopping.data.remote.service
 
 import com.example.shopping.data.entity.category.CategoryEntity
-import com.example.shopping.data.entity.product.order.OrderEntity
-import com.example.shopping.data.entity.product.order.OrderItemEntity
 import com.example.shopping.data.remote.url.Url
 import com.example.shopping.data.response.categoty.CategoryResponse
 import com.example.shopping.data.response.home.RecommendResponse
@@ -11,12 +9,10 @@ import com.example.shopping.data.response.product.ProductResponse
 import com.example.shopping.data.response.user.LoginResponse
 import com.example.shopping.data.response.user.UserDetailResponse
 import com.example.shopping.data.response.user.UserResponse
-import com.example.shopping.model.product.order.OrderListModel
-import com.example.shopping.model.product.order.OrderModel
+import com.example.shopping.model.product.order.OrderRequestListModel
 import com.example.shopping.model.product.order.OrderResponse
 import com.example.shopping.model.user.LoginModel
 import com.example.shopping.model.user.RegisterModel
-import com.example.shopping.model.user.UserDetailModel
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -67,6 +63,6 @@ interface ApiService {
     @POST(Url.ORDERS_CREATE)
     suspend fun orderProduct(
         @Header("Authorization") access_token: String,
-        @Body items: OrderListModel
+        @Body items: OrderRequestListModel
     ) : Response<OrderResponse>
 }

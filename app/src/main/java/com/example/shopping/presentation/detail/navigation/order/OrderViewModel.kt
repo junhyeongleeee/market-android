@@ -4,11 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.shopping.data.entity.product.order.OrderItemEntity
 import com.example.shopping.data.local.AppPreferenceManager
 import com.example.shopping.domain.repository.product.ProductRepositoryImpl
-import com.example.shopping.model.product.order.OrderListModel
-import com.example.shopping.model.product.order.OrderModel
+import com.example.shopping.model.product.order.OrderRequestListModel
 import com.example.shopping.presentation.RemoteState
 import com.example.shopping.presentation.base.BaseViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -45,11 +43,11 @@ class OrderViewModel(
 
     }
 
-    fun orderProduct(orderList: OrderListModel) = viewModelScope.launch(exceptionHandler) {
+    fun orderProduct(orderRequestList: OrderRequestListModel) = viewModelScope.launch(exceptionHandler) {
         _orderStateLiveData.postValue(OrderState.Loading)
 
         preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let { token ->
-            productRepositoryImpl.orderProduct(token, orderList)?.let {
+            productRepositoryImpl.orderProduct(token, orderRequestList)?.let {
                 Log.e("OrderViewModel orderProduct", it.toString())
                 _orderStateLiveData.postValue(OrderState.Success(it))
             }?: kotlin.run {

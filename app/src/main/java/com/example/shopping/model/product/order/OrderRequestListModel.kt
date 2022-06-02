@@ -4,6 +4,6 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class OrderListModel (
-    val items: List<OrderModel>
+data class OrderRequestListModel (
+    val items: List<OrderRequestModel>
 ) : Parcelable

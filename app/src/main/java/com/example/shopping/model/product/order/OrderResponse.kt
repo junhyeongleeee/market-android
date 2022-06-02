@@ -7,7 +7,7 @@ import com.example.shopping.model.type.OrderType
 data class OrderResponse(
     val uid: String,
     val customer_id: String,
-    val total_price: Integer,
+    val total_price: Int,
     val status: String,
     val ordered_at: String,
     val updated_at: String,
