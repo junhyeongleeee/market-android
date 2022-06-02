@@ -11,6 +11,7 @@ data class OrderItemEntity (
     val product_id: String,
     val product_name: String,
     val product_price: Int,
+    val product_image_url: String?,
     val count: Int
 ): Parcelable
 {
@@ -21,6 +22,7 @@ data class OrderItemEntity (
         product_id = product_id,
         product_name = product_name,
         product_price = product_price,
+        product_image_url = product_image_url,
         count = count
     )
 }

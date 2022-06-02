@@ -38,5 +38,6 @@ class OrderListViewHolder(
         name.text = orderModel.items[0].product_name
         price.text = orderModel.items[0].product_price.toString() + "원 "
         count.text = orderModel.items[0].count.toString() + "원"
+        img.load(orderModel.items[0].product_image_url ?: "")
     }
 }

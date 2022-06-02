@@ -15,5 +15,6 @@ data class OrderItemModel(
     val product_id: String,
     val product_name: String,
     val product_price: Int,
+    val product_image_url: String?,
     val count: Int
 ): Model(id, type), Parcelable
