@@ -9,6 +9,7 @@ import com.example.shopping.data.response.product.ProductResponse
 import com.example.shopping.data.response.user.LoginResponse
 import com.example.shopping.data.response.user.UserDetailResponse
 import com.example.shopping.data.response.user.UserResponse
+import com.example.shopping.model.product.order.NewOrderResponse
 import com.example.shopping.model.product.order.OrderRequestListModel
 import com.example.shopping.model.product.order.OrderResponse
 import com.example.shopping.model.user.LoginModel
@@ -69,5 +70,5 @@ interface ApiService {
     @GET(Url.GET_ORDERS)
     suspend fun getOrders(
         @Header("Authorization") access_token: String
-    ) : Response<List<OrderResponse>>
+    ) : Response<NewOrderResponse>
 }

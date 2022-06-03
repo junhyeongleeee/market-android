@@ -69,7 +69,7 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>: Fragment() {
 
         }
 
-        Log.d("********NETWORK_ERROR_MESSAGE : ", it.first.message.toString())
+        Log.e("********NETWORK_ERROR_MESSAGE : ", it.first.message.toString())
         toast(requireActivity(), message)
     }
 

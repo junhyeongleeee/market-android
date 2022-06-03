@@ -1,5 +1,6 @@
 package com.example.shopping.presentation.my.orderList
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -25,8 +26,8 @@ class OrderListViewModel(
     val orderItemListLiveData =  MutableLiveData<List<OrderModel>>()
 
     override fun fetch(): Job = viewModelScope.launch {
-        mockOrderItemModel()
-//        getOrders()
+//        mockOrderItemModel()
+        getOrders()
     }
 
     private fun mockOrderItemModel() {
@@ -66,6 +67,7 @@ class OrderListViewModel(
 
                 if(it.isNotEmpty()){
 
+                    Log.e("orderList", it.toString())
 
                     orderItemListLiveData.value = it.mapIndexed { _, entity ->
                         OrderModel(
@@ -79,7 +81,7 @@ class OrderListViewModel(
                             items = entity.items
                         )
                     }
-//                    _orderListStateLiveData.postValue(OrderListState.Success)
+                    _orderListStateLiveData.postValue(OrderListState.Success)
                 }
                 else{
                     _orderListStateLiveData.postValue(OrderListState.Failure)

@@ -43,9 +43,7 @@ class ProductRepository(
         val response = apiService.getOrders(token)
 
         if(response.isSuccessful){
-            response?.body()?.mapIndexed{ _, it ->
-                it.toEntity()
-            } ?: listOf()
+            response?.body()?.orders ?: listOf()
         }
         else{
             listOf()
