@@ -6,7 +6,7 @@ import com.example.shopping.data.entity.product.ProductEntity
 data class ProductDetailResponse(
     val uid: String,
     val name: String,
-    val price: Long,
+    val price: Int,
     val description: String? = null,
     val image_url: String? = null
 ){

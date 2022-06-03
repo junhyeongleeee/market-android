@@ -41,7 +41,7 @@ class MockPagingSource(
                 ProductSimpleEntity(
                     uid = num.toString(),
                     name = "Product $num",
-                    price = (num*1000).toLong(),
+                    price = num*1000,
                     image_url = "/.../$num"
                 )
             },

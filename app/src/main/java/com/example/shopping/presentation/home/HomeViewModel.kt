@@ -7,9 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.shopping.domain.repository.home.HomeRepositoryImpl
 import com.example.shopping.model.type.CellType
 import com.example.shopping.model.product.ProductModel
+import com.example.shopping.presentation.RemoteState
 import com.example.shopping.presentation.base.BaseViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.net.SocketException
+import java.net.UnknownHostException
 
 class HomeViewModel(
     private val homeRepositoryImpl: HomeRepositoryImpl
@@ -22,8 +27,6 @@ class HomeViewModel(
     val hotProductListLiveData =  MutableLiveData<List<ProductModel>>()
 
     override fun fetch(): Job = viewModelScope.launch {
-        _homeStateLiveData.postValue(HomeState.Loading)
-
         getHomeData()
     }
 
@@ -34,14 +37,16 @@ class HomeViewModel(
                 type = CellType.PRODUCT_OF_SEARCH_CELL,
                 uid = "$it",
                 name = "name$it",
-                price = (it*1000).toLong(),
+                price = it*1000,
                 image_url = ".../$it",
             )
         }
         whatProductListLiveData.value = mockList
     }
 
-    private fun getHomeData() = viewModelScope.launch {
+    private fun getHomeData() = viewModelScope.launch(exceptionHandler){
+
+        _homeStateLiveData.postValue(HomeState.Loading)
 
         val recommendList = homeRepositoryImpl.getHome()
 
@@ -61,7 +66,6 @@ class HomeViewModel(
             _homeStateLiveData.postValue(HomeState.Success(
                 whatList, hotList
             ))
-
-        }
+        } else _homeStateLiveData.postValue(HomeState.Failure)
     }
 }

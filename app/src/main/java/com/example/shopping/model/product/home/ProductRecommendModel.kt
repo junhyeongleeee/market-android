@@ -11,7 +11,7 @@ data class ProductRecommendModel(
     val uid: String,
     val category_id: String,
     val name: String,
-    val price: Long,
+    val price: Int,
     val description: String?,
     val image_url: String?,
 ): Model(id, type)

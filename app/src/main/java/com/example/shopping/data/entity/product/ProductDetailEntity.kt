@@ -5,7 +5,7 @@ import com.example.shopping.model.product.ProductModel
 data class ProductDetailEntity(
     val uid: String,
     val name: String,
-    val price: Long,
+    val price: Int,
     val description: String? = null,
     val image_url: String? = null
 ) {

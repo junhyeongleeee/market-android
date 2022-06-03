@@ -5,7 +5,7 @@ import com.example.shopping.model.product.ProductModel
 data class ProductSimpleEntity(
     val uid: String,
     val name: String,
-    val price: Long,
+    val price: Int,
     val image_url: String?
 ) {
     fun toModel() = ProductModel(

@@ -24,21 +24,6 @@ class OrderViewModel(
     private var _orderStateLiveData = MutableLiveData<OrderState>(OrderState.UnInitialized)
     val orderStateLiveData: LiveData<OrderState> = _orderStateLiveData
 
-    private val _fetchState = MutableLiveData<Pair<Throwable, RemoteState>>()
-    val fetchState : LiveData<Pair<Throwable, RemoteState>>
-        get() = _fetchState
-
-    private val exceptionHandler = CoroutineExceptionHandler{ _, throwable ->
-        throwable.printStackTrace()
-
-        when(throwable){
-            is SocketException -> _fetchState.postValue(Pair(throwable, RemoteState.BAD_INTERNET))
-            is HttpException -> _fetchState.postValue(Pair(throwable, RemoteState.PARSE_ERROR))
-            is UnknownHostException -> _fetchState.postValue(Pair(throwable, RemoteState.WRONG_CONNECTION))
-            else -> _fetchState.postValue(Pair(throwable, RemoteState.FAIL))
-        }
-    }
-
     override fun fetch(): Job = viewModelScope.launch {
 
     }
