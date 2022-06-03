@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class OrderItemModel(
     override val id: Long,
-    override val type: CellType = CellType.ORDER_CELL,
+    override val type: CellType = CellType.ORDER_PRODUCT_CELL,
     val uid: String,
     val order_id: String,
     val product_id: String,

@@ -25,8 +25,8 @@ class OrderListViewModel(
     val orderItemListLiveData =  MutableLiveData<List<OrderModel>>()
 
     override fun fetch(): Job = viewModelScope.launch {
-//        mockOrderItemModel()
-        getOrders()
+        mockOrderItemModel()
+//        getOrders()
     }
 
     private fun mockOrderItemModel() {

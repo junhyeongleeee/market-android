@@ -25,31 +25,6 @@ class MyFragment : BaseFragment<MyViewModel, FragmentMyBinding>() {
         FragmentMyBinding.inflate(layoutInflater)
 
     override fun observeData() {
-        viewModel.fetchState.observe(this) {
-            var message = ""
-            when (it.second) {
-                RemoteState.BAD_INTERNET -> {
-                    message = "소켓 오류 / 서버와 연결에 실패하였습니다."
-                }
-                RemoteState.PARSE_ERROR -> {
-                    val error = (it.first as HttpException)
-                    message = "${error.code()} ERROR : \n ${
-                        error.response()!!.errorBody()!!.string().split("\"")[7]
-                    }"
-                }
-                RemoteState.WRONG_CONNECTION -> {
-                    message = "호스트를 확인할 수 없습니다. 네트워크 연결을 확인해주세요"
-                }
-                else -> {
-                    message = "통신에 실패하였습니다.\n ${it.first.message}"
-                }
-
-            }
-
-            Log.d("********NETWORK_ERROR_MESSAGE : ", it.first.message.toString())
-            snackbar(binding.root, message)
-        }
-
         viewModel.myStateLiveData.observe(this) {
             when (it) {
                 is MyState.UnInitialized -> {

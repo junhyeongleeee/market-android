@@ -32,7 +32,6 @@ class OrderListFragment : BaseFragment<OrderListViewModel, FragmentOrderListBind
             viewModel,
             adapterListener = object : OrderListListener {
                 override fun onClickItem(model: OrderModel) {
-
                 }
             })
     }

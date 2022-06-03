@@ -31,7 +31,7 @@ class MyViewModel(
     }
 
     // TODO : User Data Fetching 필요
-    fun getUserData() = viewModelScope.launch(exceptionHandler){
+    private fun getUserData() = viewModelScope.launch(exceptionHandler){
 
         /*// Mock
         val userDetailModel = UserDetailEntity(
