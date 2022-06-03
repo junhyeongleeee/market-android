@@ -8,6 +8,7 @@ import com.example.shopping.model.product.order.OrderModel
 import com.example.shopping.presentation.adapter.model.ModelViewHolder
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener
+import com.example.shopping.presentation.listener.OrderListListener
 import okhttp3.internal.notifyAll
 import kotlin.study.shopping.databinding.ViewholderOrderListBinding
 
@@ -16,12 +17,12 @@ class OrderListViewHolder(
     val viewModel: BaseViewModel
 ): ModelViewHolder<OrderModel>(binding) {
 
-    override fun bindViews(itemModel: OrderModel, adapterListener: AdapterListener){
-        /*if( adapterListener is ProductListListener){
+    override fun bindViews(model: OrderModel, adapterListener: AdapterListener){
+        if( adapterListener is OrderListListener){
             binding.root.setOnClickListener {
                 adapterListener.onClickItem(model)
             }
-        }*/
+        }
     }
 
     override fun bindData(orderModel: OrderModel) = with(binding){
@@ -39,5 +40,6 @@ class OrderListViewHolder(
         price.text = orderModel.items[0].product_price.toString() + "원 "
         count.text = orderModel.items[0].count.toString() + "원"
         img.load(orderModel.items[0].product_image_url ?: "")
+        date.text = orderModel.ordered_at
     }
 }

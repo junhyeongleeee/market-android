@@ -10,4 +10,5 @@ sealed class OrderListState {
         object Failure: AlarmExistence()
     }
     object Success: OrderListState()
+    object Failure: OrderListState()
 }

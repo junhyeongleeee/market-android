@@ -36,4 +36,20 @@ class ProductRepository(
             null
         }
     }
+
+    override suspend fun getOrderList(access_token: String): List<OrderEntity> = withContext(ioDispatcher){
+
+        val token = "Bearer $access_token"
+        val response = apiService.getOrders(token)
+
+        if(response.isSuccessful){
+            response?.body()?.mapIndexed{ _, it ->
+                it.toEntity()
+            } ?: listOf()
+        }
+        else{
+            listOf()
+        }
+
+    }
 }

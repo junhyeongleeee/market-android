@@ -65,4 +65,9 @@ interface ApiService {
         @Header("Authorization") access_token: String,
         @Body items: OrderRequestListModel
     ) : Response<OrderResponse>
+
+    @GET(Url.GET_ORDERS)
+    suspend fun getOrders(
+        @Header("Authorization") access_token: String
+    ) : Response<List<OrderResponse>>
 }

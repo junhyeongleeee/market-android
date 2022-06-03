@@ -16,4 +16,5 @@ object Url {
     const val GET_PRODUCT_DETAIL = "/products/{product_id}"
 
     const val ORDERS_CREATE = "/orders/create"
+    const val GET_ORDERS = "/orders"
 }
