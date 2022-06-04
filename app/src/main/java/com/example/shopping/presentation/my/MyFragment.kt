@@ -72,8 +72,7 @@ class MyFragment : BaseFragment<MyViewModel, FragmentMyBinding>() {
 
         orderListView.setOnClickListener {
             // TODO : 로그인 페이지로 이동
-//            startActivity(AuthActivity.newIntent(requireContext()))
-            findNavController().navigate(R.id.action_navMy_to_navOrderList)
+            startActivity(AuthActivity.newIntent(requireContext()))
         }
 
         binding.progressBar.isGone = true

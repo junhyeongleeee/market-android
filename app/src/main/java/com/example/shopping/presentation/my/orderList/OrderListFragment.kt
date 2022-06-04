@@ -5,6 +5,8 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.shopping.extensions.toast
 import com.example.shopping.model.product.order.OrderModel
+import com.example.shopping.model.product.order.OrderRefundCancelModel
+import com.example.shopping.model.type.OrderType
 import com.example.shopping.presentation.adapter.model.ModelRecyclerAdapter
 import com.example.shopping.presentation.base.BaseFragment
 import com.example.shopping.presentation.listener.order.OrderListListener
@@ -29,13 +31,23 @@ class OrderListFragment : BaseFragment<OrderListViewModel, FragmentOrderListBind
             resourcesProvider,
             adapterListener = object : OrderListListener {
                 override fun onCancelButton(model: OrderModel) {
-
+                    viewModel.requestCancel(model.uid,
+                        OrderRefundCancelModel(
+                            reason = null,
+                            status = OrderType.Cancelling.type
+                        )
+                    )
                 }
                 override fun onRepurchaseButton(model: OrderModel) {
 
                 }
                 override fun onRefundButtonButton(model: OrderModel) {
-
+                    viewModel.requestCancel(model.uid,
+                        OrderRefundCancelModel(
+                            reason = null,
+                            status = OrderType.Refunding.type
+                        )
+                    )
                 }
                 override fun onCanceledDetailButton(model: OrderModel) {
 
@@ -72,6 +84,7 @@ class OrderListFragment : BaseFragment<OrderListViewModel, FragmentOrderListBind
                 existDataLayout.isVisible = true
             }
 
+            progressBar.isGone = true
             adapter.submitList(it)
         }
     }
@@ -85,6 +98,7 @@ class OrderListFragment : BaseFragment<OrderListViewModel, FragmentOrderListBind
 
     private fun handleSuccess() = with(binding){
         progressBar.isGone = true
+        toast(requireActivity(), "주문 취소가 완료되었습니다.")
     }
 
     private fun handleLoading() = with(binding){

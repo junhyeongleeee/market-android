@@ -84,7 +84,7 @@ class OrderListViewHolder(
                 statusTextView.text = resourcesProvider.getString(R.string.ordred)
             }
             OrderType.Cancelled.type -> {
-                // TODO : 취소 완료된 주문
+                // TODO : 취소 완료 된 주문
                 // - 재구매
                 orderPendingGroup.isGone = true
                 orderCompletedGroup.isGone = true
@@ -111,7 +111,7 @@ class OrderListViewHolder(
                 // TODO : 배송 중 주문
                 // - 주문, 환불 불가
                 orderPendingGroup.isGone = true
-                orderCompletedGroup.isGone = true
+                orderCompletedGroup.isVisible = true
                 orderCanceledGroup.isGone = true
                 statusTextView.text = resourcesProvider.getString(R.string.delivering)
             }

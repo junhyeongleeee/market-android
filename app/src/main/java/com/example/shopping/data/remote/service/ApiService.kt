@@ -4,12 +4,14 @@ import com.example.shopping.data.entity.category.CategoryEntity
 import com.example.shopping.data.remote.url.Url
 import com.example.shopping.data.response.categoty.CategoryResponse
 import com.example.shopping.data.response.home.RecommendResponse
+import com.example.shopping.data.response.order.RefundResponse
 import com.example.shopping.data.response.product.ProductDetailResponse
 import com.example.shopping.data.response.product.ProductResponse
 import com.example.shopping.data.response.user.LoginResponse
 import com.example.shopping.data.response.user.UserDetailResponse
 import com.example.shopping.data.response.user.UserResponse
 import com.example.shopping.model.product.order.NewOrderResponse
+import com.example.shopping.model.product.order.OrderRefundCancelModel
 import com.example.shopping.model.product.order.OrderRequestListModel
 import com.example.shopping.model.product.order.OrderResponse
 import com.example.shopping.model.user.LoginModel
@@ -71,4 +73,11 @@ interface ApiService {
     suspend fun getOrders(
         @Header("Authorization") access_token: String
     ) : Response<NewOrderResponse>
+
+    @POST(Url.REQUEST_REFUND_CANCEL)
+    suspend fun requestRefundCancel(
+        @Header("Authorization") access_token: String,
+        @Path("order_id") order_id: String,
+        @Body orderRefundCancelModel: OrderRefundCancelModel
+    ) : Response<RefundResponse>
 }

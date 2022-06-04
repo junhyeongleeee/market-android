@@ -17,4 +17,6 @@ object Url {
 
     const val ORDERS_CREATE = "/orders/create"
     const val GET_ORDERS = "/orders"
+
+    const val REQUEST_REFUND_CANCEL = "/refunds/{order_id}/create"
 }

@@ -3,8 +3,10 @@ package com.example.shopping.data.repository.product
 import android.util.Log
 import com.example.shopping.data.entity.product.ProductDetailEntity
 import com.example.shopping.data.entity.product.order.OrderEntity
+import com.example.shopping.data.entity.product.order.RefundEntity
 import com.example.shopping.data.remote.service.ApiService
 import com.example.shopping.domain.repository.product.ProductRepositoryImpl
+import com.example.shopping.model.product.order.OrderRefundCancelModel
 import com.example.shopping.model.product.order.OrderRequestListModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -48,6 +50,24 @@ class ProductRepository(
         else{
             listOf()
         }
-
     }
+
+    override suspend fun requestRefundCancel(
+        access_token: String,
+        order_id: String,
+        requestRefundCancelModel: OrderRefundCancelModel,
+    ): RefundEntity? = withContext(ioDispatcher){
+
+        val token = "Bearer $access_token"
+        val response = apiService.requestRefundCancel(token, order_id, requestRefundCancelModel)
+
+        if(response.isSuccessful){
+            response?.body()?.toEntity() ?: null
+        }
+        else{
+            null
+        }
+    }
+
+
 }

@@ -6,6 +6,6 @@ enum class OrderType(val type: String) {
     Delivered("Delivered"),         // 배송 완료
     Cancelled("Cancelled"),         // 취소 됨
     Refunded("Refunded"),           // 환불 됨
-    Cancelling("Cancelling"),       // 취소 중
+    Cancelling("Canceling"),       // 취소 중
     Refunding("Refunding")          // 환불 중
 }

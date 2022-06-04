@@ -10,6 +10,7 @@ import com.example.shopping.domain.repository.product.ProductRepositoryImpl
 import com.example.shopping.model.product.ProductModel
 import com.example.shopping.model.product.order.OrderItemModel
 import com.example.shopping.model.product.order.OrderModel
+import com.example.shopping.model.product.order.OrderRefundCancelModel
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.home.HomeState
 import kotlinx.coroutines.Job
@@ -17,13 +18,14 @@ import kotlinx.coroutines.launch
 
 class OrderListViewModel(
     private val preference: AppPreferenceManager,
-    private val productRepositoryImpl: ProductRepositoryImpl
-) : BaseViewModel(){
+    private val productRepositoryImpl: ProductRepositoryImpl,
+) : BaseViewModel() {
 
-    private var _orderListStateLiveData = MutableLiveData<OrderListState>(OrderListState.UnInitialized)
+    private var _orderListStateLiveData =
+        MutableLiveData<OrderListState>(OrderListState.UnInitialized)
     val orderListStateLiveData: LiveData<OrderListState> = _orderListStateLiveData
 
-    val orderItemListLiveData =  MutableLiveData<List<OrderModel>>()
+    val orderItemListLiveData = MutableLiveData<List<OrderModel>>()
 
     override fun fetch(): Job = viewModelScope.launch {
 //        mockOrderItemModel()
@@ -38,7 +40,7 @@ class OrderListViewModel(
                 id = it.hashCode().toLong(),
                 uid = it.toString(),
                 customer_id = "customer_id $it",
-                total_price = it*1000,
+                total_price = it * 1000,
                 status = "status",
                 ordered_at = "2022.06.$it",
                 updated_at = "updated_at",
@@ -48,7 +50,7 @@ class OrderListViewModel(
                         order_id = "order_id $count",
                         product_id = "product_id $count",
                         product_name = "product_name $count",
-                        product_price = count*1000,
+                        product_price = count * 1000,
                         product_image_url = null,
                         count = count
                     )
@@ -58,14 +60,14 @@ class OrderListViewModel(
         orderItemListLiveData.value = mockList
     }
 
-    private fun getOrders() = viewModelScope.launch {
+    private fun getOrders() = viewModelScope.launch(exceptionHandler) {
 
         _orderListStateLiveData.postValue(OrderListState.Loading)
 
         preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let { token ->
             productRepositoryImpl.getOrderList(token).let {
 
-                if(it.isNotEmpty()){
+                if (it.isNotEmpty()) {
 
                     Log.e("orderList", it.toString())
 
@@ -81,13 +83,25 @@ class OrderListViewModel(
                             items = entity.items
                         )
                     }
-                    _orderListStateLiveData.postValue(OrderListState.Success)
-                }
-                else{
+                } else {
                     _orderListStateLiveData.postValue(OrderListState.Failure)
                 }
             }
         } ?: _orderListStateLiveData.postValue(OrderListState.Failure)
     }
+
+    fun requestCancel(order_id: String, refundCancelModel: OrderRefundCancelModel) =
+        viewModelScope.launch(exceptionHandler) {
+            _orderListStateLiveData.postValue(OrderListState.Loading)
+
+            preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let { token ->
+                productRepositoryImpl.requestRefundCancel(token, order_id, refundCancelModel)?.let {
+                    Log.e("RefundEntity", it.toString())
+                    _orderListStateLiveData.postValue(OrderListState.Success)
+
+                    fetch()
+                } ?: _orderListStateLiveData.postValue(OrderListState.Failure)
+            } ?: _orderListStateLiveData.postValue(OrderListState.Failure)
+        }
 
 }
