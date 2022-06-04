@@ -1,11 +1,11 @@
 package com.example.shopping.model.type
 
 enum class OrderType(val type: String) {
-    Pending("Pending"),
-    Delivering("Delivering"),
-    Delivered("Delivered"),
-    Cancelled("Cancelled"),
-    Refunded("Refunded"),
-    Cancelling("Cancelling"),
-    Refunding("Refunding")
+    Pending("Pending"),             // 보류
+    Delivering("Delivering"),       // 배송 중
+    Delivered("Delivered"),         // 배송 완료
+    Cancelled("Cancelled"),         // 취소 됨
+    Refunded("Refunded"),           // 환불 됨
+    Cancelling("Cancelling"),       // 취소 중
+    Refunding("Refunding")          // 환불 중
 }

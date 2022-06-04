@@ -6,12 +6,14 @@ import com.example.shopping.presentation.adapter.model.ModelViewHolder
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.ProductListListener
+import com.example.shopping.util.provider.ResourcesProvider
 import kotlin.study.shopping.databinding.ViewholderHomeBinding
 
 class HomeViewHolder(
     private val binding: ViewholderHomeBinding,
-    val viewModel: BaseViewModel
-): ModelViewHolder<ProductModel>(binding) {
+    viewModel: BaseViewModel,
+    resourcesProvider: ResourcesProvider
+): ModelViewHolder<ProductModel>(binding, viewModel, resourcesProvider) {
 
     override fun bindViews(model: ProductModel, adapterListener: AdapterListener){
         if( adapterListener is ProductListListener){

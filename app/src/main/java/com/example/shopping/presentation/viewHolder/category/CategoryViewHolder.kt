@@ -7,12 +7,14 @@ import com.example.shopping.presentation.adapter.model.ModelViewHolder
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.CategoryListListener
+import com.example.shopping.util.provider.ResourcesProvider
 import kotlin.study.shopping.databinding.ViewholderCategoryBinding
 
 class CategoryViewHolder(
     private val binding: ViewholderCategoryBinding,
-    val viewModel: BaseViewModel
-): ModelViewHolder<CategoryModel>(binding) {
+    viewModel: BaseViewModel,
+    resourcesProvider: ResourcesProvider
+): ModelViewHolder<CategoryModel>(binding, viewModel, resourcesProvider) {
 
     override fun bindViews(model: CategoryModel, adapterListener: AdapterListener){
         if( adapterListener is CategoryListListener){

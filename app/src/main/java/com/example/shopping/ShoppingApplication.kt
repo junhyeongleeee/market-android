@@ -22,7 +22,8 @@ class ShoppingApplication : Application() {
                 ViewModelModule,
                 RemoteModule,
                 RepositoryModule,
-                LocalModule
+                LocalModule,
+                UtilModule
 //                UseCaseModule
             ))
         }

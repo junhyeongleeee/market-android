@@ -1,28 +1,18 @@
 package com.example.shopping.presentation.viewHolder.order
 
-import android.content.Context
-import android.graphics.drawable.ClipDrawable.VERTICAL
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.shopping.extensions.load
 import com.example.shopping.model.product.order.OrderItemModel
-import com.example.shopping.model.product.order.OrderModel
-import com.example.shopping.model.type.TransitionModeType
-import com.example.shopping.presentation.adapter.model.ModelRecyclerAdapter
 import com.example.shopping.presentation.adapter.model.ModelViewHolder
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener
-import com.example.shopping.presentation.listener.OrderListListener
-import com.example.shopping.presentation.my.orderList.OrderListViewModel
-import okhttp3.internal.notifyAll
-import kotlin.study.shopping.databinding.ViewholderOrderListBinding
+import com.example.shopping.util.provider.ResourcesProvider
 import kotlin.study.shopping.databinding.ViewholderOrderProductListBinding
 
 class OrderProductListViewHolder(
     private val binding: ViewholderOrderProductListBinding,
-    val viewModel: BaseViewModel
-): ModelViewHolder<OrderItemModel>(binding) {
+    viewModel: BaseViewModel,
+    resourcesProvider: ResourcesProvider
+): ModelViewHolder<OrderItemModel>(binding, viewModel, resourcesProvider) {
 
     override fun bindViews(model: OrderItemModel, adapterListener: AdapterListener){
         /*if( adapterListener is OrderListListener){

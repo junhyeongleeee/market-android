@@ -10,6 +10,8 @@ import com.example.shopping.presentation.RemoteState
 import com.example.shopping.presentation.adapter.model.ModelRecyclerAdapter
 import com.example.shopping.presentation.base.BaseFragment
 import com.example.shopping.presentation.listener.AdapterListener
+import com.example.shopping.util.provider.ResourcesProvider
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import retrofit2.HttpException
 import kotlin.study.shopping.R
@@ -22,10 +24,13 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     override fun getViewBinding(): FragmentHomeBinding =
         FragmentHomeBinding.inflate(layoutInflater)
 
+    private val resourcesProvider by inject<ResourcesProvider>()
+
     private val whatAdapter: ModelRecyclerAdapter<ProductModel, HomeViewModel> by lazy {
         ModelRecyclerAdapter(
             listOf(),
             viewModel,
+            resourcesProvider,
             adapterListener = object : AdapterListener {
             }
         )
@@ -34,6 +39,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         ModelRecyclerAdapter(
             listOf(),
             viewModel,
+            resourcesProvider,
             adapterListener = object : AdapterListener {
             }
         )

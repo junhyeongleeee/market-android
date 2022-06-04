@@ -19,7 +19,9 @@ import com.example.shopping.presentation.category.CategoryFragment
 import com.example.shopping.presentation.detail.ProductDetailActivity
 import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.ProductListListener
+import com.example.shopping.util.provider.ResourcesProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import kotlin.study.shopping.R
@@ -40,10 +42,13 @@ class ProductsByCategoryFragment :
     override fun getViewBinding(): FragmentProductsByCategoryBinding =
         FragmentProductsByCategoryBinding.inflate(layoutInflater)
 
+    private val resourcesProvider by inject<ResourcesProvider>()
+
     private val adapter: ModelRecyclerAdapter<ProductModel, ProductsByCategoryViewModel> by lazy {
         ModelRecyclerAdapter(
             listOf(),
             viewModel,
+            resourcesProvider,
             adapterListener = object : ProductListListener {
                 override fun onClickItem(model: ProductModel) {
                     startActivity(

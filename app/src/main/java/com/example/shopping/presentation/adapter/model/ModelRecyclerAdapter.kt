@@ -1,16 +1,17 @@
 package com.example.shopping.presentation.adapter.model
 
-import android.content.res.loader.ResourcesProvider
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.shopping.model.type.CellType
 import aop.fastcampus.part6.chapter01.model.Model
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener
+import com.example.shopping.util.provider.ResourcesProvider
 
 class ModelRecyclerAdapter<M: Model, VM: BaseViewModel>(
     private var modelList: List<Model>,
     private val viewModel: VM,
+    private val resourcesProvider: ResourcesProvider,
     private val adapterListener: AdapterListener
 ): ListAdapter<Model, ModelViewHolder<M>>(Model.DIFF_CALLBACK){
 
@@ -19,7 +20,7 @@ class ModelRecyclerAdapter<M: Model, VM: BaseViewModel>(
     override fun getItemViewType(position: Int): Int = modelList[position].type.ordinal
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModelViewHolder<M> {
-        return ModelViewHolderMapper.map(parent, CellType.values()[viewType], viewModel)
+        return ModelViewHolderMapper.map(parent, CellType.values()[viewType], viewModel, resourcesProvider)
     }
 
     override fun onBindViewHolder(holder: ModelViewHolder<M>, position: Int) {

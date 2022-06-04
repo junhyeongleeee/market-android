@@ -15,6 +15,7 @@ import com.example.shopping.presentation.base.BaseNavFragment
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.CategoryListListener
+import com.example.shopping.util.provider.ResourcesProvider
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -28,10 +29,13 @@ class CategoryFragment: BaseFragment<CategoryViewModel, FragmentCategoryBinding>
     override fun getViewBinding(): FragmentCategoryBinding =
         FragmentCategoryBinding.inflate(layoutInflater)
 
+    private val resourcesProvider by inject<ResourcesProvider>()
+
     private val adapter : ModelRecyclerAdapter<CategoryModel, CategoryViewModel> by lazy {
         ModelRecyclerAdapter(
             listOf(),
             viewModel,
+            resourcesProvider,
             adapterListener = object : CategoryListListener{
                 override fun onClickItem(model: CategoryModel) {
                     findNavController().navigate(

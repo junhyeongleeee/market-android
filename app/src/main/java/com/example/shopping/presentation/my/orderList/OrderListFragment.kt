@@ -4,19 +4,13 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.shopping.extensions.toast
-import com.example.shopping.model.product.ProductModel
-import com.example.shopping.model.product.order.OrderItemModel
 import com.example.shopping.model.product.order.OrderModel
 import com.example.shopping.presentation.adapter.model.ModelRecyclerAdapter
 import com.example.shopping.presentation.base.BaseFragment
-import com.example.shopping.presentation.base.BaseViewModel
-import com.example.shopping.presentation.category.productsByCategory.ProductsByCategoryViewModel
-import com.example.shopping.presentation.detail.ProductDetailActivity
-import com.example.shopping.presentation.listener.AdapterListener
-import com.example.shopping.presentation.listener.OrderListListener
-import com.example.shopping.presentation.listener.ProductListListener
+import com.example.shopping.presentation.listener.order.OrderListListener
+import com.example.shopping.util.provider.ResourcesProvider
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import kotlin.study.shopping.databinding.FragmentAlarmBinding
 import kotlin.study.shopping.databinding.FragmentOrderListBinding
 
 class OrderListFragment : BaseFragment<OrderListViewModel, FragmentOrderListBinding>() {
@@ -26,12 +20,25 @@ class OrderListFragment : BaseFragment<OrderListViewModel, FragmentOrderListBind
     override fun getViewBinding(): FragmentOrderListBinding =
         FragmentOrderListBinding.inflate(layoutInflater)
 
+    private val resourcesProvider by inject<ResourcesProvider>()
+
     private val adapter: ModelRecyclerAdapter<OrderModel, OrderListViewModel> by lazy {
         ModelRecyclerAdapter(
             listOf(),
             viewModel,
+            resourcesProvider,
             adapterListener = object : OrderListListener {
-                override fun onClickItem(model: OrderModel) {
+                override fun onCancelButton(model: OrderModel) {
+
+                }
+                override fun onRepurchaseButton(model: OrderModel) {
+
+                }
+                override fun onRefundButtonButton(model: OrderModel) {
+
+                }
+                override fun onCanceledDetailButton(model: OrderModel) {
+
                 }
             })
     }
