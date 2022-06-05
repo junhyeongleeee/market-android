@@ -56,7 +56,7 @@ class OrderListFragment : BaseFragment<OrderListViewModel, FragmentOrderListBind
                 }
 
                 override fun onOrderDeleteButton(model: OrderModel) {
-
+                    viewModel.deleteOrder(model.uid)
                 }
             })
     }

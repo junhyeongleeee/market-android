@@ -102,4 +102,16 @@ class OrderListViewModel(
             } ?: _orderListStateLiveData.postValue(RefundListState.Failure)
         }
 
+    fun deleteOrder(order_id: String) = viewModelScope.launch(exceptionHandler) {
+        _orderListStateLiveData.postValue(RefundListState.Loading)
+
+        preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let { token ->
+            productRepositoryImpl.deleteOrder(token, order_id)?.let {
+                Log.e("OrderEntity", it.toString())
+                _orderListStateLiveData.postValue(RefundListState.Success)
+
+                fetch()
+            } ?: _orderListStateLiveData.postValue(RefundListState.Failure)
+        } ?: _orderListStateLiveData.postValue(RefundListState.Failure)
+    }
 }

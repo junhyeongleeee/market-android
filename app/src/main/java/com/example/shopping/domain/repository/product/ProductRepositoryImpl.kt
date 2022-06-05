@@ -20,4 +20,7 @@ interface ProductRepositoryImpl {
         access_token: String, order_id: String,
         requestRefundCancelModel: OrderRefundCancelModel,
     ): RefundEntity?
+
+    suspend fun deleteOrder(access_token: String, order_id: String): OrderEntity?
+    suspend fun deleteRefund(access_token: String, order_id: String): RefundEntity?
 }

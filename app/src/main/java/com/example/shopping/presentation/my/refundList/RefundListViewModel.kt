@@ -49,18 +49,16 @@ class RefundListViewModel(
         } ?: _orderListStateLiveData.postValue(RefundListState.Failure)
     }
 
-    /*fun requestCancel(order_id: String, refundCancelModel: OrderRefundCancelModel) =
-        viewModelScope.launch(exceptionHandler) {
-            _orderListStateLiveData.postValue(RefundListState.Loading)
+    fun deleteRefund(order_id: String) = viewModelScope.launch(exceptionHandler) {
+        _orderListStateLiveData.postValue(RefundListState.Loading)
 
-            preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let { token ->
-                productRepositoryImpl.requestRefundCancel(token, order_id, refundCancelModel)?.let {
-                    Log.e("RefundEntity", it.toString())
-                    _orderListStateLiveData.postValue(RefundListState.Success)
+        preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let { token ->
+            productRepositoryImpl.deleteRefund(token, order_id)?.let {
+                Log.e("RefundEntity", it.toString())
+                _orderListStateLiveData.postValue(RefundListState.Success)
 
-                    fetch()
-                } ?: _orderListStateLiveData.postValue(RefundListState.Failure)
+                fetch()
             } ?: _orderListStateLiveData.postValue(RefundListState.Failure)
-        }*/
-
+        } ?: _orderListStateLiveData.postValue(RefundListState.Failure)
+    }
 }

@@ -87,5 +87,15 @@ interface ApiService {
         @Body orderRefundCancelModel: OrderRefundCancelModel
     ) : Response<RefundResponse>
 
+    @POST(Url.DELETE_ORDER)
+    suspend fun deleteOrder(
+        @Header("Authorization") access_token: String,
+        @Path("order_id") order_id: String
+    ): Response<OrderResponse>
 
+    @POST(Url.DELETE_REFUND)
+    suspend fun deleteRefund(
+        @Header("Authorization") access_token: String,
+        @Path("order_id") order_id: String
+    ): Response<RefundResponse>
 }

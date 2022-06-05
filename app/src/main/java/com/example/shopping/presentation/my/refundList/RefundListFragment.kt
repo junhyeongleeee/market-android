@@ -55,7 +55,7 @@ class RefundListFragment : BaseFragment<RefundListViewModel, FragmentOrderListBi
                 }
 
                 override fun onOrderDeleteButton(model: OrderModel) {
-
+                    viewModel.deleteRefund(model.uid)
                 }
             })
     }

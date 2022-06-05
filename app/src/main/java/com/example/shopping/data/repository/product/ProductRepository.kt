@@ -83,6 +83,28 @@ class ProductRepository(
         }
     }
 
+    override suspend fun deleteOrder(access_token: String, order_id: String): OrderEntity? = withContext(ioDispatcher){
 
+        val token = "Bearer $access_token"
+        val response = apiService.deleteOrder(token, order_id)
 
+        if(response.isSuccessful){
+            response?.body()?.toEntity() ?: null
+        }
+        else{
+            null
+        }
+    }
+
+    override suspend fun deleteRefund(access_token: String, order_id: String): RefundEntity? = withContext(ioDispatcher){
+        val token = "Bearer $access_token"
+        val response = apiService.deleteRefund(token, order_id)
+
+        if(response.isSuccessful){
+            response?.body()?.toEntity() ?: null
+        }
+        else{
+            null
+        }
+    }
 }
