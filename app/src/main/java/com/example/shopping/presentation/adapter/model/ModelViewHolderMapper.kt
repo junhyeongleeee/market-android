@@ -10,6 +10,7 @@ import com.example.shopping.presentation.viewHolder.category.productsByCategory.
 import com.example.shopping.presentation.viewHolder.home.HomeViewHolder
 import com.example.shopping.presentation.viewHolder.order.OrderListViewHolder
 import com.example.shopping.presentation.viewHolder.order.OrderProductListViewHolder
+import com.example.shopping.presentation.viewHolder.order.RefundListViewHolder
 import com.example.shopping.util.provider.ResourcesProvider
 import kotlin.study.shopping.databinding.*
 
@@ -44,6 +45,11 @@ object ModelViewHolderMapper {
             )
             CellType.ORDER_PRODUCT_CELL -> OrderProductListViewHolder(
                 ViewholderOrderProductListBinding.inflate(inflater, parent, false),
+                viewModel,
+                resourcesProvider
+            )
+            CellType.REFUND_CELL -> RefundListViewHolder(
+                ViewholderOrderListBinding.inflate(inflater, parent, false),
                 viewModel,
                 resourcesProvider
             )

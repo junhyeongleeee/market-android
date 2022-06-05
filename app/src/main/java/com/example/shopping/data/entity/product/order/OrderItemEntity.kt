@@ -1,7 +1,7 @@
 package com.example.shopping.data.entity.product.order
 
 import android.os.Parcelable
-import com.example.shopping.model.product.order.OrderItemModel
+import com.example.shopping.model.recyclerView.product.order.OrderItemModel
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize

@@ -1,7 +1,7 @@
 package com.example.shopping.presentation.viewHolder.order
 
 import com.example.shopping.extensions.load
-import com.example.shopping.model.product.order.OrderItemModel
+import com.example.shopping.model.recyclerView.product.order.OrderItemModel
 import com.example.shopping.presentation.adapter.model.ModelViewHolder
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener

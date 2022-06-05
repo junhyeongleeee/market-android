@@ -24,6 +24,13 @@
             app:exitAnim="@anim/slide_to_left"
             app:popEnterAnim="@anim/slide_from_left"
             app:popExitAnim="@anim/slide_to_right"/>
+        <action
+            android:id="@+id/action_navMy_to_navRefundList"
+            app:destination="@id/navRefundList"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_to_right"/>
     </fragment>
 
     <fragment
@@ -36,6 +43,12 @@
         android:id="@+id/navOrderList"
         android:name="com.example.shopping.presentation.my.orderList.OrderListFragment"
         android:label="OrderListFragment"
+        tools:layout="@layout/fragment_order_list"/>
+
+    <fragment
+        android:id="@+id/navRefundList"
+        android:name="com.example.shopping.presentation.my.refundList.RefundListFragment"
+        android:label="RefundListFragment"
         tools:layout="@layout/fragment_order_list"/>
 
 </navigation>

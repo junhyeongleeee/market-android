@@ -1,4 +1,4 @@
-package com.example.shopping.model.product
+package com.example.shopping.model.recyclerView.product
 
 import android.os.Parcelable
 import com.example.shopping.model.type.CellType

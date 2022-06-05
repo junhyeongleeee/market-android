@@ -1,8 +1,6 @@
 package com.example.shopping.presentation.detail.navigation.productDetail
 
-import com.example.shopping.data.entity.product.ProductDetailEntity
-import com.example.shopping.model.category.CategoryModel
-import com.example.shopping.model.product.ProductModel
+import com.example.shopping.model.recyclerView.product.ProductModel
 
 sealed class ProductDetailState {
     object UnInitialized: ProductDetailState()

@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.shopping.domain.repository.category.CategoryRepositoryImpl
-import com.example.shopping.model.product.ProductModel
+import com.example.shopping.model.recyclerView.product.ProductModel
 import com.example.shopping.presentation.base.BaseViewModel
-import com.example.shopping.presentation.category.CategoryState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 

@@ -1,6 +1,6 @@
 package com.example.shopping.presentation.my.orderList
 
-import com.example.shopping.presentation.main.MainState
+import com.example.shopping.presentation.my.refundList.RefundListState
 
 sealed class OrderListState {
     object UnInitialized: OrderListState()

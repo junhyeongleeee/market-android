@@ -1,8 +1,7 @@
-package com.example.shopping.model.product.order
+package com.example.shopping.model.remote.order
 
 import com.example.shopping.data.entity.product.order.OrderEntity
 import com.example.shopping.data.entity.product.order.OrderItemEntity
-import com.example.shopping.model.type.OrderType
 
 data class OrderResponse(
     val uid: String,

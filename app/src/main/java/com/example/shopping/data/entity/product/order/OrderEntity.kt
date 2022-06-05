@@ -1,8 +1,10 @@
 package com.example.shopping.data.entity.product.order
 
-import com.example.shopping.model.product.order.OrderItemModel
-import com.example.shopping.model.product.order.OrderModel
+import android.os.Parcelable
+import com.example.shopping.model.recyclerView.product.order.OrderModel
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class OrderEntity(
     val uid: String,
     val customer_id: String,
@@ -11,7 +13,7 @@ data class OrderEntity(
     val ordered_at: String,
     val updated_at: String,
     val items: List<OrderItemEntity>,
-) {
+): Parcelable {
     fun toModel() = OrderModel(
         id = uid.hashCode().toLong(),
         uid = uid,

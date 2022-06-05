@@ -13,6 +13,7 @@ import com.example.shopping.presentation.my.auth.AuthViewModel
 import com.example.shopping.presentation.my.auth.navigation.login.LoginViewModel
 import com.example.shopping.presentation.my.auth.navigation.register.RegisterViewModel
 import com.example.shopping.presentation.my.orderList.OrderListViewModel
+import com.example.shopping.presentation.my.refundList.RefundListViewModel
 import com.example.shopping.presentation.my.userDetail.UserDetailViewModel
 import com.example.shopping.presentation.search.SearchViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -34,4 +35,5 @@ val ViewModelModule = module {
     viewModel { (product_id: String) -> ProductDetailViewModel(product_id, get(), get()) }
     viewModel { OrderViewModel(get(), get())}
     viewModel { OrderListViewModel(get(), get()) }
+    viewModel { RefundListViewModel(get(), get()) }
 }

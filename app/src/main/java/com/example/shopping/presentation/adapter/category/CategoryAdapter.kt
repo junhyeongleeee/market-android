@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.shopping.model.category.CategoryModel
+import com.example.shopping.model.recyclerView.category.CategoryModel
 import com.example.shopping.presentation.listener.CategoryListListener
 import kotlin.study.shopping.R
 import kotlin.study.shopping.databinding.ViewholderCategoryBinding

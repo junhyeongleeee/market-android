@@ -7,12 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.shopping.data.entity.product.order.OrderItemEntity
 import com.example.shopping.data.local.AppPreferenceManager
 import com.example.shopping.domain.repository.product.ProductRepositoryImpl
-import com.example.shopping.model.product.ProductModel
-import com.example.shopping.model.product.order.OrderItemModel
-import com.example.shopping.model.product.order.OrderModel
-import com.example.shopping.model.product.order.OrderRefundCancelModel
+import com.example.shopping.model.recyclerView.product.order.OrderModel
+import com.example.shopping.model.remote.order.OrderRefundCancelModel
 import com.example.shopping.presentation.base.BaseViewModel
-import com.example.shopping.presentation.home.HomeState
+import com.example.shopping.presentation.my.refundList.RefundListState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -22,8 +20,8 @@ class OrderListViewModel(
 ) : BaseViewModel() {
 
     private var _orderListStateLiveData =
-        MutableLiveData<OrderListState>(OrderListState.UnInitialized)
-    val orderListStateLiveData: LiveData<OrderListState> = _orderListStateLiveData
+        MutableLiveData<RefundListState>(RefundListState.UnInitialized)
+    val orderListStateLiveData: LiveData<RefundListState> = _orderListStateLiveData
 
     val orderItemListLiveData = MutableLiveData<List<OrderModel>>()
 
@@ -33,7 +31,7 @@ class OrderListViewModel(
     }
 
     private fun mockOrderItemModel() {
-        _orderListStateLiveData.postValue(OrderListState.Loading)
+        _orderListStateLiveData.postValue(RefundListState.Loading)
 
         val mockList = (0 until 10).map {
             OrderModel(
@@ -62,7 +60,7 @@ class OrderListViewModel(
 
     private fun getOrders() = viewModelScope.launch(exceptionHandler) {
 
-        _orderListStateLiveData.postValue(OrderListState.Loading)
+        _orderListStateLiveData.postValue(RefundListState.Loading)
 
         preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let { token ->
             productRepositoryImpl.getOrderList(token).let {
@@ -84,24 +82,24 @@ class OrderListViewModel(
                         )
                     }
                 } else {
-                    _orderListStateLiveData.postValue(OrderListState.Failure)
+                    _orderListStateLiveData.postValue(RefundListState.Failure)
                 }
             }
-        } ?: _orderListStateLiveData.postValue(OrderListState.Failure)
+        } ?: _orderListStateLiveData.postValue(RefundListState.Failure)
     }
 
     fun requestCancel(order_id: String, refundCancelModel: OrderRefundCancelModel) =
         viewModelScope.launch(exceptionHandler) {
-            _orderListStateLiveData.postValue(OrderListState.Loading)
+            _orderListStateLiveData.postValue(RefundListState.Loading)
 
             preference.getString(AppPreferenceManager.ACCESS_TOKEN)?.let { token ->
                 productRepositoryImpl.requestRefundCancel(token, order_id, refundCancelModel)?.let {
                     Log.e("RefundEntity", it.toString())
-                    _orderListStateLiveData.postValue(OrderListState.Success)
+                    _orderListStateLiveData.postValue(RefundListState.Success)
 
                     fetch()
-                } ?: _orderListStateLiveData.postValue(OrderListState.Failure)
-            } ?: _orderListStateLiveData.postValue(OrderListState.Failure)
+                } ?: _orderListStateLiveData.postValue(RefundListState.Failure)
+            } ?: _orderListStateLiveData.postValue(RefundListState.Failure)
         }
 
 }

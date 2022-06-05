@@ -1,15 +1,12 @@
 package com.example.shopping.presentation.detail.navigation.order
 
-import android.util.Log
 import androidx.navigation.fragment.findNavController
 import com.example.shopping.extensions.snackbar
-import com.example.shopping.model.product.order.OrderRequestListModel
-import com.example.shopping.model.product.order.OrderRequestModel
-import com.example.shopping.presentation.RemoteState
+import com.example.shopping.model.recyclerView.product.order.OrderRequestListModel
+import com.example.shopping.model.remote.order.OrderRequestModel
 import com.example.shopping.presentation.base.BaseFragment
 import com.example.shopping.presentation.detail.navigation.productDetail.ProductDetailFragment
 import org.koin.android.viewmodel.ext.android.viewModel
-import retrofit2.HttpException
 import kotlin.study.shopping.databinding.FragmentOrderBinding
 
 class OrderFragment : BaseFragment<OrderViewModel, FragmentOrderBinding>() {

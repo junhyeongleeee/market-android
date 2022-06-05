@@ -3,7 +3,7 @@ package com.example.shopping.presentation.viewHolder.order
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.example.shopping.model.recyclerView.product.order.OrderItemModel
-import com.example.shopping.model.recyclerView.product.order.OrderModel
+import com.example.shopping.model.recyclerView.product.order.RefundModel
 import com.example.shopping.model.type.OrderType
 import com.example.shopping.presentation.adapter.model.ModelRecyclerAdapter
 import com.example.shopping.presentation.adapter.model.ModelViewHolder
@@ -14,78 +14,45 @@ import com.example.shopping.util.provider.ResourcesProvider
 import kotlin.study.shopping.R
 import kotlin.study.shopping.databinding.ViewholderOrderListBinding
 
-class OrderListViewHolder(
+class RefundListViewHolder(
     private val binding: ViewholderOrderListBinding,
     viewModel: BaseViewModel,
     resourcesProvider: ResourcesProvider
-) : ModelViewHolder<OrderModel>(binding, viewModel, resourcesProvider) {
+) : ModelViewHolder<RefundModel>(binding, viewModel, resourcesProvider) {
 
-    override fun bindViews(model: OrderModel, adapterListener: AdapterListener) = with(binding) {
+    override fun bindViews(model: RefundModel, adapterListener: AdapterListener) = with(binding) {
 
         if (adapterListener is OrderListListener) {
             binding.cancelButton.setOnClickListener {
-                adapterListener.onCancelButton(model)
+                adapterListener.onCancelButton(model.order)
             }
             binding.repurchaseButton.setOnClickListener {
-                adapterListener.onRepurchaseButton(model)
+                adapterListener.onRepurchaseButton(model.order)
             }
             binding.refundButton.setOnClickListener {
-                adapterListener.onRefundButtonButton(model)
+                adapterListener.onRefundButtonButton(model.order)
             }
             binding.canceledDetailButton.setOnClickListener {
-                adapterListener.onCanceledDetailButton(model)
+                adapterListener.onCanceledDetailButton(model.order)
             }
             binding.canceledRepurchaseButton.setOnClickListener {
-                adapterListener.onRepurchaseButton(model)
+                adapterListener.onRepurchaseButton(model.order)
             }
             binding.orderDeleteButton.setOnClickListener {
-                adapterListener.onOrderDeleteButton(model)
+                adapterListener.onOrderDeleteButton(model.order)
             }
         }
         // TODO : 주문 내역 삭제 작성
     }
 
-    override fun bindData(orderModel: OrderModel) = with(binding) {
+    override fun bindData(refundModel: RefundModel) = with(binding) {
 
-        date.text = orderModel.ordered_at.split("T")[0]
-
-        val adapter = ModelRecyclerAdapter<OrderItemModel, BaseViewModel>(
-            listOf(),
-            viewModel,
-            resourcesProvider,
-            adapterListener = object : AdapterListener {
-            })
-
-        orderProductListRecyclerView.adapter = adapter
-//        val decoration = DividerItemDecoration(, VERTICAL)
-//        orderProductListRecyclerView.addItemDecoration(decoration)
-
-        orderStateView(orderModel.status)
-
-        adapter.submitList(orderModel.items.mapIndexed { _, entity ->
-            OrderItemModel(
-                id = entity.hashCode().toLong(),
-                uid = entity.uid,
-                order_id = entity.order_id,
-                product_id = entity.product_id,
-                product_name = entity.product_name,
-                product_price = entity.product_price,
-                product_image_url = entity.product_image_url,
-                count = entity.count
-            )
-        })
+        date.text = refundModel.updated_at.split("T")[0]
+        orderStateView(refundModel.status)
     }
 
     private fun orderStateView(status: String) = with(binding) {
         when (status) {
-            OrderType.Pending.type -> {
-                // TODO : 올바르지 않는 주문
-                // - 주문 취소
-                orderPendingGroup.isVisible = true
-                orderCompletedGroup.isGone = true
-                orderCanceledGroup.isGone = true
-                statusTextView.text = resourcesProvider.getString(R.string.ordred)
-            }
             OrderType.Cancelled.type -> {
                 // TODO : 취소 완료 된 주문
                 // - 재구매
@@ -101,22 +68,6 @@ class OrderListViewHolder(
                 orderCompletedGroup.isGone = true
                 orderCanceledGroup.isGone = true
                 statusTextView.text = resourcesProvider.getString(R.string.canceling)
-            }
-            OrderType.Delivered.type -> {
-                // TODO : 배송 된 주문
-                // - 환불 신청 가능
-                orderPendingGroup.isGone = true
-                orderCompletedGroup.isVisible = true
-                orderCanceledGroup.isGone = true
-                statusTextView.text = resourcesProvider.getString(R.string.delivered)
-            }
-            OrderType.Delivering.type -> {
-                // TODO : 배송 중 주문
-                // - 주문, 환불 불가
-                orderPendingGroup.isGone = true
-                orderCompletedGroup.isVisible = true
-                orderCanceledGroup.isGone = true
-                statusTextView.text = resourcesProvider.getString(R.string.delivering)
             }
             OrderType.Refunded.type -> {
                 // TODO : 환불 된 주문

@@ -1,33 +1,16 @@
 package com.example.shopping.presentation.category.productsByCategory
 
-import android.graphics.ColorSpace
-import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.viewbinding.ViewBinding
-import com.example.shopping.model.product.ProductModel
+import com.example.shopping.model.recyclerView.product.ProductModel
 import com.example.shopping.presentation.adapter.model.ModelRecyclerAdapter
 import com.example.shopping.presentation.base.BaseFragment
-import com.example.shopping.presentation.base.BaseNavFragment
-import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.category.CategoryFragment
 import com.example.shopping.presentation.detail.ProductDetailActivity
-import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.ProductListListener
 import com.example.shopping.util.provider.ResourcesProvider
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import kotlin.study.shopping.R
-import kotlin.study.shopping.databinding.FragmentCategoryBinding
-import kotlin.study.shopping.databinding.FragmentCategoryTest1Binding
-import kotlin.study.shopping.databinding.FragmentHomeBinding
 import kotlin.study.shopping.databinding.FragmentProductsByCategoryBinding
 
 class ProductsByCategoryFragment :

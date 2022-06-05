@@ -1,8 +1,7 @@
 package com.example.shopping.data.response.order
 
 import com.example.shopping.data.entity.product.order.RefundEntity
-import com.example.shopping.model.product.order.OrderResponse
-import com.example.shopping.model.type.OrderType
+import com.example.shopping.model.remote.order.OrderResponse
 
 data class RefundResponse(
     val order: OrderResponse,

@@ -6,8 +6,8 @@ import com.example.shopping.data.entity.product.order.OrderEntity
 import com.example.shopping.data.entity.product.order.RefundEntity
 import com.example.shopping.data.remote.service.ApiService
 import com.example.shopping.domain.repository.product.ProductRepositoryImpl
-import com.example.shopping.model.product.order.OrderRefundCancelModel
-import com.example.shopping.model.product.order.OrderRequestListModel
+import com.example.shopping.model.remote.order.OrderRefundCancelModel
+import com.example.shopping.model.recyclerView.product.order.OrderRequestListModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
@@ -52,6 +52,20 @@ class ProductRepository(
         }
     }
 
+    override suspend fun getRefundList(access_token: String): List<RefundEntity> = withContext(ioDispatcher){
+        val token = "Bearer $access_token"
+        val response = apiService.getRefunds(token)
+
+        if(response.isSuccessful){
+            response?.body()?.refunds?.mapIndexed { _, it ->
+                it.toEntity()
+            } ?: listOf()
+        }
+        else{
+            listOf()
+        }
+    }
+
     override suspend fun requestRefundCancel(
         access_token: String,
         order_id: String,
@@ -68,6 +82,7 @@ class ProductRepository(
             null
         }
     }
+
 
 
 }

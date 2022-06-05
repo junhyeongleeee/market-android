@@ -1,4 +1,4 @@
-package com.example.shopping.model.product.order
+package com.example.shopping.model.remote.order
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

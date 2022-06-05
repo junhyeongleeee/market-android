@@ -5,8 +5,8 @@ import android.util.Log
 import androidx.navigation.fragment.findNavController
 import com.example.shopping.extensions.load
 import com.example.shopping.extensions.snackbar
-import com.example.shopping.model.product.ProductModel
-import com.example.shopping.model.product.order.OrderRequestModel
+import com.example.shopping.model.recyclerView.product.ProductModel
+import com.example.shopping.model.remote.order.OrderRequestModel
 import com.example.shopping.presentation.base.BaseFragment
 import com.example.shopping.presentation.detail.ProductDetailActivity
 import org.koin.android.viewmodel.ext.android.viewModel

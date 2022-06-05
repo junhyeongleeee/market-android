@@ -6,15 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.shopping.domain.repository.home.HomeRepositoryImpl
 import com.example.shopping.model.type.CellType
-import com.example.shopping.model.product.ProductModel
-import com.example.shopping.presentation.RemoteState
+import com.example.shopping.model.recyclerView.product.ProductModel
 import com.example.shopping.presentation.base.BaseViewModel
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.net.SocketException
-import java.net.UnknownHostException
 
 class HomeViewModel(
     private val homeRepositoryImpl: HomeRepositoryImpl

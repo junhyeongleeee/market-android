@@ -1,8 +1,6 @@
 package com.example.shopping.presentation.home
 
-import com.example.shopping.model.product.ProductModel
-import com.example.shopping.presentation.category.productsByCategory.ProductsByCategoryState
-import com.example.shopping.presentation.main.MainState
+import com.example.shopping.model.recyclerView.product.ProductModel
 
 sealed class HomeState {
     object UnInitialized: HomeState()

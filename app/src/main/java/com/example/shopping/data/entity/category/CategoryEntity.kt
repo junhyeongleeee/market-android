@@ -1,6 +1,6 @@
 package com.example.shopping.data.entity.category
 
-import com.example.shopping.model.category.CategoryModel
+import com.example.shopping.model.recyclerView.category.CategoryModel
 
 data class CategoryEntity (
     val uid: String,

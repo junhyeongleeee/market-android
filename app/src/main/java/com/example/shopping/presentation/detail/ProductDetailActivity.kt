@@ -2,18 +2,13 @@ package com.example.shopping.presentation.detail
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import com.example.shopping.model.product.ProductModel
+import com.example.shopping.model.recyclerView.product.ProductModel
 import com.example.shopping.model.type.TransitionModeType
 import com.example.shopping.presentation.base.BaseActivity
 import com.example.shopping.presentation.category.productsByCategory.ProductsByCategoryFragment
 import org.koin.android.viewmodel.ext.android.viewModel
-import org.koin.experimental.builder.getArguments
 import kotlin.study.shopping.R
 import kotlin.study.shopping.databinding.ActivityProductDetailBinding
 

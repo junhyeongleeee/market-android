@@ -1,22 +1,13 @@
 package com.example.shopping.presentation.category
 
-import android.os.Bundle
-import android.util.Log
 import androidx.core.os.bundleOf
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.shopping.model.category.CategoryModel
-import com.example.shopping.presentation.adapter.category.CategoryAdapter
+import com.example.shopping.model.recyclerView.category.CategoryModel
 import com.example.shopping.presentation.adapter.model.ModelRecyclerAdapter
-import com.example.shopping.presentation.adapter.model.ModelViewHolder
 import com.example.shopping.presentation.base.BaseFragment
-import com.example.shopping.presentation.base.BaseNavFragment
-import com.example.shopping.presentation.base.BaseViewModel
-import com.example.shopping.presentation.listener.AdapterListener
 import com.example.shopping.presentation.listener.CategoryListListener
 import com.example.shopping.util.provider.ResourcesProvider
-import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.study.shopping.R

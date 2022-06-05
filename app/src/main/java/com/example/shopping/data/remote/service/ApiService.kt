@@ -10,10 +10,11 @@ import com.example.shopping.data.response.product.ProductResponse
 import com.example.shopping.data.response.user.LoginResponse
 import com.example.shopping.data.response.user.UserDetailResponse
 import com.example.shopping.data.response.user.UserResponse
-import com.example.shopping.model.product.order.NewOrderResponse
-import com.example.shopping.model.product.order.OrderRefundCancelModel
-import com.example.shopping.model.product.order.OrderRequestListModel
-import com.example.shopping.model.product.order.OrderResponse
+import com.example.shopping.model.remote.order.BodyOrderResponse
+import com.example.shopping.model.remote.order.OrderRefundCancelModel
+import com.example.shopping.model.recyclerView.product.order.OrderRequestListModel
+import com.example.shopping.model.remote.order.BodyRefundResponse
+import com.example.shopping.model.remote.order.OrderResponse
 import com.example.shopping.model.user.LoginModel
 import com.example.shopping.model.user.RegisterModel
 import retrofit2.Response
@@ -72,7 +73,12 @@ interface ApiService {
     @GET(Url.GET_ORDERS)
     suspend fun getOrders(
         @Header("Authorization") access_token: String
-    ) : Response<NewOrderResponse>
+    ) : Response<BodyOrderResponse>
+
+    @GET(Url.GET_REFUNDS)
+    suspend fun getRefunds(
+        @Header("Authorization") access_token: String
+    ) : Response<BodyRefundResponse>
 
     @POST(Url.REQUEST_REFUND_CANCEL)
     suspend fun requestRefundCancel(
@@ -80,4 +86,6 @@ interface ApiService {
         @Path("order_id") order_id: String,
         @Body orderRefundCancelModel: OrderRefundCancelModel
     ) : Response<RefundResponse>
+
+
 }

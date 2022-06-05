@@ -74,6 +74,10 @@ class MyFragment : BaseFragment<MyViewModel, FragmentMyBinding>() {
             // TODO : 로그인 페이지로 이동
             startActivity(AuthActivity.newIntent(requireContext()))
         }
+        cancelReturnListView.setOnClickListener {
+            // TODO : 로그인 페이지로 이동
+            startActivity(AuthActivity.newIntent(requireContext()))
+        }
 
         binding.progressBar.isGone = true
     }
@@ -104,6 +108,10 @@ class MyFragment : BaseFragment<MyViewModel, FragmentMyBinding>() {
 
         orderListView.setOnClickListener {
             findNavController().navigate(R.id.action_navMy_to_navOrderList)
+        }
+        cancelReturnListView.setOnClickListener {
+            // TODO : 로그인 페이지로 이동
+            findNavController().navigate(R.id.action_navMy_to_navRefundList)
         }
 
         binding.progressBar.isGone = true

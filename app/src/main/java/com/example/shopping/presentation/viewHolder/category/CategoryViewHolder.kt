@@ -1,8 +1,7 @@
 package com.example.shopping.presentation.viewHolder.category
 
 import com.example.shopping.extensions.load
-import com.example.shopping.model.category.CategoryModel
-import com.example.shopping.model.product.ProductModel
+import com.example.shopping.model.recyclerView.category.CategoryModel
 import com.example.shopping.presentation.adapter.model.ModelViewHolder
 import com.example.shopping.presentation.base.BaseViewModel
 import com.example.shopping.presentation.listener.AdapterListener

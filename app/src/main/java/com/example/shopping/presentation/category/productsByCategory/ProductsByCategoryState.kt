@@ -1,6 +1,6 @@
 package com.example.shopping.presentation.category.productsByCategory
 
-import com.example.shopping.model.product.ProductModel
+import com.example.shopping.model.recyclerView.product.ProductModel
 
 sealed class ProductsByCategoryState {
     object UnInitialized: ProductsByCategoryState()

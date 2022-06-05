@@ -1,7 +1,7 @@
 package com.example.shopping.data.entity.product
 
-import com.example.shopping.model.product.ProductModel
-import com.example.shopping.model.product.home.ProductRecommendModel
+import com.example.shopping.model.recyclerView.product.ProductModel
+import com.example.shopping.model.recyclerView.product.home.ProductRecommendModel
 
 data class ProductEntity(
     val _id: String,
