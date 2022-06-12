@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.shopping.presentation.FragmentFactoryImpl
 import com.example.shopping.presentation.base.BaseActivity
 import com.example.shopping.presentation.base.BaseViewPagerFragment
+import com.example.shopping.presentation.search.SearchActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -132,7 +133,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         if (!backPressedChecked) {
 
             val position = indexToPage.values.indexOf(item.itemId)
-            viewModel.menuSelected(position)
+
+            if(position == 1){
+                startActivity(SearchActivity.newIntent(this))
+                return false
+            }
+            else viewModel.menuSelected(position)
 
         } else {
             backPressedChecked = false

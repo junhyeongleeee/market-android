@@ -98,4 +98,9 @@ interface ApiService {
         @Header("Authorization") access_token: String,
         @Path("order_id") order_id: String
     ): Response<RefundResponse>
+
+    @GET(Url.SEARCH_PRODUCTS)
+    suspend fun getSearchProducts(
+        @Query("keyword") keyword: String
+    ): Response<ProductResponse>
 }

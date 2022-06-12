@@ -1,7 +1,7 @@
 package com.example.shopping.data.remote.url
 
 object Url {
-    const val BASE_URL = "https://4055-175-209-247-189.jp.ngrok.io"
+    const val BASE_URL = "https://8f0a-175-209-247-189.jp.ngrok.io"
     const val MOCK_URL = "/v1/"
 
     const val PUT_CATEGORY = ""
@@ -23,4 +23,6 @@ object Url {
 
     const val DELETE_ORDER = "/orders/{order_id}/delete"
     const val DELETE_REFUND = "/refunds/{order_id}/delete"
+
+    const val SEARCH_PRODUCTS = "/products/search"
 }

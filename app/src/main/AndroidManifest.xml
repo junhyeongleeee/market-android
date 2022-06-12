@@ -12,10 +12,11 @@
         android:roundIcon="@drawable/ic_shopping"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shoppingapp">
-        <activity android:name="com.example.shopping.presentation.detail.ProductDetailActivity"></activity>
+        <activity android:name="com.example.shopping.presentation.search.SearchActivity"></activity>
+        <activity android:name="com.example.shopping.presentation.detail.ProductDetailActivity" />
         <activity
             android:name="com.example.shopping.presentation.my.auth.AuthActivity"
-            android:windowSoftInputMode="stateAlwaysVisible"></activity>
+            android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
             android:name="com.example.shopping.presentation.main.MainActivity"
             android:exported="true"
