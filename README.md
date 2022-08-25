@@ -2,7 +2,7 @@
 
 ## 📃 어플리케이션 계획서
 
-[마켓컬리 클론 코딩](https://www.notion.so/6c16c62fe751465eb71315f1999e11fc) 
+[마켓컬리 클론 코딩](https://puddle-cheese-f7b.notion.site/6c16c62fe751465eb71315f1999e11fc) 
 
 # 💥 기술 스택
 
